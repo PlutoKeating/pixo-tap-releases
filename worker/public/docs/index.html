@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN" data-title-zh="使用说明 | PIXO TAP" data-title-en="Documentation | PIXO TAP" data-desc-zh="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。" data-desc-en="PIXO TAP documentation: installing on macOS and Windows, screen recording / accessibility / camera permissions, where data is stored, privacy commitments and FAQ.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>使用说明 | PIXO TAP</title>
+  <meta name="description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <link rel="canonical" href="https://pixotap.plutokeating.beer/docs/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PIXO TAP">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="使用说明 | PIXO TAP">
+  <meta property="og:description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta property="og:url" content="https://pixotap.plutokeating.beer/docs/">
+  <meta property="og:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="使用说明 | PIXO TAP">
+  <meta name="twitter:description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta name="twitter:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/pages-assets/site.css">
+  <script>try{if(localStorage.getItem('pixo-language')==='en')document.documentElement.lang='en'}catch(e){}</script>
+</head>
+<body>
+  <a class="px-skip" href="#main"><span data-l="zh">跳到主要内容</span><span data-l="en">Skip to main content</span></a>
+  <header class="px-header" id="px-header">
+  <div class="px-header-in">
+    <a class="px-brand" href="/"><img src="/favicon.png" alt="" width="28" height="28">PIXO TAP</a>
+    <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/" aria-current="page"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></nav>
+    <label class="px-lang"><span class="sr-only"><span data-l="zh">语言</span><span data-l="en">Language</span></span><select id="px-lang"><option value="zh">中文</option><option value="en">English</option></select></label>
+    <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav"><span data-l="zh">菜单</span><span data-l="en">Menu</span></button>
+  </div>
+</header>
+  <main class="px-main" id="main">
+<div data-l="zh" lang="zh-CN">
+<h1>使用说明</h1>
+<p class="lead">PIXO TAP 帮你在多项长期任务之间切换后接回进度。本页说明如何安装、需要哪些权限、数据放在哪里，以及常见问题。</p>
+<div class="callout"><strong>当前状态。</strong> PIXO TAP 仍在开发中。macOS 版与 Windows 版处于开发与试用阶段；Linux、Android、iOS 尚未发布；实体桌宠硬件仍是概念；网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。下载页没有已发布版本时会如实显示空状态。</div>
+<nav class="toc" aria-label="目录"><strong>目录</strong><ol>
+<li><a href="#install">安装</a></li><li><a href="#use">基本使用</a></li><li><a href="#permissions">权限</a></li><li><a href="#data">数据存放位置</a></li><li><a href="#privacy">隐私承诺</a></li><li><a href="#faq">常见问题</a></li></ol></nav>
+
+<h2 id="install">安装</h2>
+<p>先到<a href="/download/">下载页</a>获取安装包，并按页面说明核对 SHA-256 校验值。试用包目前没有 Apple 公证和 Windows 代码签名，系统可能给出“无法验证开发者”或“未知发布者”的提示，请只使用来自下载页的文件。</p>
+<h3>macOS</h3>
+<ul>
+<li>系统要求：macOS 13 或更高版本；试用包同时支持 Apple 芯片与 Intel Mac。</li>
+<li>把 <code>PixoTap</code> 拖到“应用程序”文件夹。</li>
+<li>第一次打开时，按住 Control 点击 PixoTap，选择“打开”，再确认一次。</li>
+<li>屏幕顶部出现 PixoTap 后，可以推出安装镜像。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+<li>系统要求：Windows 11 x64，或 Windows 10 x64 2004（build 19041）及以上。当前实际验收环境是 Windows 11，其它版本的兼容性尚待验证。</li>
+<li>完整解压 ZIP，保留 <code>Assets</code>、<code>x64</code>、<code>tessdata</code>、<code>Licenses</code> 等目录，再打开 <code>PixoTap.exe</code>。不要直接在压缩包里运行，也不要只复制 EXE。</li>
+<li>压缩包已附带 .NET 运行时。文字识别（OCR）另需 Microsoft Visual C++ v14 x64 运行库；缺少时请先安装微软官方运行库，再重新打开程序，安装可能需要管理员权限。</li>
+</ul>
+
+<h2 id="use">基本使用</h2>
+<h3>macOS</h3>
+<ul>
+<li>默认入口是屏幕顶部的“灵动岛”：悬停展开，选择项目后点“继续工作”或“开始记录”，结束时点“保存断点”。可在设置中切换为桌宠入口。</li>
+<li>只有你明确点击开始后才会记录；浏览、切换页签、取消都不会开始记录。</li>
+<li>“专注”提供 25、45、60 分钟计时；“暂放”最多保存 20 个本机文件引用，不会移动或复制原文件。</li>
+<li>“聊一聊”打开 AI 对话，需要你自己的 DeepSeek 密钥；没有密钥时仍会生成本地交接摘要。</li>
+<li>菜单栏的笑脸始终可以召回、隐藏入口或退出。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+<li>从入口或托盘打开工作台，新建项目或子项目，选中后点击开始记录；在授权窗口里逐项选择活动信息、文件路径、截图/OCR 和结束照片。</li>
+<li>点击“保存断点”结束会话，恢复笔记会先保存在本机，再等待或执行在线分析。</li>
+<li>在入口上按 Alt+F4 会停止记录并隐藏入口，可从托盘再次显示；完全退出请用托盘菜单的“退出”。</li>
+</ul>
+<h3>恢复笔记</h3>
+<p>结束一次会话后，回到同一个项目会看到固定的四段：本次完成、推进到这里、当前卡点、下次先做。恢复内容不包含材料路径或网页地址。</p>
+
+<h2 id="permissions">权限</h2>
+<p>所有权限都可以随时在系统设置中关闭；拒绝权限时，对应功能不可用，其它功能仍可使用。</p>
+<div class="table-wrap"><table>
+<thead><tr><th>权限</th><th>用于</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>屏幕录制（macOS）</td><td>开始和结束时截取前台窗口，并在本机做文字识别</td><td>截图在本机处理；相同或近似画面会去重；密码工具、已识别的隐私浏览窗口和敏感路径默认跳过。</td></tr>
+<tr><td>辅助功能（macOS）</td><td>读取当前窗口标题、浏览器页面标题、应用公开的本地文件路径</td><td>不开启也能使用，只是线索更少。</td></tr>
+<tr><td>相机</td><td>结束会话时拍一张现场照片，帮助你回忆</td><td>macOS 在首次结束会话时请求；Windows 需要系统“允许桌面应用访问摄像头”。拒绝、无设备或取不到有效画面时不会生成照片。</td></tr>
+<tr><td>文件与剪贴板</td><td>记录新建、下载、修改、移动的文件名与路径；剪贴板变化</td><td>剪贴板只记录变化类型和前台应用，不保存正文。</td></tr>
+</tbody></table></div>
+
+<h2 id="data">数据存放位置</h2>
+<ul>
+<li>macOS：<code>~/Library/Application Support/PixoTap/Projects/&lt;项目 ID&gt;/暂存/&lt;会话 ID&gt;</code>。原文件不会被搬动或复制。</li>
+<li>Windows：<code>%LocalAppData%\PixoTap</code>，包括 <code>Projects</code>、设置和 <code>IslandShelf\references.json</code>。备份时请先退出程序，再复制整个目录。</li>
+<li>DeepSeek 密钥：macOS 保存在系统钥匙串；Windows 由系统凭据保护保存。不会写入项目文件或应用包。</li>
+<li>删除应用不会自动删除工作数据；如需清除，请在退出程序后自行删除上述目录。</li>
+</ul>
+
+<h2 id="privacy">隐私承诺</h2>
+<ul>
+<li>本地优先：不登录、不联网也能记录和恢复。</li>
+<li>截图原图、结束照片、原文件内容、剪贴板文字正文不会上传。</li>
+<li>只有在你配置了自己的密钥并主动触发分析时，本机识别出的 OCR 文字、活动时间线和应用名称才会发送给 AI 服务（目前为 DeepSeek）。OCR 文字可能含敏感信息，请按项目内容决定是否授权。</li>
+<li>使用遥测默认关闭；数据同步是可选功能，目前尚未开放。</li>
+<li>账号由自托管的 Logto 登录服务管理，账号服务尚未开放。</li>
+</ul>
+<p>完整说明见<a href="/privacy/">隐私政策（草案）</a>。</p>
+
+<h2 id="faq">常见问题</h2>
+<details class="faq"><summary>我需要账号吗？</summary><p>不需要。客户端本地即可使用。账号用于将来可选的同步、数据导出与设备授权，目前账号服务尚未开放，<a href="/account/">账号页面</a>会显示相应提示。</p></details>
+<details class="faq"><summary>为什么下载页没有可下载的版本？</summary><p>发布仓库目前还没有任何正式发布。页面会如实显示“暂时没有可下载的版本”，不会显示虚构的版本号。请稍后再来。</p></details>
+<details class="faq"><summary>macOS 提示“无法验证开发者”怎么办？</summary><p>试用包使用 ad-hoc 签名，尚未做 Developer ID 公证。请按“安装”一节所述，按住 Control 点击应用并选择“打开”。请务必核对 SHA-256，且只使用下载页提供的文件。</p></details>
+<details class="faq"><summary>Windows 提示“未知发布者”怎么办？</summary><p>程序目前没有代码签名，系统可能弹出 SmartScreen 提示。请核对下载页给出的 SHA-256 后再运行。</p></details>
+<details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥，并自行承担相应的服务费用与条款。没有密钥或断网时，仍会生成本地交接摘要，待处理的分析在联网后继续。</p></details>
+<details class="faq"><summary>如何停止记录？</summary><p>点击“保存断点”即可；隐藏入口或退出程序也会停止记录。在 macOS 上，也可以从菜单栏笑脸结束。</p></details>
+<details class="faq"><summary>有 Linux、Android、iOS 版本吗？实体桌宠呢？</summary><p>目前没有。这些平台尚未发布，网站上也不提供下载。实体桌宠硬件仍是概念，没有硬件时软件也能独立使用。</p></details>
+<details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销功能将在账号服务开放后于账号中心提供。</p></details>
+<p class="meta">发现说明与实际不符？以实际软件行为为准，欢迎反馈（联系方式待补充）。</p>
+</div>
+<div data-l="en" lang="en">
+<h1>Documentation</h1>
+<p class="lead">PIXO TAP helps you pick up where you left off across several long-running tasks. This page covers installation, the permissions it asks for, where your data lives, and common questions.</p>
+<div class="callout"><strong>Current status.</strong> PIXO TAP is still in development. The macOS and Windows apps are in development and trial; Linux, Android and iOS are not released; the physical desk companion is still a concept; the interactive demo and the "recognition" in the web prototype are simulated and never read your device. When no release has been published, the download page honestly shows an empty state.</div>
+<nav class="toc" aria-label="Contents"><strong>Contents</strong><ol>
+<li><a href="#install">Install</a></li><li><a href="#use">Basics</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#data">Where data is stored</a></li><li><a href="#privacy">Privacy commitments</a></li><li><a href="#faq">FAQ</a></li></ol></nav>
+
+<h2 id="install">Install</h2>
+<p>Get the installer from the <a href="/download/">download page</a> and verify its SHA-256 checksum as described there. Trial builds currently have no Apple notarization and no Windows code signing, so the system may warn about an unverified developer or unknown publisher. Only use files from the download page.</p>
+<h3>macOS</h3>
+<ul>
+<li>Requirements: macOS 13 or later; the trial build supports both Apple silicon and Intel Macs.</li>
+<li>Drag <code>PixoTap</code> into the Applications folder.</li>
+<li>On first launch, Control-click PixoTap, choose Open, and confirm once more.</li>
+<li>When PixoTap appears at the top of the screen you can eject the disk image.</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+<li>Requirements: Windows 11 x64, or Windows 10 x64 version 2004 (build 19041) or later. The tested environment is Windows 11; other versions still need verification.</li>
+<li>Extract the whole ZIP, keeping folders such as <code>Assets</code>, <code>x64</code>, <code>tessdata</code> and <code>Licenses</code>, then open <code>PixoTap.exe</code>. Do not run it from inside the archive or copy the EXE alone.</li>
+<li>The package ships with the .NET runtime. Text recognition (OCR) also needs the Microsoft Visual C++ v14 x64 runtime; if it is missing, install Microsoft's official runtime and reopen the app (administrator rights may be required).</li>
+</ul>
+
+<h2 id="use">Basics</h2>
+<h3>macOS</h3>
+<ul>
+<li>The default entry is the "Dynamic Island" at the top of the screen: hover to expand, pick a project, then click Continue work or Start recording; click Save checkpoint when you finish. You can switch to the desktop-companion entry in settings.</li>
+<li>Nothing is recorded until you explicitly start; browsing, switching tabs and cancelling never start recording.</li>
+<li>Focus offers 25, 45 and 60 minute timers; Shelf keeps up to 20 references to local files without moving or copying the originals.</li>
+<li>Chat opens the AI conversation and needs your own DeepSeek key; without a key a local hand-off summary is still generated.</li>
+<li>The smiley in the menu bar can always recall or hide the entry, or quit.</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+<li>Open the workspace from the entry or the tray, create a project or sub-project, select it and start recording; in the consent window choose item by item: activity info, file paths, screenshots/OCR and the closing photo.</li>
+<li>Click Save checkpoint to end the session; the recovery note is saved locally first, then online analysis is awaited or run.</li>
+<li>Alt+F4 on the entry stops recording and hides it; show it again from the tray. To quit completely use Quit in the tray menu.</li>
+</ul>
+<h3>Recovery notes</h3>
+<p>After a session ends, returning to the same project shows four fixed parts: what was done, where it got to, current blockers, and what to do first next time. Recovery notes do not include material paths or web addresses.</p>
+
+<h2 id="permissions">Permissions</h2>
+<p>Every permission can be turned off in system settings at any time. If a permission is denied only the matching feature is unavailable.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Permission</th><th>Used for</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Screen recording (macOS)</td><td>Capturing the front window at start and end, with text recognition on your device</td><td>Screenshots are processed locally; identical or near-identical frames are de-duplicated; password managers, recognised private browsing windows and sensitive paths are skipped by default.</td></tr>
+<tr><td>Accessibility (macOS)</td><td>Reading the current window title, browser page title and local file paths exposed by apps</td><td>Optional; without it there are fewer clues.</td></tr>
+<tr><td>Camera</td><td>Taking one on-site photo when a session ends, to help you remember</td><td>macOS asks the first time a session ends; Windows needs "Let desktop apps access your camera". With permission denied, no device, or no valid frame, no photo is created.</td></tr>
+<tr><td>Files and clipboard</td><td>Recording names and paths of files created, downloaded, modified or moved; clipboard changes</td><td>For the clipboard only the kind of change and the front app are recorded, never the text.</td></tr>
+</tbody></table></div>
+
+<h2 id="data">Where data is stored</h2>
+<ul>
+<li>macOS: <code>~/Library/Application Support/PixoTap/Projects/&lt;project ID&gt;/暂存/&lt;session ID&gt;</code>. Original files are never moved or copied.</li>
+<li>Windows: <code>%LocalAppData%\PixoTap</code>, including <code>Projects</code>, settings and <code>IslandShelf\references.json</code>. Quit the app before backing up, then copy the whole folder.</li>
+<li>DeepSeek key: stored in the macOS Keychain, or protected by Windows credential protection. It is never written into project files or the app bundle.</li>
+<li>Removing the app does not delete your working data; to erase it, quit the app and delete the folders above.</li>
+</ul>
+
+<h2 id="privacy">Privacy commitments</h2>
+<ul>
+<li>Local first: recording and recovery work without signing in or going online.</li>
+<li>Original screenshots, closing photos, file contents and clipboard text are never uploaded.</li>
+<li>Only when you have set your own key and trigger an analysis are the OCR text recognised on your device, the activity timeline and the app name sent to an AI service (currently DeepSeek). OCR text can contain sensitive information; decide per project whether to allow it.</li>
+<li>Usage telemetry is off by default; data sync is optional and not available yet.</li>
+<li>Accounts are managed by a self-hosted Logto sign-in service, which is not open yet.</li>
+</ul>
+<p>See the full <a href="/privacy/">Privacy Policy (draft)</a>.</p>
+
+<h2 id="faq">FAQ</h2>
+<details class="faq"><summary>Do I need an account?</summary><p>No. The client works locally. Accounts are for optional sync, data export and device authorization later; the account service is not open yet and the <a href="/account/">account page</a> says so.</p></details>
+<details class="faq"><summary>Why is nothing available on the download page?</summary><p>The releases repository has no published release yet. The page honestly shows "Nothing to download yet" and never invents a version. Please check back later.</p></details>
+<details class="faq"><summary>macOS says the developer cannot be verified.</summary><p>The trial build is ad-hoc signed and not notarized with a Developer ID. Control-click the app and choose Open as described under Install. Always verify the SHA-256 and only use files from the download page.</p></details>
+<details class="faq"><summary>Windows shows "unknown publisher".</summary><p>The program is not code-signed yet, so SmartScreen may warn. Verify the SHA-256 from the download page before running it.</p></details>
+<details class="faq"><summary>What do the AI features need?</summary><p>Your own DeepSeek API key; you are responsible for that service's fees and terms. Without a key or when offline, a local hand-off summary is still produced and pending analysis resumes once you are online.</p></details>
+<details class="faq"><summary>How do I stop recording?</summary><p>Click Save checkpoint. Hiding the entry or quitting also stops recording. On macOS you can also end it from the menu-bar smiley.</p></details>
+<details class="faq"><summary>Are there Linux, Android or iOS versions? What about the hardware?</summary><p>Not yet. Those platforms are unreleased and nothing is offered for download. The physical desk companion is still a concept; the software works on its own without it.</p></details>
+<details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion will be offered in the account centre once the account service opens.</p></details>
+<p class="meta">Spotted a mismatch between this page and the app? The app's actual behaviour wins; feedback is welcome (contact details to be added).</p>
+</div>
+  </main>
+  <footer class="px-footer">
+  <div class="px-footer-in">
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux、Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux, Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/" aria-current="page"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/privacy/"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
+  </div>
+</footer>
+  <script src="/pages-assets/site.js" defer></script>
+</body>
+</html>
