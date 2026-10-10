@@ -1,0 +1,16 @@
+{
+  "hart": {
+    "source": "codex-clipboard-1e3213f9-c667-4e40-8660-d846b00074d7.jpg",
+    "sourceSha256": "B7F919CF45940728ABD92BC943A4D69051CC04EEA84BB54F8FA24EFD595CDB9C",
+    "target": "pixo-tap-assets/pets/hart.png",
+    "outputSha256": "C21FE8A973B94F7259229770CEEC888B617521C00B0793423F8B9AD00EC5B020",
+    "processing": "built-in image edit, flat #00ff00 chroma background, local soft-matte alpha extraction"
+  },
+  "doc-duck": {
+    "source": "codex-clipboard-0d558a84-19ea-4789-ba2e-2fed94ba54bb.jpg",
+    "sourceSha256": "253E47F9648C132E82EAC74DE0A599EB37B1DE9E45661B0C391878642D26E5E4",
+    "target": "pixo-tap-assets/pets/doc-duck.png",
+    "outputSha256": "1BF53CFEAD9014F4B43B11033F470AFC4657731DD7A3BC56C06E0294B443FD19",
+    "processing": "built-in image edit, flat #ff00ff chroma background, local soft-matte alpha extraction"
+  }
+}

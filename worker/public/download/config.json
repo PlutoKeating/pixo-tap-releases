@@ -1,0 +1,5 @@
+{
+  "repo": "PlutoKeating/pixo-tap-releases",
+  "apiPath": "/v1/releases",
+  "pageSize": 10
+}
