@@ -16,7 +16,8 @@
       "/v1/*",
       "/healthz",
       "/readyz",
-      "/account/*"
+      "/account/*",
+      "/install"
     ]
   },
   "ratelimits": [

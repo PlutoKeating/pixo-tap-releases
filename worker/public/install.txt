@@ -1,0 +1,532 @@
+#!/usr/bin/env bash
+# PixoTap Linux 一键安装脚本。
+#
+#   curl -fsSL https://pixotap.plutokeating.beer/install | bash
+#   curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --version <tag>
+#   curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall
+#
+# 只依赖 curl、tar、sha256sum；不需要 root，不会调用 sudo。
+# 安装到 ~/.local/share/pixotap（符号链接 ~/.local/bin/pixotap，桌面入口与图标在 ~/.local/share）。
+# 版本不写死：运行时通过 GitHub 公开 API 找到包含 linux-x86_64 tar.gz 的最新 release，
+# 下载后用同一个 release 里的 SHA256SUMS.txt 校验，校验失败立即中止且不改动已安装的版本。
+#
+# 选项：
+#   --version <tag>   安装指定 release（tag 名，如 v0.1.0）
+#   --stable-only     忽略预发布版本（默认允许预发布并给出提示）
+#   --force           即使已是同一版本也重新安装
+#   --dry-run         只查找并打印将要执行的动作，不下载、不改动任何文件
+#   --uninstall       卸载（保留用户数据 ~/.local/share/PixoTap）
+#   -h, --help        显示帮助
+# 环境变量：
+#   PIXO_RELEASES_REPO  发布仓库，默认 PlutoKeating/pixo-tap-releases
+#   GITHUB_TOKEN        可选；仅用于 API 请求以提高限流额度，不会发给下载地址
+#   PIXO_GITHUB_API     仅测试使用：替换 https://api.github.com（允许 http://127.0.0.1）
+
+set -euo pipefail
+
+DEFAULT_REPO="PlutoKeating/pixo-tap-releases"
+APP_ID="beer.plutokeating.pixotap"
+MIN_GLIBC="2.39"
+
+REPO="${PIXO_RELEASES_REPO:-$DEFAULT_REPO}"
+API_BASE="${PIXO_GITHUB_API:-https://api.github.com}"
+DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+BIN_DIR="$HOME/.local/bin"
+INSTALL_ROOT="$DATA_HOME/pixotap"
+APP_DIR="$INSTALL_ROOT/app"
+DESKTOP_FILE="$DATA_HOME/applications/$APP_ID.desktop"
+ICON_DIRS=("$DATA_HOME/icons/hicolor/128x128/apps" "$DATA_HOME/icons/hicolor/512x512/apps")
+USER_DATA_DIR="$DATA_HOME/PixoTap"
+
+WANT_VERSION=""
+STABLE_ONLY=0
+FORCE=0
+DRY_RUN=0
+DO_UNINSTALL=0
+WORK_DIR=""
+
+if [ -t 2 ]; then
+  C_RED=$'\033[31m'; C_GRN=$'\033[32m'; C_YEL=$'\033[33m'; C_OFF=$'\033[0m'
+else
+  C_RED=""; C_GRN=""; C_YEL=""; C_OFF=""
+fi
+
+info() { printf '%s\n' "$*" >&2; }
+ok() { printf '%s%s%s\n' "$C_GRN" "$*" "$C_OFF" >&2; }
+warn() { printf '%s提示：%s%s\n' "$C_YEL" "$*" "$C_OFF" >&2; }
+die() { printf '%s错误：%s%s\n' "$C_RED" "$*" "$C_OFF" >&2; exit 1; }
+
+# shellcheck disable=SC2329  # 通过 trap 调用
+cleanup() {
+  if [ -n "$WORK_DIR" ] && [ -d "$WORK_DIR" ]; then
+    rm -rf "$WORK_DIR"
+  fi
+}
+
+usage() {
+  sed -n '2,26p' "$0" 2>/dev/null | sed 's/^# \{0,1\}//' || true
+}
+
+manual_hint() {
+  info "手工安装：打开 https://github.com/$REPO/releases ，下载 PixoTap-*-linux-x86_64.tar.gz 与 SHA256SUMS.txt，"
+  info "用 sha256sum -c 校验后解压，再运行包内的 install.sh（或把 bin/pixotap 放到 PATH 中）。"
+}
+
+# ---------------------------------------------------------------- 环境检查
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die "缺少命令 $1。请先安装它（例如 sudo apt install $2）后重试。"
+}
+
+check_platform() {
+  [ "$(uname -s)" = "Linux" ] || die "PixoTap 的 Linux 版只支持 Linux（当前是 $(uname -s)）。"
+  local arch
+  arch="$(uname -m)"
+  [ "$arch" = "x86_64" ] || die "目前只提供 x86_64 构建（当前架构：$arch）。"
+  local ldd_out
+  ldd_out="$(ldd --version 2>&1 | head -n 1 || true)"
+  if printf '%s' "$ldd_out" | grep -qi musl; then
+    die "检测到 musl libc（如 Alpine），本构建只支持 glibc ${MIN_GLIBC}+（Ubuntu 24.04 或更新）。"
+  fi
+  local glibc
+  glibc="$(printf '%s' "$ldd_out" | grep -oE '[0-9]+\.[0-9]+$' || true)"
+  if [ -n "$glibc" ]; then
+    local lowest
+    lowest="$(printf '%s\n%s\n' "$MIN_GLIBC" "$glibc" | sort -V | head -n 1)"
+    [ "$lowest" = "$MIN_GLIBC" ] || die "glibc 版本过低（$glibc），本构建需要 ${MIN_GLIBC}+（Ubuntu 24.04 或更新）。"
+  else
+    warn "无法识别 glibc 版本，继续安装；若启动失败请确认系统为 Ubuntu 24.04 或更新。"
+  fi
+  need_cmd curl curl
+  need_cmd tar tar
+  need_cmd sha256sum coreutils
+  need_cmd gzip gzip
+  [ -n "${HOME:-}" ] || die "没有 HOME 环境变量，无法确定安装位置。"
+}
+
+# 只允许 https，或本机回环地址的 http（仅用于本地测试服务器）。
+url_ok() {
+  case "$1" in
+    https://*) return 0 ;;
+    http://127.0.0.1:*|http://127.0.0.1/*|http://localhost:*|http://localhost/*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# ---------------------------------------------------------------- 发现发布版本
+
+# 从 GitHub releases JSON（stdin，格式不限）提取：tag|draft|prerelease|资产名=下载地址;...  每个 release 一行。
+parse_releases() {
+  grep -oE '"([^"\\]|\\.)*"|[][{}:,]|[^][{}:,[:space:]"]+' | awk '
+    function unq(s) { if (substr(s,1,1) == "\"") { s = substr(s, 2, length(s) - 2) } return s }
+    BEGIN { depth = 0 }
+    {
+      tok = $0
+      if (tok == "{" || tok == "[") {
+        parent = (depth >= 1 && t[depth] == "{") ? k[depth] : ""
+        depth++
+        t[depth] = tok; k[depth] = ""; pk[depth] = parent
+        ex[depth] = (tok == "{") ? "key" : "val"
+        if (depth == 2 && tok == "{") { tag = ""; draft = ""; pre = ""; assets = "" }
+        if (depth == 4 && tok == "{" && pk[3] == "assets") { an = ""; au = "" }
+        next
+      }
+      if (tok == "}" || tok == "]") {
+        if (depth == 4 && pk[3] == "assets" && an != "" && au != "") { assets = assets an "=" au ";" }
+        if (depth == 2 && tok == "}") { print tag "|" draft "|" pre "|" assets }
+        if (depth > 0) depth--
+        next
+      }
+      if (tok == ":") { ex[depth] = "val"; next }
+      if (tok == ",") { ex[depth] = (t[depth] == "{") ? "key" : "val"; next }
+      if (depth < 1) next
+      if (t[depth] == "{" && ex[depth] == "key") { k[depth] = unq(tok); ex[depth] = "colon"; next }
+      v = unq(tok)
+      if (depth == 2) {
+        if (k[2] == "tag_name") tag = v
+        else if (k[2] == "draft") draft = v
+        else if (k[2] == "prerelease") pre = v
+      } else if (depth == 4 && pk[3] == "assets") {
+        if (k[4] == "name") an = v
+        else if (k[4] == "browser_download_url") au = v
+      }
+    }'
+}
+
+PICKED_TAG=""
+PICKED_PRE=""
+PICKED_TAR_NAME=""
+PICKED_TAR_URL=""
+PICKED_SUMS_URL=""
+
+asset_url() { # $1 = 资产列表 "a=url;b=url;"  $2 = 资产名
+  printf '%s' "$1" | tr ';' '\n' | awk -F= -v n="$2" '$1 == n { sub(/^[^=]*=/, ""); print; exit }'
+}
+
+find_release() {
+  local url="$API_BASE/repos/$REPO/releases?per_page=100"
+  url_ok "$url" || die "不安全的 API 地址：$url"
+  local body="$WORK_DIR/releases.json" code
+  local -a auth=()
+  if [ -n "${GITHUB_TOKEN:-}" ]; then auth=(-H "Authorization: Bearer $GITHUB_TOKEN"); fi
+  info "正在查询 $REPO 的发布版本……"
+  if ! code="$(curl -sS --connect-timeout 15 --max-time 60 -o "$body" -w '%{http_code}' \
+        -H 'Accept: application/vnd.github+json' "${auth[@]}" "$url")"; then
+    info "无法连接 GitHub（$API_BASE）。请检查网络或代理设置。"
+    manual_hint
+    exit 1
+  fi
+  case "$code" in
+    200) ;;
+    403|429)
+      if grep -qi 'rate limit' "$body" 2>/dev/null || [ "$code" = 429 ]; then
+        info "GitHub API 限流（HTTP $code）：匿名请求每小时有次数上限。"
+        info "稍后（通常一小时内）重试；或设置 GITHUB_TOKEN 后重试：GITHUB_TOKEN=xxx bash install.sh"
+      else
+        info "GitHub 拒绝了请求（HTTP $code）。"
+      fi
+      manual_hint
+      exit 1
+      ;;
+    404)
+      info "找不到发布仓库 $REPO（HTTP 404），或它还没有任何 release。"
+      manual_hint
+      exit 1
+      ;;
+    *)
+      info "GitHub API 返回了意外状态 HTTP $code。"
+      manual_hint
+      exit 1
+      ;;
+  esac
+  local line tag draft pre assets tar_name sums_url tar_url
+  while IFS= read -r line; do
+    [ -n "$line" ] || continue
+    IFS='|' read -r tag draft pre assets <<<"$line"
+    [ -n "$tag" ] || continue
+    [ "$draft" != "true" ] || continue
+    if [ -n "$WANT_VERSION" ] && [ "$tag" != "$WANT_VERSION" ] && [ "$tag" != "v${WANT_VERSION#v}" ]; then
+      continue
+    fi
+    if [ "$STABLE_ONLY" = 1 ] && [ "$pre" = "true" ] && [ -z "$WANT_VERSION" ]; then
+      continue
+    fi
+    tar_name="$(printf '%s' "$assets" | tr ';' '\n' | awk -F= '$1 ~ /linux-x86_64.*\.tar\.gz$/ { print $1; exit }')"
+    [ -n "$tar_name" ] || continue
+    tar_url="$(asset_url "$assets" "$tar_name")"
+    sums_url="$(asset_url "$assets" "SHA256SUMS.txt")"
+    PICKED_TAG="$tag"; PICKED_PRE="$pre"; PICKED_TAR_NAME="$tar_name"
+    PICKED_TAR_URL="$tar_url"; PICKED_SUMS_URL="$sums_url"
+    break
+  done < <(parse_releases <"$body")
+  if [ -z "$PICKED_TAG" ]; then
+    if [ -n "$WANT_VERSION" ]; then
+      die "在 $REPO 里没有找到版本 $WANT_VERSION 的 linux-x86_64 安装包。"
+    fi
+    info "$REPO 里还没有包含 linux-x86_64 安装包的 release。"
+    manual_hint
+    exit 1
+  fi
+  [ -n "$PICKED_SUMS_URL" ] || die "release $PICKED_TAG 缺少 SHA256SUMS.txt，出于安全不会安装未校验的文件。"
+  url_ok "$PICKED_TAR_URL" || die "不安全的下载地址：$PICKED_TAR_URL"
+  url_ok "$PICKED_SUMS_URL" || die "不安全的校验文件地址：$PICKED_SUMS_URL"
+}
+
+# ---------------------------------------------------------------- 下载与校验
+
+download() { # $1 url $2 目标文件
+  local -a progress=(-sS)
+  if [ -t 2 ]; then progress=(--progress-bar); fi
+  if ! curl -fL "${progress[@]}" --retry 2 --connect-timeout 15 --max-time 900 -o "$2" "$1"; then
+    info "下载失败：$1"
+    manual_hint
+    exit 1
+  fi
+}
+
+verify_sha256() { # $1 文件  $2 SHA256SUMS.txt  $3 资产名
+  local expected actual
+  expected="$(awk -v f="$3" '{ n = $2; sub(/^\*/, "", n); if (n == f) { print tolower($1); exit } }' "$2")"
+  if [ -z "$expected" ]; then
+    die "SHA256SUMS.txt 里没有 $3 的校验值，已中止（未改动已安装的版本）。"
+  fi
+  actual="$(sha256sum "$1" | awk '{ print tolower($1) }')"
+  if [ "$expected" != "$actual" ]; then
+    info "期望：$expected"
+    info "实际：$actual"
+    die "校验失败：下载的文件与发布的 SHA256 不一致，已中止，未改动已安装的版本。请重试；若反复失败请勿安装。"
+  fi
+  ok "SHA256 校验通过。"
+}
+
+# ---------------------------------------------------------------- 安装
+
+installed_version() {
+  if [ -f "$APP_DIR/VERSION" ]; then cat "$APP_DIR/VERSION"; fi
+}
+
+check_archive_paths() { # 拒绝绝对路径与 .. 的压缩包条目
+  local bad
+  bad="$(tar -tzf "$1" | grep -E '(^/|(^|/)\.\.(/|$))' || true)"
+  [ -z "$bad" ] || die "安装包含有不安全的路径条目，已中止。"
+}
+
+render_desktop() { # $1 模板 $2 输出
+  local exec_path="$BIN_DIR/pixotap"
+  mkdir -p "$(dirname "$2")"
+  sed -e "s|@EXEC@|$exec_path|g" "$1" >"$2"
+  chmod 644 "$2"
+}
+
+integrate() { # 符号链接、桌面入口、图标（幂等）
+  mkdir -p "$BIN_DIR"
+  ln -sfn "$APP_DIR/bin/pixotap" "$BIN_DIR/pixotap"
+  render_desktop "$APP_DIR/share/$APP_ID.desktop" "$DESKTOP_FILE"
+  local size dir
+  for dir in "${ICON_DIRS[@]}"; do
+    size="$(basename "$(dirname "$dir")")"
+    if [ -f "$APP_DIR/share/icons/hicolor/$size/apps/pixotap.png" ]; then
+      mkdir -p "$dir"
+      cp -f "$APP_DIR/share/icons/hicolor/$size/apps/pixotap.png" "$dir/pixotap.png"
+    fi
+  done
+  if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$DATA_HOME/applications" >/dev/null 2>&1 || true
+  fi
+  if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -f -t "$DATA_HOME/icons/hicolor" >/dev/null 2>&1 || true
+  fi
+}
+
+install_package() {
+  local tar_file="$WORK_DIR/$PICKED_TAR_NAME" sums_file="$WORK_DIR/SHA256SUMS.txt"
+  info "下载 $PICKED_TAR_NAME ……"
+  download "$PICKED_TAR_URL" "$tar_file"
+  download "$PICKED_SUMS_URL" "$sums_file"
+  verify_sha256 "$tar_file" "$sums_file" "$PICKED_TAR_NAME"
+  check_archive_paths "$tar_file"
+  local stage="$INSTALL_ROOT/.staging.$$"
+  rm -rf "$stage"
+  mkdir -p "$stage"
+  tar -xzf "$tar_file" -C "$stage" --strip-components=1 --no-same-owner --no-same-permissions
+  if [ ! -x "$stage/bin/pixotap" ] && [ -f "$stage/bin/pixotap" ]; then chmod 755 "$stage/bin/pixotap"; fi
+  [ -f "$stage/bin/pixotap" ] || { rm -rf "$stage"; die "安装包结构不正确（缺少 bin/pixotap），已中止。"; }
+  [ -f "$stage/share/$APP_ID.desktop" ] || { rm -rf "$stage"; die "安装包结构不正确（缺少桌面入口模板），已中止。"; }
+  printf '%s\n' "$PICKED_TAG" >"$stage/VERSION"
+  # 原子替换：先挪开旧版本，失败则还原。
+  local old=""
+  if [ -d "$APP_DIR" ]; then
+    old="$INSTALL_ROOT/.old.$$"
+    mv "$APP_DIR" "$old"
+  fi
+  if ! mv "$stage" "$APP_DIR"; then
+    [ -z "$old" ] || mv "$old" "$APP_DIR"
+    rm -rf "$stage"
+    die "无法写入 $APP_DIR，已还原。"
+  fi
+  [ -z "$old" ] || rm -rf "$old"
+  integrate
+}
+
+# ---------------------------------------------------------------- 依赖提示（不自动 sudo）
+
+distro_family() {
+  local id="" like=""
+  if [ -r /etc/os-release ]; then
+    # shellcheck disable=SC1091
+    id="$(. /etc/os-release && printf '%s' "${ID:-}")"
+    # shellcheck disable=SC1091
+    like="$(. /etc/os-release && printf '%s' "${ID_LIKE:-}")"
+  fi
+  case " $id $like " in
+    *" debian "*|*" ubuntu "*) echo apt ;;
+    *" fedora "*|*" rhel "*|*" centos "*) echo dnf ;;
+    *" arch "*|*" manjaro "*) echo pacman ;;
+    *) echo unknown ;;
+  esac
+}
+
+print_install_cmds() { # $1 = webkit|tray|ocr|keyring
+  local fam
+  fam="$(distro_family)"
+  case "$1:$fam" in
+    webkit:apt) info "    sudo apt install libwebkit2gtk-4.1-0" ;;
+    webkit:dnf) info "    sudo dnf install webkit2gtk4.1" ;;
+    webkit:pacman) info "    sudo pacman -S webkit2gtk-4.1" ;;
+    webkit:*) info "    apt: sudo apt install libwebkit2gtk-4.1-0 | dnf: sudo dnf install webkit2gtk4.1 | pacman: sudo pacman -S webkit2gtk-4.1" ;;
+    tray:apt) info "    sudo apt install libayatana-appindicator3-1" ;;
+    tray:dnf) info "    sudo dnf install libayatana-appindicator-gtk3" ;;
+    tray:pacman) info "    sudo pacman -S libayatana-appindicator" ;;
+    tray:*) info "    apt: sudo apt install libayatana-appindicator3-1 | dnf: sudo dnf install libayatana-appindicator-gtk3 | pacman: sudo pacman -S libayatana-appindicator" ;;
+    ocr:apt) info "    sudo apt install tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim" ;;
+    ocr:dnf) info "    sudo dnf install tesseract tesseract-langpack-eng tesseract-langpack-chi_sim" ;;
+    ocr:pacman) info "    sudo pacman -S tesseract tesseract-data-eng tesseract-data-chi_sim" ;;
+    ocr:*) info "    apt: sudo apt install tesseract-ocr tesseract-ocr-chi-sim | dnf: sudo dnf install tesseract tesseract-langpack-chi_sim | pacman: sudo pacman -S tesseract tesseract-data-chi_sim" ;;
+    keyring:apt) info "    sudo apt install gnome-keyring" ;;
+    keyring:dnf) info "    sudo dnf install gnome-keyring" ;;
+    keyring:pacman) info "    sudo pacman -S gnome-keyring" ;;
+    keyring:*) info "    请安装 gnome-keyring（或 KWallet 的 Secret Service 支持）" ;;
+  esac
+}
+
+lib_present() { # $1 = 库名前缀，如 libayatana-appindicator3.so
+  if command -v ldconfig >/dev/null 2>&1 && ldconfig -p 2>/dev/null | grep -q "$1"; then return 0; fi
+  if [ -x /sbin/ldconfig ] && /sbin/ldconfig -p 2>/dev/null | grep -q "$1"; then return 0; fi
+  local d
+  for d in /usr/lib /usr/lib64 /usr/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/local/lib; do
+    if compgen -G "$d/$1*" >/dev/null 2>&1; then return 0; fi
+  done
+  return 1
+}
+
+check_runtime() {
+  local bin="$APP_DIR/bin/pixotap" problems=0
+  if command -v ldd >/dev/null 2>&1 && [ -f "$bin" ]; then
+    local missing
+    missing="$(ldd "$bin" 2>/dev/null | awk '/not found/ { print $1 }' | tr '\n' ' ' || true)"
+    if [ -n "${missing// /}" ]; then
+      problems=1
+      warn "缺少运行库：$missing"
+      case "$missing" in
+        *webkit*|*javascriptcore*|*gtk*|*soup*) info "  请安装 WebKitGTK 4.1 运行库（不会自动执行，请自行运行）："; print_install_cmds webkit ;;
+        *) info "  请用发行版的包管理器安装上面列出的库。" ;;
+      esac
+    fi
+  fi
+  if ! lib_present "libayatana-appindicator3.so"; then
+    problems=1
+    warn "没有找到 libayatana-appindicator3：托盘图标将不可用（应用仍可从桌面入口打开）。"
+    print_install_cmds tray
+  fi
+  if ! command -v tesseract >/dev/null 2>&1; then
+    problems=1
+    warn "没有找到 tesseract：截图文字识别（OCR）不可用，其余功能不受影响。"
+    print_install_cmds ocr
+  else
+    local langs
+    langs="$(tesseract --list-langs 2>/dev/null || true)"
+    if ! printf '%s\n' "$langs" | grep -qx 'chi_sim'; then
+      problems=1
+      warn "tesseract 缺少中文语言包 chi_sim，中文截图无法识别。"
+      info "    sudo apt install tesseract-ocr-chi-sim   （其他发行版见：）"
+      print_install_cmds ocr
+    fi
+    if ! printf '%s\n' "$langs" | grep -qx 'eng'; then
+      problems=1
+      warn "tesseract 缺少英文语言包 eng。"
+      print_install_cmds ocr
+    fi
+  fi
+  if ! command -v gnome-keyring-daemon >/dev/null 2>&1 && ! command -v kwalletd6 >/dev/null 2>&1 && ! command -v kwalletd5 >/dev/null 2>&1; then
+    warn "没有检测到 gnome-keyring / KWallet：无法安全保存 DeepSeek 密钥与登录令牌（本地记录不受影响）。"
+    print_install_cmds keyring
+  fi
+  case ":$PATH:" in
+    *":$BIN_DIR:"*) ;;
+    *) warn "$BIN_DIR 不在 PATH 中；请在 ~/.profile 里加入  export PATH=\"\$HOME/.local/bin:\$PATH\"  （桌面入口不受影响）。" ;;
+  esac
+  return "$problems"
+}
+
+# ---------------------------------------------------------------- 卸载
+
+do_uninstall() {
+  local -a targets=("$APP_DIR" "$DESKTOP_FILE")
+  local dir
+  for dir in "${ICON_DIRS[@]}"; do targets+=("$dir/pixotap.png"); done
+  local link="$BIN_DIR/pixotap" link_ours=0
+  if [ -L "$link" ]; then
+    case "$(readlink "$link")" in
+      "$APP_DIR"/*) link_ours=1 ;;
+    esac
+  fi
+  if [ "$DRY_RUN" = 1 ]; then
+    info "（dry-run）将删除："
+    local t
+    for t in "${targets[@]}"; do [ -e "$t" ] && info "  $t"; done
+    [ "$link_ours" = 1 ] && info "  $link"
+    info "保留用户数据：$USER_DATA_DIR"
+    return 0
+  fi
+  local removed=0 t
+  for t in "${targets[@]}"; do
+    if [ -e "$t" ] || [ -L "$t" ]; then rm -rf "$t"; removed=1; fi
+  done
+  if [ "$link_ours" = 1 ]; then rm -f "$link"; removed=1; fi
+  rmdir "$INSTALL_ROOT" 2>/dev/null || true
+  if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$DATA_HOME/applications" >/dev/null 2>&1 || true
+  fi
+  if command -v gtk-update-icon-cache >/dev/null 2>&1 && [ -d "$DATA_HOME/icons/hicolor" ]; then
+    gtk-update-icon-cache -f -t "$DATA_HOME/icons/hicolor" >/dev/null 2>&1 || true
+  fi
+  if [ "$removed" = 1 ]; then ok "已卸载 PixoTap。"; else info "没有找到已安装的 PixoTap，无需卸载。"; fi
+  info "你的数据（项目、恢复笔记、设置）保留在 $USER_DATA_DIR ，如需彻底删除请手动移除该目录。"
+  info "DeepSeek 密钥与登录令牌在系统密钥环中（服务名 PixoTap），可用「密码和密钥」应用删除。"
+}
+
+# ---------------------------------------------------------------- 主流程
+
+parse_args() {
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --version)
+        [ $# -ge 2 ] || die "--version 需要一个 tag 参数。"
+        WANT_VERSION="$2"; shift 2 ;;
+      --version=*) WANT_VERSION="${1#--version=}"; shift ;;
+      --stable-only) STABLE_ONLY=1; shift ;;
+      --force) FORCE=1; shift ;;
+      --dry-run) DRY_RUN=1; shift ;;
+      --uninstall) DO_UNINSTALL=1; shift ;;
+      -h|--help) usage; exit 0 ;;
+      *) die "未知选项：$1（--help 查看用法）" ;;
+    esac
+  done
+}
+
+main() {
+  parse_args "$@"
+  trap cleanup EXIT
+  if [ "$DO_UNINSTALL" = 1 ]; then
+    do_uninstall
+    return 0
+  fi
+  check_platform
+  WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pixotap-install.XXXXXX")"
+  find_release
+  local current
+  current="$(installed_version)"
+  if [ "$PICKED_PRE" = "true" ]; then
+    warn "$PICKED_TAG 是预发布版本（可能不稳定）。只想要稳定版请加 --stable-only。"
+  fi
+  if [ "$DRY_RUN" = 1 ]; then
+    info "（dry-run）不会下载或修改任何文件。将会："
+    info "  版本：$PICKED_TAG（当前已安装：${current:-无}）"
+    info "  下载：$PICKED_TAR_URL"
+    info "  校验：$PICKED_SUMS_URL"
+    info "  安装到：$APP_DIR"
+    info "  链接：$BIN_DIR/pixotap"
+    info "  桌面入口：$DESKTOP_FILE"
+    return 0
+  fi
+  mkdir -p "$INSTALL_ROOT"
+  if [ "$current" = "$PICKED_TAG" ] && [ "$FORCE" = 0 ] && [ -x "$APP_DIR/bin/pixotap" ]; then
+    ok "已是最新版本 $PICKED_TAG，无需更新（--force 可强制重新安装）。"
+    integrate
+  else
+    install_package
+    if [ -n "$current" ]; then ok "已从 $current 更新到 $PICKED_TAG。"; else ok "PixoTap $PICKED_TAG 安装完成。"; fi
+  fi
+  check_runtime || true # 只是提示，不影响安装结果
+  info ""
+  info "启动：在应用菜单搜索 PixoTap，或运行  $BIN_DIR/pixotap"
+  info "卸载：curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall"
+  if [ "$current" != "" ] && [ "$current" != "$PICKED_TAG" ]; then
+    info "如果 PixoTap 正在运行，请退出后重新打开以使用新版本。"
+  fi
+  return 0
+}
+
+# 整个脚本读完后才执行 main（防止 curl | bash 在网络中断时只执行了半截脚本）。
+main "$@"
+exit $?

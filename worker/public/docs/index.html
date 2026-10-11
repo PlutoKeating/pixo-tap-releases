@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" data-title-zh="使用说明 | PIXO TAP" data-title-en="Documentation | PIXO TAP" data-desc-zh="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。" data-desc-en="PIXO TAP documentation: installing on macOS and Windows, screen recording / accessibility / camera permissions, where data is stored, privacy commitments and FAQ.">
+<html lang="zh-CN" data-title-zh="使用说明 | PIXO TAP" data-title-en="Documentation | PIXO TAP" data-desc-zh="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。" data-desc-en="PIXO TAP documentation: installing on macOS, Windows and Linux, screen recording / accessibility / camera permissions, where data is stored, privacy commitments and FAQ.">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>使用说明 | PIXO TAP</title>
-  <meta name="description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta name="description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
   <link rel="canonical" href="https://pixotap.plutokeating.beer/docs/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PIXO TAP">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="使用说明 | PIXO TAP">
-  <meta property="og:description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta property="og:description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
   <meta property="og:url" content="https://pixotap.plutokeating.beer/docs/">
   <meta property="og:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="使用说明 | PIXO TAP">
-  <meta name="twitter:description" content="PIXO TAP 使用说明：macOS 与 Windows 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta name="twitter:description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
   <meta name="twitter:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
@@ -39,7 +39,16 @@
 <div data-l="zh" lang="zh-CN">
 <h1>使用说明</h1>
 <p class="lead">PIXO TAP 帮你在多项长期任务之间切换后接回进度。本页说明如何安装、需要哪些权限、数据放在哪里，以及常见问题。</p>
-<div class="callout"><strong>当前状态。</strong> PIXO TAP 仍在开发中。macOS 版与 Windows 版处于开发与试用阶段；Linux、Android、iOS 尚未发布；实体桌宠硬件仍是概念；网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。下载页没有已发布版本时会如实显示空状态。</div>
+<div class="callout"><strong>当前状态。</strong> PIXO TAP 仍在开发中。macOS 版与 Windows 版处于开发与试用阶段；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念；网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。下载页没有已发布版本时会如实显示空状态。各平台的版本号相互独立，以下载页为准。</div>
+<div class="table-wrap"><table>
+<thead><tr><th>平台</th><th>状态</th><th>获取方式</th></tr></thead>
+<tbody>
+<tr><td>macOS</td><td>开发与试用阶段</td><td><a href="/download/">下载页</a>（dmg/zip）</td></tr>
+<tr><td>Windows</td><td>开发与试用阶段</td><td><a href="/download/">下载页</a>（ZIP）</td></tr>
+<tr><td>Linux</td><td>早期版本（仅 x86_64）</td><td>一键安装脚本，或在<a href="/download/">下载页</a>手动下载 tar.gz</td></tr>
+<tr><td>Android</td><td>尚未发布</td><td>暂无</td></tr>
+<tr><td>iOS</td><td>尚未发布</td><td>暂无</td></tr>
+</tbody></table></div>
 <nav class="toc" aria-label="目录"><strong>目录</strong><ol>
 <li><a href="#install">安装</a></li><li><a href="#use">基本使用</a></li><li><a href="#permissions">权限</a></li><li><a href="#data">数据存放位置</a></li><li><a href="#privacy">隐私承诺</a></li><li><a href="#faq">常见问题</a></li></ol></nav>
 
@@ -59,6 +68,17 @@
 <li>压缩包已附带 .NET 运行时。文字识别（OCR）另需 Microsoft Visual C++ v14 x64 运行库；缺少时请先安装微软官方运行库，再重新打开程序，安装可能需要管理员权限。</li>
 </ul>
 
+<h3>Linux</h3>
+<ul>
+<li>系统要求：x86_64，Ubuntu 24.04 或更新版本（glibc 2.39+）。不支持 Alpine 等 musl 系统；arm64 暂无构建。</li>
+<li>在终端运行一键安装命令（只需要 curl、tar、sha256sum，不需要 root，脚本不会调用 sudo）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
+<li>脚本在运行时通过 GitHub 公开 API 找到包含 Linux 安装包的最新发布，用同一发布里的 <code>SHA256SUMS.txt</code> 校验，校验失败会中止且不改动已安装的版本。重复运行即升级；加 <code>--dry-run</code> 可只预览不安装，加 <code>--stable-only</code> 忽略预发布版本。</li>
+<li>安装位置：程序在 <code>~/.local/share/pixotap</code>，命令 <code>pixotap</code> 链接到 <code>~/.local/bin</code>（若该目录不在 PATH 中，脚本会提示），桌面入口与图标在 <code>~/.local/share</code>。安装后在应用菜单搜索 PixoTap，或在终端运行 <code>pixotap</code>。</li>
+<li>运行库（脚本只提示，不会自动安装）：<code>libwebkit2gtk-4.1</code>、<code>libayatana-appindicator3</code>，以及文字识别用的 <code>tesseract-ocr</code> 与中文语言包。Ubuntu / Debian：<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>保存 AI 服务密钥还需要系统的 Secret Service（如 <code>gnome-keyring</code> 或 KWallet）。</li>
+<li>卸载（保留 <code>~/.local/share/PixoTap</code> 中的你的数据）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre></li>
+<li>Linux 版目前是早期版本。已知限制：只有 x86_64 构建；在 GNOME Wayland 下读取不到前台窗口与应用信息，记录里会如实写“窗口信息不可用”；本版摄像头不可用，结束照片不会生成；剪贴板在 Wayland 下不记录；桌宠在 Wayland 下不保证置顶，会降级为普通小窗；系统托盘在 GNOME 上需要 AppIndicator 扩展（Ubuntu 默认带），缺少时主窗口仍可正常使用。</li>
+</ul>
+
 <h2 id="use">基本使用</h2>
 <h3>macOS</h3>
 <ul>
@@ -74,6 +94,11 @@
 <li>点击“保存断点”结束会话，恢复笔记会先保存在本机，再等待或执行在线分析。</li>
 <li>在入口上按 Alt+F4 会停止记录并隐藏入口，可从托盘再次显示；完全退出请用托盘菜单的“退出”。</li>
 </ul>
+<h3>Linux</h3>
+<ul>
+<li>流程与 macOS、Windows 一致：只有你明确同意并点击开始才会记录；浏览项目、设置不会记录；所有窗口都隐藏或退出时停止记录。点击“保存断点”结束会话，恢复笔记先保存在本机，再等待或执行在线分析。</li>
+<li>没有密钥或断网时，本地内容会保留，重启后继续处理。</li>
+</ul>
 <h3>恢复笔记</h3>
 <p>结束一次会话后，回到同一个项目会看到固定的四段：本次完成、推进到这里、当前卡点、下次先做。恢复内容不包含材料路径或网页地址。</p>
 
@@ -86,13 +111,16 @@
 <tr><td>辅助功能（macOS）</td><td>读取当前窗口标题、浏览器页面标题、应用公开的本地文件路径</td><td>不开启也能使用，只是线索更少。</td></tr>
 <tr><td>相机</td><td>结束会话时拍一张现场照片，帮助你回忆</td><td>macOS 在首次结束会话时请求；Windows 需要系统“允许桌面应用访问摄像头”。拒绝、无设备或取不到有效画面时不会生成照片。</td></tr>
 <tr><td>文件与剪贴板</td><td>记录新建、下载、修改、移动的文件名与路径；剪贴板变化</td><td>剪贴板只记录变化类型和前台应用，不保存正文。</td></tr>
+<tr><td>屏幕截图（Linux）</td><td>开始和结束时截取屏幕</td><td>通过系统的 XDG Desktop Portal，每次需在系统弹窗中授权，且只能截整个屏幕；被拒绝或没有门户时，本次会话不截图，活动与文件记录继续，界面会如实提示。系统是否记住授权取决于桌面版本。</td></tr>
+<tr><td>文件监听（Linux）</td><td>记录桌面、文稿、下载、图片、视频、音乐目录里的文件活动</td><td>只在你授权并开始记录后才监听；隐藏、敏感、临时与生成类文件按规则排除。</td></tr>
 </tbody></table></div>
 
 <h2 id="data">数据存放位置</h2>
 <ul>
 <li>macOS：<code>~/Library/Application Support/PixoTap/Projects/&lt;项目 ID&gt;/暂存/&lt;会话 ID&gt;</code>。原文件不会被搬动或复制。</li>
 <li>Windows：<code>%LocalAppData%\PixoTap</code>，包括 <code>Projects</code>、设置和 <code>IslandShelf\references.json</code>。备份时请先退出程序，再复制整个目录。</li>
-<li>DeepSeek 密钥：macOS 保存在系统钥匙串；Windows 由系统凭据保护保存。不会写入项目文件或应用包。</li>
+<li>Linux：<code>$XDG_DATA_HOME/PixoTap</code>，默认是 <code>~/.local/share/PixoTap</code>。卸载脚本会保留这个目录。</li>
+<li>DeepSeek 密钥：macOS 保存在系统钥匙串；Windows 由系统凭据保护保存；Linux 保存在系统 Secret Service（gnome-keyring 或 KWallet）。没有 Secret Service 时无法保存密钥，不会改存为明文文件。都不会写入项目文件或应用包。</li>
 <li>删除应用不会自动删除工作数据；如需清除，请在退出程序后自行删除上述目录。</li>
 </ul>
 
@@ -112,15 +140,25 @@
 <details class="faq"><summary>macOS 提示“无法验证开发者”怎么办？</summary><p>试用包使用 ad-hoc 签名，尚未做 Developer ID 公证。请按“安装”一节所述，按住 Control 点击应用并选择“打开”。请务必核对 SHA-256，且只使用下载页提供的文件。</p></details>
 <details class="faq"><summary>Windows 提示“未知发布者”怎么办？</summary><p>程序目前没有代码签名，系统可能弹出 SmartScreen 提示。请核对下载页给出的 SHA-256 后再运行。</p></details>
 <details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥，并自行承担相应的服务费用与条款。没有密钥或断网时，仍会生成本地交接摘要，待处理的分析在联网后继续。</p></details>
+<details class="faq"><summary>Linux 上提示缺少库或没有 Secret Service 怎么办？</summary><p>按“安装”一节安装对应的运行库；需要保存 AI 密钥时，请安装并解锁 gnome-keyring 或 KWallet。没有 Secret Service 时本地记录不受影响，只是无法保存密钥与登录令牌。</p></details>
 <details class="faq"><summary>如何停止记录？</summary><p>点击“保存断点”即可；隐藏入口或退出程序也会停止记录。在 macOS 上，也可以从菜单栏笑脸结束。</p></details>
-<details class="faq"><summary>有 Linux、Android、iOS 版本吗？实体桌宠呢？</summary><p>目前没有。这些平台尚未发布，网站上也不提供下载。实体桌宠硬件仍是概念，没有硬件时软件也能独立使用。</p></details>
+<details class="faq"><summary>有 Linux、Android、iOS 版本吗？实体桌宠呢？</summary><p>Linux 有早期版本（仅 x86_64，见“安装”一节的一键安装与已知限制）。Android、iOS 尚未发布，网站上也不提供下载。实体桌宠硬件仍是概念，没有硬件时软件也能独立使用。</p></details>
 <details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销功能将在账号服务开放后于账号中心提供。</p></details>
 <p class="meta">发现说明与实际不符？以实际软件行为为准，欢迎反馈（联系方式待补充）。</p>
 </div>
 <div data-l="en" lang="en">
 <h1>Documentation</h1>
 <p class="lead">PIXO TAP helps you pick up where you left off across several long-running tasks. This page covers installation, the permissions it asks for, where your data lives, and common questions.</p>
-<div class="callout"><strong>Current status.</strong> PIXO TAP is still in development. The macOS and Windows apps are in development and trial; Linux, Android and iOS are not released; the physical desk companion is still a concept; the interactive demo and the "recognition" in the web prototype are simulated and never read your device. When no release has been published, the download page honestly shows an empty state.</div>
+<div class="callout"><strong>Current status.</strong> PIXO TAP is still in development. The macOS and Windows apps are in development and trial; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept; the interactive demo and the "recognition" in the web prototype are simulated and never read your device. When no release has been published, the download page honestly shows an empty state. Each platform has its own version number; the download page is authoritative.</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Platform</th><th>Status</th><th>How to get it</th></tr></thead>
+<tbody>
+<tr><td>macOS</td><td>In development and trial</td><td><a href="/download/">Download page</a> (dmg/zip)</td></tr>
+<tr><td>Windows</td><td>In development and trial</td><td><a href="/download/">Download page</a> (ZIP)</td></tr>
+<tr><td>Linux</td><td>Early release (x86_64 only)</td><td>One-line installer, or download the tar.gz by hand from the <a href="/download/">download page</a></td></tr>
+<tr><td>Android</td><td>Not released</td><td>None yet</td></tr>
+<tr><td>iOS</td><td>Not released</td><td>None yet</td></tr>
+</tbody></table></div>
 <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol>
 <li><a href="#install">Install</a></li><li><a href="#use">Basics</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#data">Where data is stored</a></li><li><a href="#privacy">Privacy commitments</a></li><li><a href="#faq">FAQ</a></li></ol></nav>
 
@@ -140,6 +178,17 @@
 <li>The package ships with the .NET runtime. Text recognition (OCR) also needs the Microsoft Visual C++ v14 x64 runtime; if it is missing, install Microsoft's official runtime and reopen the app (administrator rights may be required).</li>
 </ul>
 
+<h3>Linux</h3>
+<ul>
+<li>Requirements: x86_64, Ubuntu 24.04 or newer (glibc 2.39+). musl systems such as Alpine are not supported; there is no arm64 build yet.</li>
+<li>Run the one-line installer in a terminal (needs only curl, tar and sha256sum; no root, and the script never calls sudo):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
+<li>At run time the script uses the public GitHub API to find the newest release that contains the Linux package and verifies it against that release's <code>SHA256SUMS.txt</code>; on a mismatch it aborts and leaves any installed version untouched. Run it again to upgrade; add <code>--dry-run</code> to preview only, or <code>--stable-only</code> to ignore pre-releases.</li>
+<li>Locations: the app goes to <code>~/.local/share/pixotap</code>, the <code>pixotap</code> command is linked into <code>~/.local/bin</code> (the script warns if that directory is not on PATH), and the desktop entry and icons go under <code>~/.local/share</code>. Afterwards search for PixoTap in your app menu, or run <code>pixotap</code>.</li>
+<li>Runtime libraries (the script only prints hints, it installs nothing): <code>libwebkit2gtk-4.1</code>, <code>libayatana-appindicator3</code>, plus <code>tesseract-ocr</code> with the Chinese language pack for text recognition. On Ubuntu / Debian:<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>Saving an AI service key also needs the system Secret Service (such as <code>gnome-keyring</code> or KWallet).</li>
+<li>Uninstall (keeps your data in <code>~/.local/share/PixoTap</code>):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre></li>
+<li>The Linux app is an early release. Known limitations: x86_64 builds only; on GNOME Wayland the foreground window and app cannot be read, so records honestly say "window info unavailable"; the camera is not available in this release and no closing photo is made; the clipboard is not recorded on Wayland; the desk pet is not guaranteed to stay on top on Wayland and falls back to a normal small window; on GNOME the tray needs the AppIndicator extension (included in Ubuntu), and without it the main window still works.</li>
+</ul>
+
 <h2 id="use">Basics</h2>
 <h3>macOS</h3>
 <ul>
@@ -155,6 +204,11 @@
 <li>Click Save checkpoint to end the session; the recovery note is saved locally first, then online analysis is awaited or run.</li>
 <li>Alt+F4 on the entry stops recording and hides it; show it again from the tray. To quit completely use Quit in the tray menu.</li>
 </ul>
+<h3>Linux</h3>
+<ul>
+<li>The flow matches macOS and Windows: nothing is recorded until you explicitly consent and click start; browsing projects or settings records nothing; recording stops when all windows are hidden or the app quits. Click Save checkpoint to end the session; the recovery note is saved locally first, then online analysis is awaited or run.</li>
+<li>Without a key or when offline, local content is kept and processing resumes after a restart.</li>
+</ul>
 <h3>Recovery notes</h3>
 <p>After a session ends, returning to the same project shows four fixed parts: what was done, where it got to, current blockers, and what to do first next time. Recovery notes do not include material paths or web addresses.</p>
 
@@ -167,13 +221,16 @@
 <tr><td>Accessibility (macOS)</td><td>Reading the current window title, browser page title and local file paths exposed by apps</td><td>Optional; without it there are fewer clues.</td></tr>
 <tr><td>Camera</td><td>Taking one on-site photo when a session ends, to help you remember</td><td>macOS asks the first time a session ends; Windows needs "Let desktop apps access your camera". With permission denied, no device, or no valid frame, no photo is created.</td></tr>
 <tr><td>Files and clipboard</td><td>Recording names and paths of files created, downloaded, modified or moved; clipboard changes</td><td>For the clipboard only the kind of change and the front app are recorded, never the text.</td></tr>
+<tr><td>Screenshots (Linux)</td><td>Capturing the screen at start and end</td><td>Goes through the system XDG Desktop Portal: you approve in a system dialog and only the whole screen can be captured. If it is denied or no portal exists, that session takes no screenshots, activity and file records continue, and the app says so. Whether the system remembers your choice depends on the desktop version.</td></tr>
+<tr><td>File watching (Linux)</td><td>Recording file activity in Desktop, Documents, Downloads, Pictures, Videos and Music</td><td>Only after you consent and start recording; hidden, sensitive, temporary and generated files are excluded by rule.</td></tr>
 </tbody></table></div>
 
 <h2 id="data">Where data is stored</h2>
 <ul>
 <li>macOS: <code>~/Library/Application Support/PixoTap/Projects/&lt;project ID&gt;/暂存/&lt;session ID&gt;</code>. Original files are never moved or copied.</li>
 <li>Windows: <code>%LocalAppData%\PixoTap</code>, including <code>Projects</code>, settings and <code>IslandShelf\references.json</code>. Quit the app before backing up, then copy the whole folder.</li>
-<li>DeepSeek key: stored in the macOS Keychain, or protected by Windows credential protection. It is never written into project files or the app bundle.</li>
+<li>Linux: <code>$XDG_DATA_HOME/PixoTap</code>, by default <code>~/.local/share/PixoTap</code>. The uninstall script keeps this folder.</li>
+<li>DeepSeek key: stored in the macOS Keychain, protected by Windows credential protection, or kept in the Linux Secret Service (gnome-keyring or KWallet). Without a Secret Service the key cannot be saved at all rather than falling back to a plain file. It is never written into project files or the app bundle.</li>
 <li>Removing the app does not delete your working data; to erase it, quit the app and delete the folders above.</li>
 </ul>
 
@@ -193,15 +250,16 @@
 <details class="faq"><summary>macOS says the developer cannot be verified.</summary><p>The trial build is ad-hoc signed and not notarized with a Developer ID. Control-click the app and choose Open as described under Install. Always verify the SHA-256 and only use files from the download page.</p></details>
 <details class="faq"><summary>Windows shows "unknown publisher".</summary><p>The program is not code-signed yet, so SmartScreen may warn. Verify the SHA-256 from the download page before running it.</p></details>
 <details class="faq"><summary>What do the AI features need?</summary><p>Your own DeepSeek API key; you are responsible for that service's fees and terms. Without a key or when offline, a local hand-off summary is still produced and pending analysis resumes once you are online.</p></details>
+<details class="faq"><summary>On Linux, a library is missing or there is no Secret Service. What now?</summary><p>Install the libraries listed under Install; to save an AI key, install and unlock gnome-keyring or KWallet. Without a Secret Service local records still work, you just cannot save keys or sign-in tokens.</p></details>
 <details class="faq"><summary>How do I stop recording?</summary><p>Click Save checkpoint. Hiding the entry or quitting also stops recording. On macOS you can also end it from the menu-bar smiley.</p></details>
-<details class="faq"><summary>Are there Linux, Android or iOS versions? What about the hardware?</summary><p>Not yet. Those platforms are unreleased and nothing is offered for download. The physical desk companion is still a concept; the software works on its own without it.</p></details>
+<details class="faq"><summary>Are there Linux, Android or iOS versions? What about the hardware?</summary><p>Linux has an early release (x86_64 only; see the one-line installer and known limitations under Install). Android and iOS are unreleased and nothing is offered for download. The physical desk companion is still a concept; the software works on its own without it.</p></details>
 <details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion will be offered in the account centre once the account service opens.</p></details>
 <p class="meta">Spotted a mismatch between this page and the app? The app's actual behaviour wins; feedback is welcome (contact details to be added).</p>
 </div>
   </main>
   <footer class="px-footer">
   <div class="px-footer-in">
-    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux、Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux, Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
     <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/" aria-current="page"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/privacy/"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
   </div>
 </footer>

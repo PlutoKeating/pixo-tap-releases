@@ -47,8 +47,8 @@
 <h2 id="local">1. 留在你设备上的数据</h2>
 <ul>
 <li>截图原图、结束时拍摄的照片、原文件内容、剪贴板文字正文：始终只保存在本机，不上传。</li>
-<li>项目、会话、活动时间线、OCR 全文、恢复笔记：保存在本机（macOS 的 <code>~/Library/Application Support/PixoTap</code>，Windows 的 <code>%LocalAppData%\PixoTap</code>）。</li>
-<li>AI 服务密钥：保存在系统钥匙串（macOS）或系统凭据保护（Windows），不写入项目文件。</li>
+<li>项目、会话、活动时间线、OCR 全文、恢复笔记：保存在本机（macOS 的 <code>~/Library/Application Support/PixoTap</code>，Windows 的 <code>%LocalAppData%\PixoTap</code>，Linux 的 <code>~/.local/share/PixoTap</code>）。</li>
+<li>AI 服务密钥：保存在系统钥匙串（macOS）、系统凭据保护（Windows）或系统 Secret Service（Linux，如 gnome-keyring、KWallet），不写入项目文件；Linux 上没有 Secret Service 时无法保存密钥，不会改存为明文文件。</li>
 <li>只有你明确点击开始后才会记录；每一类采集都需要你在系统或应用中授权，并可随时关闭。</li>
 </ul>
 
@@ -110,8 +110,8 @@
 <h2 id="local">1. Data that stays on your device</h2>
 <ul>
 <li>Original screenshots, the closing photo, file contents and clipboard text are only stored locally and never uploaded.</li>
-<li>Projects, sessions, the activity timeline, full OCR text and recovery notes are stored locally (macOS: <code>~/Library/Application Support/PixoTap</code>; Windows: <code>%LocalAppData%\PixoTap</code>).</li>
-<li>Your AI service key is kept in the macOS Keychain or Windows credential protection and is not written into project files.</li>
+<li>Projects, sessions, the activity timeline, full OCR text and recovery notes are stored locally (macOS: <code>~/Library/Application Support/PixoTap</code>; Windows: <code>%LocalAppData%\PixoTap</code>; Linux: <code>~/.local/share/PixoTap</code>).</li>
+<li>Your AI service key is kept in the macOS Keychain, Windows credential protection or the Linux Secret Service (for example gnome-keyring or KWallet) and is not written into project files; on Linux without a Secret Service the key cannot be saved at all rather than falling back to a plain file.</li>
 <li>Nothing is recorded until you explicitly start; each kind of collection needs your permission in the system or the app and can be turned off at any time.</li>
 </ul>
 
@@ -165,7 +165,7 @@
   </main>
   <footer class="px-footer">
   <div class="px-footer-in">
-    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux、Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux, Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
     <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/privacy/" aria-current="page"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
   </div>
 </footer>
