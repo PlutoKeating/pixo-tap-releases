@@ -64,6 +64,7 @@
   },
   "keep_vars": true,
   "vars": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "RELEASES_REPO": "PlutoKeating/pixo-tap-releases"
   }
 }
