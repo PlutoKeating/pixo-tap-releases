@@ -42,7 +42,7 @@
 <p class="meta">草案日期：2026-10-10</p>
 
 <h2 id="summary">一句话概括</h2>
-<p>PIXO TAP 是本地优先的软件：截图、照片、OCR 全文和剪贴板正文留在你的设备上，不会上传。只有在你自己配置了 AI 服务密钥、并主动触发分析时，本机识别出的 OCR 文字和活动时间线才会发送给该 AI 服务。账号、同步和遥测都是可选的，目前账号与同步尚未开放。</p>
+<p>PIXO TAP 是本地优先的软件：截图、照片、OCR 全文和剪贴板正文留在你的设备上，不会上传。只有在你自己配置了 AI 服务密钥、并主动触发分析时，本机识别出的 OCR 文字和活动时间线才会发送给该 AI 服务。账号、同步和遥测都是可选的；账号目前只提供邮箱加密码登录，同步尚未开放。</p>
 
 <h2 id="local">1. 留在你设备上的数据</h2>
 <ul>
@@ -61,11 +61,11 @@
 <p>不会发送：截图像素、照片、原文件正文、剪贴板文字正文。OCR 文字本身可能包含敏感信息，请按项目内容决定是否授权。发送后的处理受该 AI 服务自己的条款和隐私政策约束，我们无法控制。未配置密钥或断网时，客户端只在本地生成交接摘要。</p>
 <p>网站目前不代理 AI 请求（该能力默认关闭）。</p>
 
-<h2 id="account">3. 账号（尚未开放）</h2>
-<p>账号是可选的，不登录也可使用客户端。账号由我们自行部署的开源 Logto 服务管理，用于将来的可选同步、数据导出与设备授权。账号服务开放后，我们会处理：</p>
+<h2 id="account">3. 账号（可选）</h2>
+<p>账号是可选的，不登录也可使用客户端。账号由我们自行部署的开源 Logto 服务管理，只提供邮箱加密码登录：注册时需要用邮箱验证码验证邮箱，忘记密码时用邮箱验证码重置；不提供手机号登录，不提供 Apple、Google、GitHub 等第三方账号登录，也不提供多因素验证。Linux、Android 与 Windows 客户端可在设置中通过设备授权登录（在浏览器里完成）；macOS 客户端暂未接入登录。登录后客户端不会自动上传你的数据。使用账号时，我们会处理：</p>
 <ul>
-<li>登录凭据与验证信息（如邮箱、手机号、验证码；登录方式以开放时为准）；</li>
-<li>显示名称、语言等资料，登录会话与已授权设备；</li>
+<li>登录凭据：邮箱和密码；发送到邮箱的验证码仅用于验证注册与重置密码；我们不收集手机号；</li>
+<li>系统生成的账号 ID 与显示名称、语言等资料，登录会话与已授权设备；</li>
 <li>你对隐私政策、AI 云处理、遥测和同步的同意记录（含文档版本与时间）；</li>
 <li>为安全与防滥用而保留的必要日志（保留期限待法务确认）。</li>
 </ul>
@@ -88,7 +88,7 @@
 <h2 id="rights">7. 你的权利</h2>
 <ul>
 <li>本机数据由你完全掌控：退出程序后删除上述目录即可清除。</li>
-<li>账号服务开放后，你可以在账号中心管理各项同意、导出数据、撤销设备和会话，并申请注销账号（有宽限期，可在期内撤销；期满后账号与数据被永久删除，备份按保留期自然过期，具体期限待法务确认）。</li>
+<li>你可以在账号中心管理各项同意、导出数据、撤销设备和会话，并申请注销账号（有宽限期，可在期内撤销；期满后账号与数据被永久删除，备份按保留期自然过期，具体期限待法务确认）。</li>
 <li>依适用法律你可能享有访问、更正、删除、撤回同意等权利，具体适用与行使方式待法务确认。</li>
 </ul>
 
@@ -96,7 +96,7 @@
 <p>我们采用传输加密、最小化采集与本地优先设计来降低风险，但没有任何系统绝对安全。请自行保管设备与密钥。</p>
 
 <h2 id="changes">9. 变更与联系</h2>
-<p>政策变更时我们会更新页面日期，并在账号服务开放后要求重新同意。运营主体：待补充。联系方式：待补充。适用法律与争议解决：待法务确认。</p>
+<p>政策变更时我们会更新页面日期，并可能要求你重新同意。运营主体：待补充。联系方式：待补充。适用法律与争议解决：待法务确认。</p>
 <p>另见<a href="/terms/">用户协议（草案）</a>与<a href="/docs/">使用说明</a>。</p>
 </div>
 <div data-l="en" lang="en">
@@ -105,7 +105,7 @@
 <p class="meta">Draft date: 2026-10-10</p>
 
 <h2 id="summary">In one paragraph</h2>
-<p>PIXO TAP is local-first: screenshots, photos, full OCR text and clipboard text stay on your device and are never uploaded. Only when you have configured your own AI service key and trigger an analysis are the OCR text recognised on your device and the activity timeline sent to that AI service. Accounts, sync and telemetry are optional; accounts and sync are not open yet.</p>
+<p>PIXO TAP is local-first: screenshots, photos, full OCR text and clipboard text stay on your device and are never uploaded. Only when you have configured your own AI service key and trigger an analysis are the OCR text recognised on your device and the activity timeline sent to that AI service. Accounts, sync and telemetry are optional; accounts currently offer email-and-password sign-in only, and sync is not open yet.</p>
 
 <h2 id="local">1. Data that stays on your device</h2>
 <ul>
@@ -124,11 +124,11 @@
 <p>Never sent: screenshot pixels, photos, original file contents, clipboard text. OCR text itself may contain sensitive information, so decide per project whether to allow it. What happens after it is sent is governed by that AI service's own terms and privacy policy, which we cannot control. Without a key or when offline, the client only builds a local hand-off summary.</p>
 <p>This website does not proxy AI requests (that capability is off by default).</p>
 
-<h2 id="account">3. Accounts (not open yet)</h2>
-<p>Accounts are optional; the client works without signing in. Accounts are managed by an open-source Logto service that we host ourselves, and are for optional sync, data export and device authorization later. Once the account service opens we will process:</p>
+<h2 id="account">3. Accounts (optional)</h2>
+<p>Accounts are optional; the client works without signing in. Accounts are managed by an open-source Logto service that we host ourselves and offer email-and-password sign-in only: signing up requires verifying your email with a code, and a forgotten password is reset with an email code. There is no phone-number sign-in, no third-party sign-in (Apple, Google, GitHub and the like) and no multi-factor authentication. The Linux, Android and Windows clients can sign in from Settings through device authorization, completed in your browser; the macOS client does not support sign-in yet. Signing in does not make the client upload your data automatically. When you use an account we process:</p>
 <ul>
-<li>sign-in credentials and verification data (such as email, phone number and codes; sign-in methods will be those available at launch);</li>
-<li>profile details such as display name and language, sign-in sessions and authorized devices;</li>
+<li>sign-in credentials: your email and password; codes sent to your email are used only to verify sign-up and password reset; we do not collect phone numbers;</li>
+<li>a system-generated account ID, profile details such as display name and language, sign-in sessions and authorized devices;</li>
 <li>your consent records for the privacy policy, AI cloud processing, telemetry and sync (with document version and time);</li>
 <li>logs kept for security and abuse prevention (retention period pending legal review).</li>
 </ul>
@@ -151,7 +151,7 @@
 <h2 id="rights">7. Your rights</h2>
 <ul>
 <li>You fully control local data: quit the app and delete the folders above to erase it.</li>
-<li>Once the account service opens you can manage each consent, export data, revoke devices and sessions, and request account deletion (there is a grace period you can cancel within; afterwards the account and data are permanently erased, and backups expire after their retention period; exact periods pending legal review).</li>
+<li>You can manage each consent in the account centre, export data, revoke devices and sessions, and request account deletion (there is a grace period you can cancel within; afterwards the account and data are permanently erased, and backups expire after their retention period; exact periods pending legal review).</li>
 <li>Depending on applicable law you may have rights to access, correct, delete and withdraw consent; their scope and how to exercise them are pending legal review.</li>
 </ul>
 
@@ -159,7 +159,7 @@
 <p>We use transport encryption, minimal collection and a local-first design to reduce risk, but no system is perfectly secure. Please safeguard your devices and keys.</p>
 
 <h2 id="changes">9. Changes and contact</h2>
-<p>When this policy changes we will update the date on this page and, once accounts open, ask for consent again. Operator: to be added. Contact: to be added. Governing law and dispute resolution: pending legal review.</p>
+<p>When this policy changes we will update the date on this page and may ask for your consent again. Operator: to be added. Contact: to be added. Governing law and dispute resolution: pending legal review.</p>
 <p>See also the <a href="/terms/">Terms of Service (draft)</a> and the <a href="/docs/">documentation</a>.</p>
 </div>
   </main>

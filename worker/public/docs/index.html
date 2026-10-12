@@ -44,7 +44,7 @@
 <thead><tr><th>平台</th><th>状态</th><th>获取方式</th></tr></thead>
 <tbody>
 <tr><td>macOS</td><td>开发与试用阶段</td><td><a href="/download/">下载页</a>（dmg/zip）</td></tr>
-<tr><td>Windows</td><td>开发与试用阶段</td><td><a href="/download/">下载页</a>（ZIP）</td></tr>
+<tr><td>Windows</td><td>开发与试用阶段</td><td><a href="/download/">下载页</a>（安装程序 setup.exe，另有 ZIP）</td></tr>
 <tr><td>Linux</td><td>早期版本（仅 x86_64）</td><td>一键安装脚本，或在<a href="/download/">下载页</a>手动下载 tar.gz</td></tr>
 <tr><td>Android</td><td>尚未发布</td><td>暂无</td></tr>
 <tr><td>iOS</td><td>尚未发布</td><td>暂无</td></tr>
@@ -64,8 +64,9 @@
 <h3>Windows</h3>
 <ul>
 <li>系统要求：Windows 11 x64，或 Windows 10 x64 2004（build 19041）及以上。当前实际验收环境是 Windows 11，其它版本的兼容性尚待验证。</li>
-<li>完整解压 ZIP，保留 <code>Assets</code>、<code>x64</code>、<code>tessdata</code>、<code>Licenses</code> 等目录，再打开 <code>PixoTap.exe</code>。不要直接在压缩包里运行，也不要只复制 EXE。</li>
-<li>压缩包已附带 .NET 运行时。文字识别（OCR）另需 Microsoft Visual C++ v14 x64 运行库；缺少时请先安装微软官方运行库，再重新打开程序，安装可能需要管理员权限。</li>
+<li>推荐下载 <code>setup.exe</code> 安装程序：双击即装，每用户安装到 <code>%LocalAppData%\Programs\PixoTap</code>，不需要管理员权限，并创建开始菜单与桌面快捷方式；卸载会保留 <code>%LocalAppData%\PixoTap</code> 里的数据。安装程序缺少 VC++ 运行库时会请求一次提权来安装它。</li>
+<li>使用 ZIP 时：完整解压，保留 <code>Assets</code>、<code>x64</code>、<code>tessdata</code>、<code>Licenses</code> 等目录，再打开 <code>PixoTap.exe</code>。不要直接在压缩包里运行，也不要只复制 EXE。</li>
+<li>安装包与压缩包都已附带 .NET 运行时。文字识别（OCR）另需 Microsoft Visual C++ v14 x64 运行库；setup.exe 会在缺少时安装，使用 ZIP 时请先安装微软官方运行库再重新打开程序，安装可能需要管理员权限。</li>
 </ul>
 
 <h3>Linux</h3>
@@ -130,20 +131,20 @@
 <li>截图原图、结束照片、原文件内容、剪贴板文字正文不会上传。</li>
 <li>只有在你配置了自己的密钥并主动触发分析时，本机识别出的 OCR 文字、活动时间线和应用名称才会发送给 AI 服务（目前为 DeepSeek）。OCR 文字可能含敏感信息，请按项目内容决定是否授权。</li>
 <li>使用遥测默认关闭；数据同步是可选功能，目前尚未开放。</li>
-<li>账号由自托管的 Logto 登录服务管理，账号服务尚未开放。</li>
+<li>账号是可选的，由自托管的 Logto 登录服务管理，只支持邮箱加密码登录；登录后客户端不会自动上传你的数据。</li>
 </ul>
 <p>完整说明见<a href="/privacy/">隐私政策（草案）</a>。</p>
 
 <h2 id="faq">常见问题</h2>
-<details class="faq"><summary>我需要账号吗？</summary><p>不需要。客户端本地即可使用。账号用于将来可选的同步、数据导出与设备授权，目前账号服务尚未开放，<a href="/account/">账号页面</a>会显示相应提示。</p></details>
-<details class="faq"><summary>为什么下载页没有可下载的版本？</summary><p>发布仓库目前还没有任何正式发布。页面会如实显示“暂时没有可下载的版本”，不会显示虚构的版本号。请稍后再来。</p></details>
+<details class="faq"><summary>我需要账号吗？</summary><p>不需要。不登录也能使用客户端的全部本地功能，登录后也不会自动上传你的数据。账号是可选的，用于管理资料、已授权设备、同意设置、数据导出与注销。登录只支持邮箱加密码：注册时用邮箱验证码验证，忘记密码时用邮箱验证码重置；不支持手机号登录和 Apple、Google、GitHub 等第三方登录，也没有多因素验证。Linux、Android 和 Windows 客户端可在设置里点“登录”，在浏览器里完成设备授权；macOS 客户端暂未接入登录。管理账号请到<a href="/account/">账号页面</a>。</p></details>
+<details class="faq"><summary>为什么下载页没有可下载的版本？</summary><p>说明该平台还没有发布，或所有发布都还是预发布版本（请在下载页打开“显示测试版”）。页面会如实显示“暂时没有可下载的版本”，不会显示虚构的版本号。请稍后再来。</p></details>
 <details class="faq"><summary>macOS 提示“无法验证开发者”怎么办？</summary><p>试用包使用 ad-hoc 签名，尚未做 Developer ID 公证。请按“安装”一节所述，按住 Control 点击应用并选择“打开”。请务必核对 SHA-256，且只使用下载页提供的文件。</p></details>
 <details class="faq"><summary>Windows 提示“未知发布者”怎么办？</summary><p>程序目前没有代码签名，系统可能弹出 SmartScreen 提示。请核对下载页给出的 SHA-256 后再运行。</p></details>
 <details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥，并自行承担相应的服务费用与条款。没有密钥或断网时，仍会生成本地交接摘要，待处理的分析在联网后继续。</p></details>
 <details class="faq"><summary>Linux 上提示缺少库或没有 Secret Service 怎么办？</summary><p>按“安装”一节安装对应的运行库；需要保存 AI 密钥时，请安装并解锁 gnome-keyring 或 KWallet。没有 Secret Service 时本地记录不受影响，只是无法保存密钥与登录令牌。</p></details>
 <details class="faq"><summary>如何停止记录？</summary><p>点击“保存断点”即可；隐藏入口或退出程序也会停止记录。在 macOS 上，也可以从菜单栏笑脸结束。</p></details>
 <details class="faq"><summary>有 Linux、Android、iOS 版本吗？实体桌宠呢？</summary><p>Linux 有早期版本（仅 x86_64，见“安装”一节的一键安装与已知限制）。Android、iOS 尚未发布，网站上也不提供下载。实体桌宠硬件仍是概念，没有硬件时软件也能独立使用。</p></details>
-<details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销功能将在账号服务开放后于账号中心提供。</p></details>
+<details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销请在<a href="/account/">账号中心</a>进行。</p></details>
 <p class="meta">发现说明与实际不符？以实际软件行为为准，欢迎反馈（联系方式待补充）。</p>
 </div>
 <div data-l="en" lang="en">
@@ -154,7 +155,7 @@
 <thead><tr><th>Platform</th><th>Status</th><th>How to get it</th></tr></thead>
 <tbody>
 <tr><td>macOS</td><td>In development and trial</td><td><a href="/download/">Download page</a> (dmg/zip)</td></tr>
-<tr><td>Windows</td><td>In development and trial</td><td><a href="/download/">Download page</a> (ZIP)</td></tr>
+<tr><td>Windows</td><td>In development and trial</td><td><a href="/download/">Download page</a> (setup.exe installer; a ZIP is also provided)</td></tr>
 <tr><td>Linux</td><td>Early release (x86_64 only)</td><td>One-line installer, or download the tar.gz by hand from the <a href="/download/">download page</a></td></tr>
 <tr><td>Android</td><td>Not released</td><td>None yet</td></tr>
 <tr><td>iOS</td><td>Not released</td><td>None yet</td></tr>
@@ -174,8 +175,9 @@
 <h3>Windows</h3>
 <ul>
 <li>Requirements: Windows 11 x64, or Windows 10 x64 version 2004 (build 19041) or later. The tested environment is Windows 11; other versions still need verification.</li>
-<li>Extract the whole ZIP, keeping folders such as <code>Assets</code>, <code>x64</code>, <code>tessdata</code> and <code>Licenses</code>, then open <code>PixoTap.exe</code>. Do not run it from inside the archive or copy the EXE alone.</li>
-<li>The package ships with the .NET runtime. Text recognition (OCR) also needs the Microsoft Visual C++ v14 x64 runtime; if it is missing, install Microsoft's official runtime and reopen the app (administrator rights may be required).</li>
+<li>Recommended: the <code>setup.exe</code> installer. Double-click to install per user into <code>%LocalAppData%\Programs\PixoTap</code> with no administrator rights, with Start menu and desktop shortcuts; uninstalling keeps your data in <code>%LocalAppData%\PixoTap</code>. If the VC++ runtime is missing it asks for elevation once to install it.</li>
+<li>With the ZIP: extract the whole archive, keeping folders such as <code>Assets</code>, <code>x64</code>, <code>tessdata</code> and <code>Licenses</code>, then open <code>PixoTap.exe</code>. Do not run it from inside the archive or copy the EXE alone.</li>
+<li>Both packages ship with the .NET runtime. Text recognition (OCR) also needs the Microsoft Visual C++ v14 x64 runtime; setup.exe installs it when missing, with the ZIP install Microsoft's official runtime and reopen the app (administrator rights may be required).</li>
 </ul>
 
 <h3>Linux</h3>
@@ -240,20 +242,20 @@
 <li>Original screenshots, closing photos, file contents and clipboard text are never uploaded.</li>
 <li>Only when you have set your own key and trigger an analysis are the OCR text recognised on your device, the activity timeline and the app name sent to an AI service (currently DeepSeek). OCR text can contain sensitive information; decide per project whether to allow it.</li>
 <li>Usage telemetry is off by default; data sync is optional and not available yet.</li>
-<li>Accounts are managed by a self-hosted Logto sign-in service, which is not open yet.</li>
+<li>Accounts are optional, managed by a self-hosted Logto sign-in service, and offer email-and-password sign-in only; signing in does not make the client upload your data automatically.</li>
 </ul>
 <p>See the full <a href="/privacy/">Privacy Policy (draft)</a>.</p>
 
 <h2 id="faq">FAQ</h2>
-<details class="faq"><summary>Do I need an account?</summary><p>No. The client works locally. Accounts are for optional sync, data export and device authorization later; the account service is not open yet and the <a href="/account/">account page</a> says so.</p></details>
-<details class="faq"><summary>Why is nothing available on the download page?</summary><p>The releases repository has no published release yet. The page honestly shows "Nothing to download yet" and never invents a version. Please check back later.</p></details>
+<details class="faq"><summary>Do I need an account?</summary><p>No. Every local feature works without signing in, and signing in does not make the client upload your data automatically. Accounts are optional and are for managing your profile, authorized devices, consents, data export and deletion. Sign-in is email and password only: signing up is verified with an email code and a forgotten password is reset with an email code. Phone-number sign-in, third-party sign-in (Apple, Google, GitHub and the like) and multi-factor authentication are not offered. In the Linux, Android and Windows clients choose Sign in in Settings and finish device authorization in your browser; the macOS client does not support sign-in yet. Manage your account on the <a href="/account/">account page</a>.</p></details>
+<details class="faq"><summary>Why is nothing available on the download page?</summary><p>That platform has no published release yet, or every release is still a prerelease (turn on "Show beta builds" on the download page). The page honestly shows "Nothing to download yet" and never invents a version. Please check back later.</p></details>
 <details class="faq"><summary>macOS says the developer cannot be verified.</summary><p>The trial build is ad-hoc signed and not notarized with a Developer ID. Control-click the app and choose Open as described under Install. Always verify the SHA-256 and only use files from the download page.</p></details>
 <details class="faq"><summary>Windows shows "unknown publisher".</summary><p>The program is not code-signed yet, so SmartScreen may warn. Verify the SHA-256 from the download page before running it.</p></details>
 <details class="faq"><summary>What do the AI features need?</summary><p>Your own DeepSeek API key; you are responsible for that service's fees and terms. Without a key or when offline, a local hand-off summary is still produced and pending analysis resumes once you are online.</p></details>
 <details class="faq"><summary>On Linux, a library is missing or there is no Secret Service. What now?</summary><p>Install the libraries listed under Install; to save an AI key, install and unlock gnome-keyring or KWallet. Without a Secret Service local records still work, you just cannot save keys or sign-in tokens.</p></details>
 <details class="faq"><summary>How do I stop recording?</summary><p>Click Save checkpoint. Hiding the entry or quitting also stops recording. On macOS you can also end it from the menu-bar smiley.</p></details>
 <details class="faq"><summary>Are there Linux, Android or iOS versions? What about the hardware?</summary><p>Linux has an early release (x86_64 only; see the one-line installer and known limitations under Install). Android and iOS are unreleased and nothing is offered for download. The physical desk companion is still a concept; the software works on its own without it.</p></details>
-<details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion will be offered in the account centre once the account service opens.</p></details>
+<details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion are done in the <a href="/account/">account centre</a>.</p></details>
 <p class="meta">Spotted a mismatch between this page and the app? The app's actual behaviour wins; feedback is welcome (contact details to be added).</p>
 </div>
   </main>
