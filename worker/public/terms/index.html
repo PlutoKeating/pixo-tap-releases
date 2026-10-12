@@ -30,7 +30,7 @@
   <header class="px-header" id="px-header">
   <div class="px-header-in">
     <a class="px-brand" href="/"><img src="/favicon.png" alt="" width="28" height="28">PIXO TAP</a>
-    <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></nav>
+    <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></nav>
     <label class="px-lang"><span class="sr-only"><span data-l="zh">语言</span><span data-l="en">Language</span></span><select id="px-lang"><option value="zh">中文</option><option value="en">English</option></select></label>
     <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav"><span data-l="zh">菜单</span><span data-l="en">Menu</span></button>
   </div>
@@ -38,81 +38,129 @@
   <main class="px-main" id="main">
 <div data-l="zh" lang="zh-CN">
 <h1>用户协议</h1>
-<div class="callout"><strong>草案，待法务审阅。</strong> 本文是工程团队整理的草案，尚未经过法务审阅，不是正式生效的法律文本。运营主体、联系方式、适用法律与争议解决等条目待补充。</div>
-<p class="meta">草案日期：2026-10-10</p>
+<div class="callout"><strong>草案，待法务审阅。</strong> 本文件由工程团队依据代码生成，正式法律文本须经律师审阅后发布。</div>
+<p class="meta">草案生效日期：2026-10-12</p>
 
 <h2 id="service">1. 服务与现状</h2>
-<p>PIXO TAP 是帮助你在多项长期任务之间接回进度的软件及配套网站。目前产品处于开发与试用阶段：macOS 版与 Windows 版为试用版本；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念；账号为可选功能（目前只提供邮箱加密码登录），同步功能尚未开放。网站上的交互演示与 Web 原型仅作演示，不读取你的设备。</p>
+<p>PIXO TAP 是帮助你在多项长期任务之间接回进度的桌面软件，以及配套的官方网站。产品仍在开发与试用阶段：</p>
+<ul>
+<li>Windows 版为试用版本，可在下载页获取；</li>
+<li>macOS 版仍处于实验阶段，暂不提供下载，账号登录暂未接入；</li>
+<li>Linux 为早期版本（仅 x86_64），可一键安装；</li>
+<li>Android 在开发中，iOS 尚未提供，实体桌宠硬件仍是概念；</li>
+<li>AI 分析为可选的实验性功能，需要你自备第三方服务密钥；</li>
+<li>账号为可选功能，目前只提供邮箱加密码登录，账号登录在正式登录服务上线前不可用；</li>
+<li>同步功能尚未在客户端开放，客户端默认不同步任何数据。将来开启同步前，你须明确同意“数据同步”（sync），同意可随时撤回，撤回后同步立即停止；同步内容须端到端加密，服务器只保存密文。</li>
+</ul>
+<p>网站上的交互演示与 Web 原型仅作演示，不读取你的设备。我们可能随时调整功能与各平台的发布节奏。</p>
 
 <h2 id="use">2. 使用规范</h2>
 <ul>
 <li>你应当在法律允许的范围内使用本产品，不得利用它侵害他人权益，也不得对服务进行破坏、滥用或未经授权的访问。</li>
-<li>软件只在你明确开始后记录，并只记录你在系统和应用中授权的内容。请确保你有权记录屏幕上出现的内容；涉及他人信息或工作单位资料时，请遵守相应的保密与合规要求。</li>
+<li>软件只在你点击开始后才记录，并只记录你在系统和应用中授权的内容。你必须确保有权记录屏幕上出现的内容。涉及他人的个人信息、他人的私密内容或工作单位的保密资料时，请遵守相应的法律、保密与合规要求。</li>
+<li>对 macOS 与 Linux 的桌面识别是整屏的，请在开始前整理桌面，避免记录不应被记录的内容。</li>
+<li>不得使用本产品处理违法信息，或用于任何违法目的。</li>
 </ul>
 
 <h2 id="account">3. 账号</h2>
-<p>使用账号时，你需要提供真实、可用的邮箱并妥善保管登录密码；通过你的账号进行的操作视为你的操作。你可以随时在账号中心申请注销。年龄限制与监护人同意规则待法务确认。</p>
+<p>使用账号时，你需要提供真实、可用的邮箱并妥善保管登录密码。通过你的账号进行的操作，视为你本人的操作。注册时你需要确认已达到 [最低年龄，待所有者确定] 岁，未达到的人不得创建账号。你可以随时在账号中心申请注销，注销有 14 天宽限期。</p>
 
 <h2 id="data">4. 你的数据</h2>
-<p>你的项目、记录和笔记归你所有，默认保存在你的设备上。我们如何处理数据，见<a href="/privacy/">隐私政策（草案）</a>。你需要自行备份本机数据；删除应用不会自动删除这些数据。</p>
+<p>你的项目、记录和笔记归你所有，默认保存在你的设备上。我们如何处理数据，见<a href="/privacy/">隐私政策（草案）</a>。你需要自行备份本机数据；卸载或删除应用不会自动删除所有数据，具体位置见使用说明。</p>
 
 <h2 id="ai">5. 第三方 AI 服务</h2>
-<p>AI 功能使用你自带的密钥连接第三方服务（目前为 DeepSeek）。你与该服务之间的费用、条款和数据处理由你与服务商直接约定，我们不对第三方服务的可用性、输出内容或费用负责。AI 生成的内容可能不准确，请自行核对。</p>
+<p>AI 功能需要你自备密钥连接第三方服务（目前为 DeepSeek）。你与该服务之间的费用、条款与数据处理由你和服务商直接约定。我们不对第三方服务的可用性、输出内容或费用负责。AI 生成的内容可能不准确，请自行核对后再使用。</p>
 
-<h2 id="ip">6. 知识产权</h2>
-<p>PIXO TAP 的软件、角色形象、文案与网站素材的权利由权利人保留。除非另有书面说明，你只获得按本协议使用软件的个人、非独占许可，并未获得任何开源许可。软件包含的第三方组件按各自许可使用，详见随包附带的许可说明。</p>
+<h2 id="fees">6. 收费</h2>
+<p>[收费与付费条款，待所有者确定]。</p>
 
-<h2 id="disclaimer">7. 免责声明</h2>
-<p>试用版本和原型功能按“现状”提供，可能存在错误、中断或数据丢失风险，不提供任何明示或暗示的担保。在法律允许的最大范围内，我们不对因使用或无法使用本产品造成的间接损失承担责任。具体责任限制待法务确认。</p>
+<h2 id="ip">7. 知识产权</h2>
+<p>PIXO TAP 的软件、角色形象、图标、文案与网站素材的权利由权利人保留。角色与图标素材的权利归属见各文件的说明。除非另有书面说明，你仅获得按本协议使用软件的个人、非独占、不可转让的许可，我们没有授予任何开源许可。软件包含的第三方组件按各自的许可使用，相关许可说明随安装包提供。</p>
 
-<h2 id="changes">8. 变更与终止</h2>
-<p>我们可能更新产品和本协议；重大变更会在网站上公布，可能会请求你重新同意。你可以随时停止使用并删除本机数据；若你严重违反本协议，我们可以暂停或终止你的账号。</p>
+<h2 id="disclaimer">8. 免责声明与责任限制</h2>
+<p>试用版本与原型功能按“现状”提供，可能存在错误、中断或数据丢失的风险，我们不作任何明示或默示的担保。在法律允许的最大范围内，我们不对因使用或无法使用本产品造成的间接损失承担责任。具体的责任限制条款：[责任限制条款，待律师确认]。</p>
 
-<h2 id="law">9. 适用法律与联系</h2>
-<p>运营主体：待补充。联系方式：待补充。适用法律与争议解决：待法务确认。</p>
-<p>另见<a href="/privacy/">隐私政策（草案）</a>与<a href="/docs/">使用说明</a>。</p>
+<h2 id="changes">9. 变更与终止</h2>
+<p>我们可能更新产品与本协议。重大变更会在网站上公布，并可能请求你重新同意。你可以随时停止使用并删除本机数据。若你严重违反本协议，我们可以暂停或终止你的账号。</p>
+
+<h2 id="minors">10. 未成年人</h2>
+<p>未满 14 岁不能使用本服务，也不能创建账号。本服务不提供监护人同意的注册途径。</p>
+
+<h2 id="law">11. 适用法律与争议解决</h2>
+<p>对于中国大陆用户，本协议适用中华人民共和国法律，争议由 [争议管辖地，待律师确认] 有管辖权的人民法院管辖。对于欧盟用户，本协议不影响其居住地法律规定的强制性消费者权利。</p>
+
+<h2 id="contact">12. 运营主体与联系</h2>
+<ul>
+<li>运营主体：[运营主体名称，待所有者填写]</li>
+<li>联系邮箱：[联系邮箱]</li>
+</ul>
+<p>另见<a href="/privacy/">隐私政策（草案）</a>、<a href="/about/">关于我们</a>与<a href="/docs/">使用说明</a>。</p>
 </div>
 <div data-l="en" lang="en">
 <h1>Terms of Service</h1>
-<div class="callout"><strong>Draft, pending legal review.</strong> This text was prepared by the engineering team. It has not been reviewed by counsel and is not a legally binding document. Operator, contact, governing law and dispute resolution are still to be added.</div>
-<p class="meta">Draft date: 2026-10-10</p>
+<div class="callout"><strong>Draft, pending legal review.</strong> This document was prepared by the engineering team from the code. The formal legal text must be reviewed by counsel before publication.</div>
+<p class="meta">Effective draft date: 2026-10-12</p>
 
 <h2 id="service">1. The service and its status</h2>
-<p>PIXO TAP is software, with a companion website, that helps you pick up your progress across several long-running tasks. The product is in development and trial: the macOS and Windows apps are trial builds; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept; accounts are optional (currently email-and-password sign-in only) and sync is not open yet. The interactive demo and the web prototype on the website are demonstrations only and never read your device.</p>
+<p>PIXO TAP is desktop software that helps you pick up progress across several long-running tasks, together with a companion website. The product is still in development and trial:</p>
+<ul>
+<li>The Windows app is a trial build and is available from the download page;</li>
+<li>The Mac app is still experimental, has no download for now, and account sign-in is not yet connected;</li>
+<li>Linux is an early release (x86_64 only) with a one-line installer;</li>
+<li>Android is in development, iOS is not available, and the physical desk companion is still a concept;</li>
+<li>AI analysis is optional and experimental, and requires you to supply your own third-party service key;</li>
+<li>Accounts are optional and currently offer email-and-password sign-in only; sign-in is not available until the production sign-in service is live;</li>
+<li>Sync is not yet open in the clients, which do not sync any data by default. Before you can turn sync on you must explicitly consent to "Data sync" (sync); you can withdraw that consent at any time, and syncing stops once you do. Synced content must be end-to-end encrypted, and the server stores only ciphertext.</li>
+</ul>
+<p>The interactive demo and the web prototype on the website are demonstrations only and never read your device. We may change features and release timing for each platform at any time.</p>
 
 <h2 id="use">2. Acceptable use</h2>
 <ul>
 <li>Use the product only as permitted by law. Do not use it to infringe others' rights, and do not disrupt, abuse or gain unauthorised access to the service.</li>
-<li>The software records only after you explicitly start, and only what you have allowed in the system and the app. Make sure you are entitled to record what appears on your screen; where others' information or an employer's materials are involved, follow the relevant confidentiality and compliance requirements.</li>
+<li>The software records only after you click start, and only what you have allowed in the system and the app. You must be entitled to record what appears on your screen. Where others' personal information, private content or an employer's confidential materials are involved, follow the relevant laws, confidentiality obligations and compliance requirements.</li>
+<li>Desktop recognition on macOS and Linux covers the whole screen. Tidy your desktop before starting so that you do not capture what should not be captured.</li>
+<li>Do not use the product to process unlawful information or for any unlawful purpose.</li>
 </ul>
 
 <h2 id="account">3. Accounts</h2>
-<p>If you use an account you must provide a genuine, working email address and keep your password safe; actions taken through your account are treated as yours. You can request deletion in the account centre at any time. Age limits and guardian-consent rules are pending legal review.</p>
+<p>If you use an account you must provide a genuine, working email address and keep your password safe. Actions taken through your account are treated as your own. When you sign up you must confirm that you are at least [minimum age, to be set by the owner]; people below that age may not create an account. You can request deletion in the account centre at any time; deletion has a 14-day grace period.</p>
 
 <h2 id="data">4. Your data</h2>
-<p>Your projects, records and notes belong to you and are stored on your device by default. How we handle data is described in the <a href="/privacy/">Privacy Policy (draft)</a>. You are responsible for backing up local data; removing the app does not delete it.</p>
+<p>Your projects, records and notes belong to you and are stored on your device by default. How we handle data is described in the <a href="/privacy/">Privacy Policy (draft)</a>. You are responsible for backing up local data; removing the app does not delete all of it. The locations are listed in the documentation.</p>
 
 <h2 id="ai">5. Third-party AI services</h2>
-<p>AI features connect to a third-party service (currently DeepSeek) with your own key. Fees, terms and data handling between you and that provider are agreed directly with it; we are not responsible for the availability, output or cost of third-party services. AI output may be inaccurate, so please check it yourself.</p>
+<p>AI features connect, with a key you supply, to a third-party service (currently DeepSeek). Fees, terms and data handling between you and that provider are agreed directly with it. We are not responsible for the availability, output or cost of third-party services. AI output may be inaccurate, so please check it before relying on it.</p>
 
-<h2 id="ip">6. Intellectual property</h2>
-<p>Rights in the PIXO TAP software, character artwork, copy and website materials are reserved by their owners. Unless stated otherwise in writing, you receive a personal, non-exclusive licence to use the software under these terms and no open-source licence. Third-party components are used under their own licences, listed in the notices shipped with the package.</p>
+<h2 id="fees">6. Fees</h2>
+<p>[Fees and payment terms, to be set by the owner].</p>
 
-<h2 id="disclaimer">7. Disclaimer</h2>
-<p>Trial builds and prototype features are provided "as is" and may contain errors, interruptions or risk of data loss, without any express or implied warranty. To the maximum extent permitted by law we are not liable for indirect loss arising from using or being unable to use the product. The precise limitation of liability is pending legal review.</p>
+<h2 id="ip">7. Intellectual property</h2>
+<p>Rights in the PIXO TAP software, character artwork, icons, copy and website materials are reserved by their owners. The rights status of character and icon assets is described in the notes accompanying each file. Unless stated otherwise in writing, you receive a personal, non-exclusive, non-transferable licence to use the software under these terms. We do not grant any open-source licence. Third-party components are used under their own licences, and the relevant licence notices are shipped with the installer.</p>
 
-<h2 id="changes">8. Changes and termination</h2>
-<p>We may update the product and these terms; significant changes will be announced on the website and we may ask for your consent again. You may stop using the product and delete local data at any time; if you seriously breach these terms we may suspend or end your account.</p>
+<h2 id="disclaimer">8. Disclaimer and limitation of liability</h2>
+<p>Trial builds and prototype features are provided "as is" and may contain errors, interruptions or a risk of data loss. We give no express or implied warranty. To the maximum extent permitted by law, we are not liable for indirect loss arising from using or being unable to use the product. The precise limitation of liability: [limitation of liability clause, pending counsel review].</p>
 
-<h2 id="law">9. Governing law and contact</h2>
-<p>Operator: to be added. Contact: to be added. Governing law and dispute resolution: pending legal review.</p>
-<p>See also the <a href="/privacy/">Privacy Policy (draft)</a> and the <a href="/docs/">documentation</a>.</p>
+<h2 id="changes">9. Changes and termination</h2>
+<p>We may update the product and these terms. Significant changes will be announced on the website and we may ask for your consent again. You may stop using the product and delete local data at any time. If you seriously breach these terms, we may suspend or end your account.</p>
+
+<h2 id="minors">10. Minors</h2>
+<p>People below [minimum age, to be set by the owner] may not create an account. Other conditions for minors' use of the product, and the guardian-consent mechanism, are pending counsel review.</p>
+
+<h2 id="law">11. Governing law and dispute resolution</h2>
+<p>For users in mainland China, these terms are governed by the laws of the People's Republic of China, and disputes are subject to the competent people's court in [governing jurisdiction, pending counsel review]. For users in the EU, these terms do not affect the mandatory consumer rights that apply where they live.</p>
+
+<h2 id="contact">12. Operator and contact</h2>
+<ul>
+<li>Operator: [operator name, to be provided by the owner]</li>
+<li>Contact email: [contact email]</li>
+</ul>
+<p>See also the <a href="/privacy/">Privacy Policy (draft)</a>, <a href="/about/">About us</a> and the <a href="/docs/">documentation</a>.</p>
 </div>
   </main>
   <footer class="px-footer">
   <div class="px-footer-in">
-    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
-    <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/privacy/"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/" aria-current="page"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：Windows 版在开发与试用阶段；Mac 版仍处于实验阶段，暂不提供下载；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the Windows app is in development and trial; the Mac app is still experimental, with no download for now; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></li><li><a href="/privacy/"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/" aria-current="page"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
   </div>
 </footer>
   <script src="/pages-assets/site.js" defer></script>

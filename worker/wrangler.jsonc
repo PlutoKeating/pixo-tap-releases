@@ -1,5 +1,6 @@
 // 由 tools/publish-edge.mjs 自动生成，请勿手工编辑。
-// hyperdrive.id 为占位符：Hyperdrive 绑定、可选 KV（CACHE）、变量与 Secret 在 Cloudflare 控制台配置。
+// d1_databases[0].database_id 为占位符（或维护者给出的 id）：D1 数据库、可选 KV（CACHE）与 Secret 在 Cloudflare 控制台配置。
+// Secret 名称：PASSWORD_PEPPER、JWT_PRIVATE_KEY、CODE_HMAC_KEY、CSRF_KEY、LOG_HMAC_KEY、OUTBOX_KEY、SMTP_PASS（只在控制台或 wrangler secret put 中设置）。
 // 见主仓库 docs/CLOUDFLARE_SETUP.md。
 {
   "$schema": "https://workers.cloudflare.com/wrangler-config-schema.json",
@@ -16,10 +17,19 @@
       "/v1/*",
       "/healthz",
       "/readyz",
+      "/.well-known/jwks.json",
       "/account/*",
+      "/admin/*",
       "/install"
     ]
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pixotap-db",
+      "database_id": "869ec19e-f366-4f9f-822f-19bb62e8e3af"
+    }
+  ],
   "ratelimits": [
     {
       "name": "RL_IP",
@@ -56,7 +66,7 @@
   ],
   "triggers": {
     "crons": [
-      "0 3 * * *"
+      "* * * * *"
     ]
   },
   "observability": {
@@ -65,6 +75,15 @@
   "keep_vars": true,
   "vars": {
     "NODE_ENV": "production",
+    "TRUST_PROXY": "true",
+    "AUTH_ISSUER": "https://pixotap.plutokeating.beer",
+    "AUTH_AUDIENCE": "pixotap-api",
+    "SITE_ORIGIN": "https://pixotap.plutokeating.beer",
+    "MIN_AGE": "14",
+    "SMTP_HOST": "smtp.yeah.net",
+    "SMTP_PORT": "465",
+    "SMTP_USER": "pixotap@yeah.net",
+    "MAIL_FROM": "pixotap@yeah.net",
     "RELEASES_REPO": "PlutoKeating/pixo-tap-releases"
   }
 }

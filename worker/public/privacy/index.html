@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" data-title-zh="隐私政策（草案） | PIXO TAP" data-title-en="Privacy Policy (draft) | PIXO TAP" data-desc-zh="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步与遥测均为可选。" data-desc-en="PIXO TAP privacy policy draft (pending legal review): local-first; screenshots, photos, full OCR text and clipboard are never uploaded; accounts, sync and telemetry are optional.">
+<html lang="zh-CN" data-title-zh="隐私政策（草案） | PIXO TAP" data-title-en="Privacy Policy (draft) | PIXO TAP" data-desc-zh="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步、遥测与 AI 分析均为可选。" data-desc-en="PIXO TAP privacy policy draft (pending legal review): local-first; screenshots, photos, full OCR text and clipboard are never uploaded; accounts, sync, telemetry and AI analysis are optional.">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>隐私政策（草案） | PIXO TAP</title>
-  <meta name="description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步与遥测均为可选。">
+  <meta name="description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步、遥测与 AI 分析均为可选。">
   <link rel="canonical" href="https://pixotap.plutokeating.beer/privacy/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PIXO TAP">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="隐私政策（草案） | PIXO TAP">
-  <meta property="og:description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步与遥测均为可选。">
+  <meta property="og:description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步、遥测与 AI 分析均为可选。">
   <meta property="og:url" content="https://pixotap.plutokeating.beer/privacy/">
   <meta property="og:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="隐私政策（草案） | PIXO TAP">
-  <meta name="twitter:description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步与遥测均为可选。">
+  <meta name="twitter:description" content="PIXO TAP 隐私政策草案（待法务审阅）：本地优先，截图、照片、OCR 全文与剪贴板不上传；账号、同步、遥测与 AI 分析均为可选。">
   <meta name="twitter:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
@@ -30,7 +30,7 @@
   <header class="px-header" id="px-header">
   <div class="px-header-in">
     <a class="px-brand" href="/"><img src="/favicon.png" alt="" width="28" height="28">PIXO TAP</a>
-    <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></nav>
+    <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></nav>
     <label class="px-lang"><span class="sr-only"><span data-l="zh">语言</span><span data-l="en">Language</span></span><select id="px-lang"><option value="zh">中文</option><option value="en">English</option></select></label>
     <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav"><span data-l="zh">菜单</span><span data-l="en">Menu</span></button>
   </div>
@@ -38,135 +38,295 @@
   <main class="px-main" id="main">
 <div data-l="zh" lang="zh-CN">
 <h1>隐私政策</h1>
-<div class="callout"><strong>草案，待法务审阅。</strong> 本文是工程团队按产品当前真实行为整理的草案，尚未经过法务审阅，不是正式生效的法律文本。运营主体、联系方式、适用法律与法定期限等条目待确认处已标注“待补充”或“待法务确认”。</div>
-<p class="meta">草案日期：2026-10-10</p>
+<div class="callout"><strong>草案，待法务审阅。</strong> 本文件由工程团队依据代码生成，正式法律文本须经律师审阅后发布。</div>
+<p class="meta">草案生效日期：2026-10-12</p>
 
 <h2 id="summary">一句话概括</h2>
-<p>PIXO TAP 是本地优先的软件：截图、照片、OCR 全文和剪贴板正文留在你的设备上，不会上传。只有在你自己配置了 AI 服务密钥、并主动触发分析时，本机识别出的 OCR 文字和活动时间线才会发送给该 AI 服务。账号、同步和遥测都是可选的；账号目前只提供邮箱加密码登录，同步尚未开放。</p>
+<p>PIXO TAP 是本地优先的软件。截图原图、照片、原文件内容和剪贴板正文只保存在你的设备上，不会上传。账号、同步、遥测和 AI 分析都是可选的：只有你自己配置了 AI 服务密钥并主动触发分析时，本机识别出的 OCR 文字和活动时间线文字才会直接从你的设备发送给该 AI 服务。同步尚未在客户端开放，客户端目前不同步任何数据；将来开启同步前须你明确同意，且同步内容须端到端加密。反馈正文同样端到端加密，服务器只保存密文。</p>
 
-<h2 id="local">1. 留在你设备上的数据</h2>
+<h2 id="collection">1. 屏幕、键盘与其他采集的范围</h2>
 <ul>
-<li>截图原图、结束时拍摄的照片、原文件内容、剪贴板文字正文：始终只保存在本机，不上传。</li>
-<li>项目、会话、活动时间线、OCR 全文、恢复笔记：保存在本机（macOS 的 <code>~/Library/Application Support/PixoTap</code>，Windows 的 <code>%LocalAppData%\PixoTap</code>，Linux 的 <code>~/.local/share/PixoTap</code>）。</li>
-<li>AI 服务密钥：保存在系统钥匙串（macOS）、系统凭据保护（Windows）或系统 Secret Service（Linux，如 gnome-keyring、KWallet），不写入项目文件；Linux 上没有 Secret Service 时无法保存密钥，不会改存为明文文件。</li>
-<li>只有你明确点击开始后才会记录；每一类采集都需要你在系统或应用中授权，并可随时关闭。</li>
+<li><strong>Windows：</strong>只对前台窗口做设备上的文字识别（OCR），并跳过密码输入框。</li>
+<li><strong>macOS：</strong>在你发起的会话中，对整个桌面做设备上的 OCR。开始前会先弹出提示并请求系统的屏幕录制权限。桌面是整屏截取的，请先整理桌面。</li>
+<li><strong>Linux：</strong>在平台允许时，通过系统截图接口截取整屏并做设备上的 OCR。在 GNOME Wayland 下无法读取前台窗口。同样请先整理桌面。</li>
+<li><strong>摄像头：</strong>只在会话结束时拍一张照片，且只有你开启后才会拍。</li>
+<li><strong>键盘输入：</strong>不记录。所有端的代码都没有全局键盘钩子。</li>
+<li>只有你点击开始后才会记录；每一类采集都需要系统或应用中的授权，并可随时关闭。</li>
 </ul>
 
-<h2 id="ai">2. 发送给第三方 AI 服务的数据</h2>
-<p>客户端使用你自带密钥的 AI 服务（目前为 DeepSeek）。仅当你配置了密钥并主动触发分析或对话时，才会发送：</p>
+<h2 id="data">2. 我们处理的数据类别</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>数据类别</th><th>包含什么</th><th>存放位置</th><th>是否离开你的设备</th></tr></thead>
+<tbody>
+<tr><td>账号</td><td>邮箱、密码哈希（不保存明文密码）、显示名称与语言、登录会话与刷新令牌（只存哈希）、同意记录、注册时的年龄确认声明</td><td>服务器（由我们运营的服务，托管在 Cloudflare 上）</td><td>是，用于提供账号服务</td></tr>
+<tr><td>本机工作记录</td><td>项目、会话、活动时间线、OCR 全文、恢复笔记，以及文件新建、下载、修改、移动的文件名与路径</td><td>仅本机</td><td>否（客户端尚未同步；同步默认关闭，且需你明确同意）</td></tr>
+<tr><td>屏幕与 OCR</td><td>截图原图（仅本机）、识别出的文字</td><td>仅本机；截图不上传</td><td>否。OCR 文字只在你触发 AI 分析时发送，见第 4 节</td></tr>
+<tr><td>相机照片</td><td>会话结束时拍摄的一张照片（仅在你开启后）</td><td>仅本机</td><td>否</td></tr>
+<tr><td>剪贴板</td><td>只记录变化的类型与前台应用；剪贴板正文不保存</td><td>本机</td><td>否</td></tr>
+<tr><td>AI 请求</td><td>OCR 文字与活动时间线文字（仅当你配置密钥并触发分析时）；AI 服务密钥存于系统钥匙串或凭据存储</td><td>密钥仅存于本机；请求由你的设备直接发送，不经过我们的服务器</td><td>是，发送到 DeepSeek（位于中国）</td></tr>
+<tr><td>遥测</td><td>使用统计（仅当你明确同意后）；记录不含用户 ID 或任何账号标识，服务器无法把它与你的账号关联</td><td>服务器</td><td>是，发送到服务器。默认关闭，客户端均不开启</td></tr>
+<tr><td>服务器日志</td><td>请求 URL（查询串不含密钥）、时间、IP 地址（日志中屏蔽 IPv4 与 IPv6）、已脱敏的应用日志、用户与管理员操作的审计记录（含用户与对象 ID）</td><td>Cloudflare 平台日志与我们的应用日志</td><td>由 Cloudflare 处理</td></tr>
+<tr><td>Cookie 与浏览器存储</td><td>公开页面不设置 Cookie。浏览器中仅保存 <code>pixo-language</code>（localStorage，语言偏好）与 <code>pixo-selected-pet</code>（sessionStorage，本次会话的桌宠选择）。账号中心与管理后台另使用必要的 HttpOnly 会话 Cookie 与 CSRF 令牌，用于登录状态</td><td>你的浏览器</td><td>否</td></tr>
+<tr><td>反馈</td><td>你提交的留言正文（端到端加密，服务器只保存密文）、类别、应用版本、平台。管理后台不显示反馈的任何信息（包括元数据）</td><td>服务器只保存密文；服务端与运营方均不持有能解密反馈的私钥，正文只能由发送者本机解密</td><td>是，以密文形式保存在服务器上</td></tr>
+<tr><td>同步数据</td><td>你明确同意“数据同步”后，你选择的元数据（例如项目结构、恢复笔记和设置）。在本机加密后上传，服务器只保存密文信封，无法解密</td><td>服务器只保存密文；密钥只留在你的设备上</td><td>是，以密文形式离开你的设备</td></tr>
+<tr><td>设备授权</td><td>哈希后的 IP 地址、浏览器与用户代理摘要、大致位置（国家、城市、网络服务商）</td><td>服务器</td><td>是，保存在服务器上</td></tr>
+<tr><td>邮件发送队列</td><td>收件邮箱地址与邮件内容（加密存储）</td><td>服务器</td><td>是，交给邮件服务提供商发送</td></tr>
+</tbody>
+</table></div>
+
+<p>本机数据目录：macOS 为 <code>~/Library/Application Support/PixoTap</code>，Windows 为 <code>%LocalAppData%\PixoTap</code>，Linux 为 <code>~/.local/share/PixoTap</code>。AI 服务密钥不在这些目录中保存为文件：Linux 上若没有 Secret Service，密钥无法保存，也不会改存为明文文件。</p>
+
+<h2 id="purposes">3. 处理目的与法律依据</h2>
+<p>下表是工程团队的初步对应，<strong>须由律师确认</strong>。GDPR 指欧盟《通用数据保护条例》，PIPL 指中国《个人信息保护法》。</p>
+<div class="table-wrap"><table>
+<thead><tr><th>目的</th><th>数据</th><th>法律依据（待律师确认）</th></tr></thead>
+<tbody>
+<tr><td>提供本地记录、恢复笔记与设置</td><td>本机工作记录、屏幕与 OCR、相机照片、剪贴板变化</td><td>你开始记录并授予系统权限，即同意（GDPR Art. 6(1)(a)；PIPL 第 13 条第 1 款）。屏幕内容可能包含特殊类别信息，相关处理的依据待律师确认（GDPR Art. 9）</td></tr>
+<tr><td>AI 分析</td><td>OCR 文字、活动时间线文字</td><td>你配置密钥并主动触发，即同意（GDPR Art. 6(1)(a)；PIPL 第 13 条第 1 款）</td></tr>
+<tr><td>账号、会话与设备授权、数据导出与注销</td><td>账号、设备授权、同意记录</td><td>为提供你请求的账号服务所必需（GDPR Art. 6(1)(b)；PIPL 第 13 条第 2 款）</td></tr>
+<tr><td>遥测</td><td>遥测记录</td><td>你明确同意，可随时撤回（GDPR Art. 6(1)(a)；PIPL 第 13 条第 1 款）</td></tr>
+<tr><td>数据同步</td><td>同步你选择的元数据，在本机加密后上传</td><td>你明确同意“数据同步”，可随时撤回（GDPR Art. 6(1)(a)；PIPL 第 13 条第 1 款）</td></tr>
+<tr><td>处理你提交的反馈</td><td>反馈正文（端到端加密）、类别、应用版本、平台</td><td>依据待律师确认（GDPR 下可能为你的同意 Art. 6(1)(a) 或合法利益 Art. 6(1)(f)；PIPL 下的对应依据待确认）</td></tr>
+<tr><td>安全、防滥用与排错</td><td>服务器日志、审计记录、速率限制计数</td><td>依据待律师确认（GDPR 下可能为合法利益 Art. 6(1)(f)；PIPL 下的对应依据待确认）</td></tr>
+<tr><td>发送注册与找回密码的验证码</td><td>邮箱地址、验证码、必要的通知</td><td>为提供账号服务所必需（GDPR Art. 6(1)(b)；PIPL 第 13 条第 2 款）</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="sync">4. 同步与遥测</h2>
 <ul>
-<li>本机识别出的 OCR 文字（经客户端清洗）、带时间戳的活动时间线、当前应用名称；</li>
-<li>你在对话框中输入的消息。</li>
+<li><strong>同步尚未在客户端开放。</strong>目前客户端不同步任何数据。同步默认关闭，且须由你主动开启并明确同意“数据同步”（sync）同意。即使将来开启，也只同步你选择的元数据，例如项目结构、恢复笔记和设置；不包含截图、照片、原文件、剪贴板正文、OCR 全文或活动时间线。同步内容在你的设备上加密后才上传，服务器只保存加密信封，无法解密；未同意或已撤回同意时，服务器拒绝同步请求，明文同步也会被服务器拒绝。</li>
+<li><strong>反馈端到端加密。</strong>你提交的反馈正文在你的设备上加密，服务器只保存密文，仅发送者本机可以解密。服务端与运营方均无法读取正文；管理后台不显示反馈的任何信息（包括元数据）。我们不会因客服或员工需要处理问题而读取用户内容。</li>
+<li><strong>遥测默认关闭。</strong>客户端均不开启遥测。服务器只为已明确同意遥测的用户存储遥测记录，并拒绝包含 URL、邮箱、IP 地址或文件路径形式的值。遥测记录不含用户 ID 或任何账号标识，服务器无法把它与你的账号关联：它保留 90 天后自动删除，注销账号时不会按账号删除它，导出也不包含它。你可以撤回同意，撤回后服务器不再接收遥测。</li>
 </ul>
-<p>不会发送：截图像素、照片、原文件正文、剪贴板文字正文。OCR 文字本身可能包含敏感信息，请按项目内容决定是否授权。发送后的处理受该 AI 服务自己的条款和隐私政策约束，我们无法控制。未配置密钥或断网时，客户端只在本地生成交接摘要。</p>
-<p>网站目前不代理 AI 请求（该能力默认关闭）。</p>
 
-<h2 id="account">3. 账号（可选）</h2>
-<p>账号是可选的，不登录也可使用客户端。账号由我们自行部署的开源 Logto 服务管理，只提供邮箱加密码登录：注册时需要用邮箱验证码验证邮箱，忘记密码时用邮箱验证码重置；不提供手机号登录，不提供 Apple、Google、GitHub 等第三方账号登录，也不提供多因素验证。Linux、Android 与 Windows 客户端可在设置中通过设备授权登录（在浏览器里完成）；macOS 客户端暂未接入登录。登录后客户端不会自动上传你的数据。使用账号时，我们会处理：</p>
+<h2 id="ai">5. 发送给第三方 AI 服务的数据</h2>
+<p>客户端使用你自带密钥的 AI 服务（目前为 DeepSeek，服务地址为 api.deepseek.com）。只有你配置了密钥并主动开始分析时，才会发送：</p>
 <ul>
-<li>登录凭据：邮箱和密码；发送到邮箱的验证码仅用于验证注册与重置密码；我们不收集手机号；</li>
-<li>系统生成的账号 ID 与显示名称、语言等资料，登录会话与已授权设备；</li>
-<li>你对隐私政策、AI 云处理、遥测和同步的同意记录（含文档版本与时间）；</li>
-<li>为安全与防滥用而保留的必要日志（保留期限待法务确认）。</li>
+<li>设备上识别出的 OCR 文字（经客户端清洗）；</li>
+<li>带时间戳的活动时间线文字。</li>
 </ul>
-<p>未成年人的使用条件与监护人同意机制待法务确认。</p>
+<p>不会发送：截图像素、照片、原文件内容、剪贴板正文。OCR 文字本身可能包含敏感信息，请按项目内容决定是否授权分析。发送后的处理受该 AI 服务自身的条款与隐私政策约束，我们无法控制。该服务位于中国，数据传输是因为你选择使用它。没有密钥或离线时，客户端只在本地生成摘要。</p>
+<p>本网站不代理 AI 请求。</p>
 
-<h2 id="sync">4. 同步（可选，尚未开放）</h2>
-<p>同步默认关闭，且必须由你主动开启。即使开启，也只同步你选择的元数据，例如项目结构、恢复笔记（四段文字）和设置；不包含截图、照片、原文件、剪贴板正文，也不包含 OCR 全文和活动时间线。目前桌面客户端不同步任何数据。</p>
+<h2 id="retention">6. 保留期限</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>数据</th><th>保留期限</th></tr></thead>
+<tbody>
+<tr><td>本机数据</td><td>直到你删除。退出程序后删除对应目录即可清除</td></tr>
+<tr><td>账号数据</td><td>账号存续期间。注销申请后有 14 天宽限期，期内可撤销；期满后立即永久删除账号与业务数据。与账号相关的残留（邮件队列中的收件人与正文、验证码、会话与刷新令牌、导出包、限流计数）在 7 日内清除。备份按其保留期自然过期，具体期限 [备份保留期限，待律师确认]</td></tr>
+<tr><td>反馈</td><td>服务器上的密文：直到账号注销或反馈被删除。目前尚未设置自动删除期限。</td></tr>
+<tr><td>同步数据</td><td>服务器上的密文：随账号存续；撤回同意后服务器不再读写，随账号注销按第 6 节规则清除。[同步数据具体保留期限，待所有者确定]</td></tr>
+<tr><td>审计记录</td><td>与已注销账号相关的审计记录（含账号 ID）在注销完成后 7 日内清除。其他安全审计记录（不含账号标识，只含哈希化的来源）至少保留 180 天</td></tr>
+<tr><td>邮件发送队列</td><td>已发送的邮件最多保留 7 天；发送失败的记录最多保留 30 天；与账号相关的邮件在终结（已发送或失败）后最多保留 7 天</td></tr>
+<tr><td>服务器与平台日志</td><td>由 Cloudflare 决定，我们在应用层无法设定其保留期限</td></tr>
+<tr><td>遥测记录</td><td>[遥测保留期限，待所有者确定]</td></tr>
+<tr><td>设备授权记录</td><td>[设备授权记录保留期限，待所有者确定]</td></tr>
+</tbody>
+</table></div>
 
-<h2 id="telemetry">5. 遥测</h2>
-<p>使用遥测默认关闭。只有在你于账号设置中明确同意后，才可能发送匿名使用统计；你可以随时撤回。</p>
+<h2 id="sharing">7. 共享与跨境传输</h2>
+<p>我们不出售个人数据，也不向广告商提供数据。数据可能被以下服务提供方处理：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>服务提供方</th><th>处理什么</th><th>所在地</th><th>跨境传输机制</th></tr></thead>
+<tbody>
+<tr><td>Cloudflare</td><td>网站托管、服务器与平台日志、账号服务的存储与处理</td><td>全球边缘网络，数据处理地点可能不止一处</td><td>[待律师确认]</td></tr>
+<tr><td>GitHub</td><td>下载页读取发布信息。本站接口不可用时，下载页会从你的浏览器直接访问 GitHub 的公开发布接口，GitHub 会看到你的 IP 地址</td><td>美国</td><td>[待律师确认]</td></tr>
+<tr><td>DeepSeek</td><td>仅当你配置密钥并触发分析时，由你的设备直接发送的 OCR 文字与活动时间线文字</td><td>中国</td><td>[待律师确认]</td></tr>
+<tr><td>邮件服务提供商</td><td>收件邮箱地址、注册与找回密码的验证码及通知邮件</td><td>中国</td><td>[待律师确认]</td></tr>
+</tbody>
+</table></div>
+<p>整体的跨境传输状态：[出境安全评估 / 标准合同 / 认证状态，待律师确认]。</p>
 
-<h2 id="site">6. 本网站</h2>
+<h2 id="rights">8. 你的权利</h2>
 <ul>
-<li>网站托管在 Cloudflare 上。与大多数网站一样，托管平台会处理访问日志（如 IP 地址、请求路径、时间、浏览器标识），用于提供服务、安全与排错。</li>
-<li>网站没有广告和第三方跟踪脚本。下载页会通过本站接口，在必要时直接访问 GitHub 的公开发布接口以读取发布信息，此时 GitHub 会看到你的 IP 地址。</li>
-<li>网站只在你的浏览器本地存储少量偏好：语言（<code>pixo-language</code>）、下载页的“显示测试版”开关、首页已选择的桌宠（仅当前会话）。这些数据不会发送给我们。</li>
-<li>首页的表单只在当前页面生成预览，不会提交或保存你填写的内容。</li>
+<li><strong>访问与导出：</strong>你可以在账号中心导出资料、已授权设备、会话摘要、同意记录、同步记录、反馈与本人审计记录（遥测记录与账号不可关联，不在导出范围内）。导出需要重新验证口令，下载链接有效期为 7 天。</li>
+<li><strong>更正：</strong>你可以修改显示名称和语言。</li>
+<li><strong>删除与注销：</strong>你可以申请注销账号。注销有 14 天宽限期，期内可撤销；期满后按第 6 节的期限处理。</li>
+<li><strong>撤回同意：</strong>对已实现的同意类型，你可以随时在账号中心撤回。撤回“数据同步”同意后，服务器从下一次同步请求起拒绝读写，同步随即停止。</li>
+<li><strong>本机数据：</strong>你可以直接删除本机目录，无需经过我们。</li>
+<li><strong>投诉：</strong>目前没有独立的投诉表单，请发送邮件至 [联系邮箱]。</li>
+<li><strong>监管机构：</strong>欧盟用户可以向其居住地成员国的数据保护监管机构投诉。中国大陆用户可以向国家网信部门或其他主管部门反映。具体适用与行使方式待律师确认。</li>
 </ul>
 
-<h2 id="rights">7. 你的权利</h2>
+<h2 id="minors">9. 未成年人</h2>
+<p>注册账号时，你需要勾选确认已年满 14 岁。这是自我声明，服务器按勾选结果执行，但不做身份核验。未满 14 岁不能使用本服务；我们不提供监护人同意的注册途径。</p>
+
+<h2 id="cookies">10. Cookie 与浏览器存储</h2>
+<p>公开页面（首页、下载、使用说明、隐私政策、用户协议、关于我们）不设置 Cookie，也不加载第三方脚本、字体或跟踪器。浏览器中仅保存 <code>pixo-language</code>（localStorage，语言偏好）与 <code>pixo-selected-pet</code>（sessionStorage，本次会话的桌宠选择）。这些数据不会发送给我们。账号中心与管理后台使用必要的 HttpOnly 会话 Cookie 与 CSRF 令牌维持登录状态，不用于广告或跟踪。</p>
+
+<h2 id="security">11. 安全措施</h2>
 <ul>
-<li>本机数据由你完全掌控：退出程序后删除上述目录即可清除。</li>
-<li>你可以在账号中心管理各项同意、导出数据、撤销设备和会话，并申请注销账号（有宽限期，可在期内撤销；期满后账号与数据被永久删除，备份按保留期自然过期，具体期限待法务确认）。</li>
-<li>依适用法律你可能享有访问、更正、删除、撤回同意等权利，具体适用与行使方式待法务确认。</li>
+<li>密码只保存哈希；登录与验证码请求有速率限制；验证码短期有效。</li>
+<li>会话与刷新令牌只保存哈希。</li>
+<li>IP 地址以带密钥的哈希存储，日志中屏蔽 IPv4 与 IPv6 地址。</li>
+<li>AI 服务密钥保存在系统钥匙串（macOS）、系统凭据保护（Windows）或系统 Secret Service（Linux），不写入项目文件，也不上传。</li>
+<li>待发送的邮件地址与内容加密存储。</li>
+<li>同步内容在本机加密后才上传，密钥只留在本机；服务器只保存密文，无法解密。</li>
+<li>反馈正文端到端加密，仅发送者本机可解；服务端与运营方均不持有能解密反馈的私钥，管理后台不显示反馈的任何信息（包括元数据）。</li>
+<li>下载页使用内容安全策略（CSP）。</li>
 </ul>
+<p>我们采取这些措施降低风险，但没有任何系统绝对安全。请妥善保管你的设备与密钥。</p>
 
-<h2 id="security">8. 安全</h2>
-<p>我们采用传输加密、最小化采集与本地优先设计来降低风险，但没有任何系统绝对安全。请自行保管设备与密钥。</p>
+<h2 id="changes">12. 政策变更</h2>
+<p>政策变更时，我们会更新本页的草案日期。重大变更时，我们可能请求你重新同意。</p>
 
-<h2 id="changes">9. 变更与联系</h2>
-<p>政策变更时我们会更新页面日期，并可能要求你重新同意。运营主体：待补充。联系方式：待补充。适用法律与争议解决：待法务确认。</p>
-<p>另见<a href="/terms/">用户协议（草案）</a>与<a href="/docs/">使用说明</a>。</p>
+<h2 id="contact">13. 联系方式</h2>
+<ul>
+<li>运营主体：[运营主体名称，待所有者填写]</li>
+<li>联系邮箱：[联系邮箱]</li>
+<li>数据保护负责人：[数据保护负责人，待所有者填写]</li>
+<li>跨境传输状态：[出境安全评估 / 标准合同 / 认证状态，待律师确认]</li>
+</ul>
+<p>另见<a href="/terms/">用户协议（草案）</a>、<a href="/about/">关于我们</a>与<a href="/docs/">使用说明</a>。</p>
 </div>
 <div data-l="en" lang="en">
 <h1>Privacy Policy</h1>
-<div class="callout"><strong>Draft, pending legal review.</strong> This text was written by the engineering team to match what the product actually does today. It has not been reviewed by counsel and is not a legally binding document. Items that still need confirmation (operator, contact, governing law, statutory periods) are marked "to be added" or "pending legal review".</div>
-<p class="meta">Draft date: 2026-10-10</p>
+<div class="callout"><strong>Draft, pending legal review.</strong> This document was prepared by the engineering team from the code. The formal legal text must be reviewed by counsel before publication.</div>
+<p class="meta">Effective draft date: 2026-10-12</p>
 
 <h2 id="summary">In one paragraph</h2>
-<p>PIXO TAP is local-first: screenshots, photos, full OCR text and clipboard text stay on your device and are never uploaded. Only when you have configured your own AI service key and trigger an analysis are the OCR text recognised on your device and the activity timeline sent to that AI service. Accounts, sync and telemetry are optional; accounts currently offer email-and-password sign-in only, and sync is not open yet.</p>
+<p>PIXO TAP is local-first software. Original screenshots, photos, original file contents and clipboard text stay on your device and are never uploaded. Accounts, sync, telemetry and AI analysis are all optional: only when you have configured your own AI service key and trigger an analysis is the OCR text recognised on your device, and the activity timeline text, sent directly from your device to that AI service. Sync is not open in the clients yet, and the clients do not sync any data at present; before you can turn sync on you must explicitly consent, and synced content must be end-to-end encrypted. Feedback text is also end-to-end encrypted, and the server stores only ciphertext.</p>
 
-<h2 id="local">1. Data that stays on your device</h2>
+<h2 id="collection">1. Scope of screen, keyboard and other collection</h2>
 <ul>
-<li>Original screenshots, the closing photo, file contents and clipboard text are only stored locally and never uploaded.</li>
-<li>Projects, sessions, the activity timeline, full OCR text and recovery notes are stored locally (macOS: <code>~/Library/Application Support/PixoTap</code>; Windows: <code>%LocalAppData%\PixoTap</code>; Linux: <code>~/.local/share/PixoTap</code>).</li>
-<li>Your AI service key is kept in the macOS Keychain, Windows credential protection or the Linux Secret Service (for example gnome-keyring or KWallet) and is not written into project files; on Linux without a Secret Service the key cannot be saved at all rather than falling back to a plain file.</li>
-<li>Nothing is recorded until you explicitly start; each kind of collection needs your permission in the system or the app and can be turned off at any time.</li>
+<li><strong>Windows:</strong> on-device text recognition (OCR) of the foreground window only, skipping password fields.</li>
+<li><strong>macOS:</strong> during a session you start, on-device OCR of the whole desktop. Before it starts you see an alert and are asked for the system screen recording permission. The desktop is captured in full, so please tidy it first.</li>
+<li><strong>Linux:</strong> where the platform allows it, a full-screen capture through the system screenshot portal, with on-device OCR. On GNOME Wayland the foreground window cannot be read. Again, please tidy your desktop first.</li>
+<li><strong>Camera:</strong> one photo at the end of a session, and only if you have turned it on.</li>
+<li><strong>Keyboard input:</strong> not recorded. There are no global keyboard hooks anywhere in the code.</li>
+<li>Nothing is recorded until you click start. Each kind of collection needs permission in the system or the app and can be turned off at any time.</li>
 </ul>
 
-<h2 id="ai">2. Data sent to a third-party AI service</h2>
-<p>The client uses an AI service with your own key (currently DeepSeek). Only when you have configured a key and trigger an analysis or a chat is the following sent:</p>
+<h2 id="data">2. Categories of data we handle</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Category</th><th>What it includes</th><th>Where it is stored</th><th>Leaves your device?</th></tr></thead>
+<tbody>
+<tr><td>Account</td><td>Email, password hash (plain-text passwords are never stored), display name and language, sign-in sessions and refresh tokens (stored as hashes only), consent records, the age confirmation given at sign-up</td><td>Server (a service we operate, hosted on Cloudflare)</td><td>Yes, to provide the account service</td></tr>
+<tr><td>Local work records</td><td>Projects, sessions, activity timeline, full OCR text, recovery notes, and file names and paths for files created, downloaded, modified or moved</td><td>Device only</td><td>No (the clients do not sync yet; sync is off by default and requires your explicit consent)</td></tr>
+<tr><td>Screen and OCR</td><td>Original screenshots (device only), recognised text</td><td>Device only; screenshots are not uploaded</td><td>No. OCR text is sent only when you trigger AI analysis; see section 4</td></tr>
+<tr><td>Camera photo</td><td>One photo taken at the end of a session (only if you have turned it on)</td><td>Device only</td><td>No</td></tr>
+<tr><td>Clipboard</td><td>Only the kind of change and the front app are recorded; clipboard text is not stored</td><td>Device</td><td>No</td></tr>
+<tr><td>AI requests</td><td>OCR text and activity timeline text (only when you configure a key and trigger an analysis); the AI service key is kept in the OS keystore</td><td>Key on device only; the request is sent directly from your device and does not pass through our servers</td><td>Yes, to DeepSeek (located in China)</td></tr>
+<tr><td>Telemetry</td><td>Anonymous usage statistics (only if you explicitly agree); records are not linked to your account and contain no user ID</td><td>Server</td><td>Yes, to the server. Off by default; no client enables it</td></tr>
+<tr><td>Server logs</td><td>Request URLs (query strings contain no secrets), times, IP addresses (masked to hide IPv4 and IPv6 addresses in logs), redacted application logs, and audit records of user and administrator actions (including user and target IDs)</td><td>Cloudflare platform logs and our application logs</td><td>Processed by Cloudflare</td></tr>
+<tr><td>Cookies and browser storage</td><td>Public pages set no cookies. The browser stores only <code>pixo-language</code> (localStorage, language preference) and <code>pixo-selected-pet</code> (sessionStorage, the companion chosen for this session). The account centre and admin console also use a necessary HttpOnly session cookie and a CSRF token to keep you signed in</td><td>Your browser</td><td>No</td></tr>
+<tr><td>Feedback</td><td>The message you submit (end-to-end encrypted; the server stores only ciphertext), its category, app version and platform. The admin console shows no feedback information at all, including metadata</td><td>Server stores ciphertext only; neither the server nor the operator holds a key that can decrypt feedback, so only the sender's device can read the message</td><td>Yes, stored on the server as ciphertext</td></tr>
+<tr><td>Sync data</td><td>Metadata you choose to sync (for example project structure, recovery notes and settings), after you explicitly consent to "Data sync". Encrypted on your device before upload; the server stores only encrypted envelopes and cannot decrypt them</td><td>Server stores ciphertext only; keys stay on your device</td><td>Yes, leaves your device as ciphertext</td></tr>
+<tr><td>Device authorizations</td><td>A hashed IP address, a summary of the browser and user agent, approximate location (country, city, network provider)</td><td>Server</td><td>Yes, stored on the server</td></tr>
+<tr><td>Email outbox</td><td>Recipient email address and message body (stored encrypted)</td><td>Server</td><td>Yes, handed to the mail service provider for delivery</td></tr>
+</tbody>
+</table></div>
+
+<p>Local data folders: on macOS <code>~/Library/Application Support/PixoTap</code>, on Windows <code>%LocalAppData%\PixoTap</code>, on Linux <code>~/.local/share/PixoTap</code>. The AI service key is not saved as a file in these folders: on Linux without a Secret Service the key cannot be saved at all, and it is never written to a plain file instead.</p>
+
+<h2 id="purposes">3. Purposes and legal bases</h2>
+<p>The table below is the engineering team's first mapping. <strong>Counsel must confirm it.</strong> GDPR is the EU General Data Protection Regulation; PIPL is China's Personal Information Protection Law.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Purpose</th><th>Data</th><th>Legal basis (pending counsel review)</th></tr></thead>
+<tbody>
+<tr><td>Local recording, recovery notes and settings</td><td>Local work records, screen and OCR, camera photo, clipboard changes</td><td>Consent, given when you start recording and grant the system permission (GDPR Art. 6(1)(a); PIPL Art. 13(1)). Screen content may include special-category information; the basis for that processing is pending counsel review (GDPR Art. 9)</td></tr>
+<tr><td>AI analysis</td><td>OCR text, activity timeline text</td><td>Consent, given when you configure a key and trigger the analysis (GDPR Art. 6(1)(a); PIPL Art. 13(1))</td></tr>
+<tr><td>Accounts, sessions and device authorizations, export and deletion</td><td>Account, device authorizations, consent records</td><td>Necessary to provide the account service you requested (GDPR Art. 6(1)(b); PIPL Art. 13(2))</td></tr>
+<tr><td>Telemetry</td><td>Telemetry records</td><td>Your explicit consent, which you can withdraw at any time (GDPR Art. 6(1)(a); PIPL Art. 13(1))</td></tr>
+<tr><td>Sync</td><td>Metadata you choose to sync, encrypted on your device before upload</td><td>Your explicit consent to "Data sync", which you can withdraw at any time (GDPR Art. 6(1)(a); PIPL Art. 13(1))</td></tr>
+<tr><td>Handling the feedback you submit</td><td>Feedback text (end-to-end encrypted), category, app version, platform</td><td>Pending counsel review (under the GDPR this may be your consent, Art. 6(1)(a), or legitimate interests, Art. 6(1)(f); the PIPL equivalent is to be confirmed)</td></tr>
+<tr><td>Security, abuse prevention and debugging</td><td>Server logs, audit records, rate-limit counters</td><td>Pending counsel review (under the GDPR this may be legitimate interests, Art. 6(1)(f); the PIPL equivalent is to be confirmed)</td></tr>
+<tr><td>Sending sign-up and password-reset codes</td><td>Email address, codes, necessary notices</td><td>Necessary to provide the account service (GDPR Art. 6(1)(b); PIPL Art. 13(2))</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="sync">4. Sync and telemetry</h2>
 <ul>
-<li>OCR text recognised on your device (sanitised by the client), the timestamped activity timeline and the front app name;</li>
-<li>messages you type into the chat box.</li>
+<li><strong>Sync is not open in the clients yet.</strong> The clients do not sync any data at present. Sync is off by default and must be turned on by you, with your explicit consent to "Data sync" (sync). Even if it is enabled in future, only metadata you choose is synced, such as project structure, recovery notes and settings. It never includes screenshots, photos, original files, clipboard text, full OCR text or the activity timeline. Synced content is encrypted on your device before upload; the server stores only the encrypted envelopes and cannot decrypt them. While consent is missing or withdrawn, the server refuses sync requests, and plaintext sync is rejected by the server.</li>
+<li><strong>Feedback is end-to-end encrypted.</strong> The feedback text you submit is encrypted on your device, and the server stores only ciphertext; only the sender's device can decrypt it. Neither the server nor the operator can read the text. The admin console shows no feedback information at all, including metadata. We do not read user content, including when support or staff need to deal with an issue.</li>
+<li><strong>Telemetry is off by default.</strong> No client enables it. The server stores telemetry only for users who have explicitly agreed to it, and rejects values that look like URLs, email addresses, IP addresses or file paths. Telemetry records are not linked to your account and contain no user ID or other account identifier, so the server cannot connect them to you. They are deleted automatically after 90 days, are not deleted by account, and are not part of the export. You can withdraw your consent, and after withdrawal the server stops accepting telemetry.</li>
 </ul>
-<p>Never sent: screenshot pixels, photos, original file contents, clipboard text. OCR text itself may contain sensitive information, so decide per project whether to allow it. What happens after it is sent is governed by that AI service's own terms and privacy policy, which we cannot control. Without a key or when offline, the client only builds a local hand-off summary.</p>
-<p>This website does not proxy AI requests (that capability is off by default).</p>
 
-<h2 id="account">3. Accounts (optional)</h2>
-<p>Accounts are optional; the client works without signing in. Accounts are managed by an open-source Logto service that we host ourselves and offer email-and-password sign-in only: signing up requires verifying your email with a code, and a forgotten password is reset with an email code. There is no phone-number sign-in, no third-party sign-in (Apple, Google, GitHub and the like) and no multi-factor authentication. The Linux, Android and Windows clients can sign in from Settings through device authorization, completed in your browser; the macOS client does not support sign-in yet. Signing in does not make the client upload your data automatically. When you use an account we process:</p>
+<h2 id="ai">5. Data sent to a third-party AI service</h2>
+<p>The client uses an AI service with your own key, currently DeepSeek (api.deepseek.com). Only when you have configured a key and start an analysis is the following sent:</p>
 <ul>
-<li>sign-in credentials: your email and password; codes sent to your email are used only to verify sign-up and password reset; we do not collect phone numbers;</li>
-<li>a system-generated account ID, profile details such as display name and language, sign-in sessions and authorized devices;</li>
-<li>your consent records for the privacy policy, AI cloud processing, telemetry and sync (with document version and time);</li>
-<li>logs kept for security and abuse prevention (retention period pending legal review).</li>
+<li>OCR text recognised on your device (sanitised by the client);</li>
+<li>timestamped activity timeline text.</li>
 </ul>
-<p>Conditions for minors and the guardian-consent mechanism are pending legal review.</p>
+<p>Never sent: screenshot pixels, photos, original file contents, clipboard text. OCR text may contain sensitive information, so decide per project whether to allow analysis. What happens after it is sent is governed by that AI service's own terms and privacy policy, which we cannot control. The service is located in China, and the transfer happens because you choose to use it. Without a key or when offline, the client only builds a local summary.</p>
+<p>This website does not proxy AI requests.</p>
 
-<h2 id="sync">4. Sync (optional, not open yet)</h2>
-<p>Sync is off by default and must be turned on by you. Even when on, only metadata you choose is synced, such as project structure, recovery notes (the four text parts) and settings; never screenshots, photos, original files or clipboard text, nor full OCR text or the activity timeline. The desktop clients do not sync anything today.</p>
+<h2 id="retention">6. Retention</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Data</th><th>Retention</th></tr></thead>
+<tbody>
+<tr><td>Local data</td><td>Until you delete it. Quitting the app and deleting the folder removes it</td></tr>
+<tr><td>Account data</td><td>While the account exists. After a deletion request there is a 14-day grace period that you can cancel; after it ends, the account and business data are permanently deleted at once. Related remnants (queued email recipients and bodies, verification codes, sessions and refresh tokens, export files, rate-limit counters) are cleared within 7 days. Backups expire under their own retention period, [backup retention period, pending counsel review]</td></tr>
+<tr><td>Feedback</td><td>Ciphertext on the server: until the account is deleted or the feedback is removed. No automatic deletion period is set yet.</td></tr>
+<tr><td>Sync data</td><td>Ciphertext on the server: lasts while the account exists; after consent is withdrawn the server no longer reads or writes it, and it is cleared under section 6 on account deletion. [Specific sync retention period, to be set by the owner]</td></tr>
+<tr><td>Audit records</td><td>Audit records linked to a deleted account (including the account ID) are cleared within 7 days after deletion is completed. Other security audit records (no account identifier, only hashed sources) are kept for at least 180 days</td></tr>
+<tr><td>Email outbox</td><td>Sent items up to 7 days; failed items up to 30 days</td></tr>
+<tr><td>Server and platform logs</td><td>Set by Cloudflare; we cannot set their retention at the application level</td></tr>
+<tr><td>Telemetry records</td><td>[telemetry retention period, to be set by the owner]</td></tr>
+<tr><td>Device authorization records</td><td>[device authorization retention period, to be set by the owner]</td></tr>
+</tbody>
+</table></div>
 
-<h2 id="telemetry">5. Telemetry</h2>
-<p>Usage telemetry is off by default. Anonymous usage statistics may be sent only after you explicitly agree in your account settings, and you can withdraw at any time.</p>
+<h2 id="sharing">7. Sharing and cross-border transfers</h2>
+<p>We do not sell personal data and do not provide data to advertisers. The following providers may process data:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Provider</th><th>What it processes</th><th>Location</th><th>Transfer mechanism</th></tr></thead>
+<tbody>
+<tr><td>Cloudflare</td><td>Website hosting, server and platform logs, storage and processing for the account service</td><td>Global edge network; processing may occur in more than one place</td><td>[pending counsel review]</td></tr>
+<tr><td>GitHub</td><td>Reading release information for the download page. If the site's own interface is unavailable, the download page reads GitHub's public release API directly from your browser, so GitHub sees your IP address</td><td>United States</td><td>[pending counsel review]</td></tr>
+<tr><td>DeepSeek</td><td>OCR text and activity timeline text sent from your device, only when you configure a key and trigger an analysis</td><td>China</td><td>[pending counsel review]</td></tr>
+<tr><td>Mail service provider</td><td>Recipient email address, sign-up and password-reset codes, and necessary notices</td><td>China</td><td>[pending counsel review]</td></tr>
+</tbody>
+</table></div>
+<p>Overall cross-border transfer status: [outbound security assessment / standard contract / certification status, pending counsel review].</p>
 
-<h2 id="site">6. This website</h2>
+<h2 id="rights">8. Your rights</h2>
 <ul>
-<li>The site is hosted on Cloudflare. As with most websites, the hosting platform processes access logs (such as IP address, request path, time and browser identifier) to provide the service, for security and for debugging.</li>
-<li>The site has no ads and no third-party tracking scripts. When needed, the download page reads release information directly from GitHub's public release API, in which case GitHub sees your IP address.</li>
-<li>The site only keeps a few preferences in your own browser: language (<code>pixo-language</code>), the "Show beta builds" switch on the download page, and the companion chosen on the home page (current session only). These are never sent to us.</li>
-<li>The form on the home page only builds a preview on that page; what you type is neither submitted nor saved.</li>
+<li><strong>Access and export:</strong> in the account centre you can export your profile, authorized devices, session summaries, consent records, sync records, feedback and your own audit records (telemetry records are not linked to your account and are not part of the export). Export requires you to re-enter your password, and the download link is valid for 7 days.</li>
+<li><strong>Correction:</strong> you can change your display name and language.</li>
+<li><strong>Deletion and account closure:</strong> you can request deletion of your account. There is a 14-day grace period that you can cancel; after it ends, section 6 applies.</li>
+<li><strong>Withdrawing consent:</strong> for the consent types that are implemented, you can withdraw at any time in the account centre. After you withdraw "Data sync" consent, the server refuses sync reads and writes from the next sync request, and syncing stops.</li>
+<li><strong>Local data:</strong> you can delete the local folders yourself without contacting us.</li>
+<li><strong>Complaints:</strong> there is no separate complaint form yet; please email [contact email].</li>
+<li><strong>Regulators:</strong> users in the EU may complain to the data protection authority of their member state of residence. Users in mainland China may report to the Cyberspace Administration of China or another competent authority. The precise application and how to exercise these rights are pending counsel review.</li>
 </ul>
 
-<h2 id="rights">7. Your rights</h2>
+<h2 id="minors">9. Minors</h2>
+<p>When you sign up you must tick a box confirming that you are at least [minimum age, to be set by the owner]. This is a self-declaration. The server enforces the tick as a confirmation, not as verification of identity. People below the minimum age may not create an account. The guardian-consent mechanism for minors is pending counsel review.</p>
+
+<h2 id="cookies">10. Cookies and browser storage</h2>
+<p>Public pages (home, download, documentation, privacy policy, terms of service and about us) set no cookies and load no third-party scripts, fonts or trackers. The browser stores only <code>pixo-language</code> (localStorage, language preference) and <code>pixo-selected-pet</code> (sessionStorage, the companion chosen for this session). These are never sent to us. The account centre and admin console use a necessary HttpOnly session cookie and a CSRF token to keep you signed in; they are not used for advertising or tracking.</p>
+
+<h2 id="security">11. Security measures</h2>
 <ul>
-<li>You fully control local data: quit the app and delete the folders above to erase it.</li>
-<li>You can manage each consent in the account centre, export data, revoke devices and sessions, and request account deletion (there is a grace period you can cancel within; afterwards the account and data are permanently erased, and backups expire after their retention period; exact periods pending legal review).</li>
-<li>Depending on applicable law you may have rights to access, correct, delete and withdraw consent; their scope and how to exercise them are pending legal review.</li>
+<li>Passwords are stored only as hashes. Sign-in and code requests are rate-limited, and codes are short-lived.</li>
+<li>Sessions and refresh tokens are stored only as hashes.</li>
+<li>IP addresses are stored as keyed hashes; logs mask IPv4 and IPv6 addresses.</li>
+<li>The AI service key is kept in the macOS Keychain, Windows credential protection or the Linux Secret Service, is not written to project files and is never uploaded.</li>
+<li>Outgoing email addresses and bodies are stored encrypted.</li>
+<li>Synced content is encrypted on your device before upload, and the keys stay on your device; the server stores only ciphertext and cannot decrypt it.</li>
+<li>Feedback text is end-to-end encrypted and can be decrypted only on the sender's device; neither the server nor the operator holds a key that can decrypt feedback, and the admin console shows no feedback information at all, including metadata.</li>
+<li>The download page uses a Content Security Policy (CSP).</li>
 </ul>
+<p>These measures reduce risk, but no system is perfectly secure. Please safeguard your devices and keys.</p>
 
-<h2 id="security">8. Security</h2>
-<p>We use transport encryption, minimal collection and a local-first design to reduce risk, but no system is perfectly secure. Please safeguard your devices and keys.</p>
+<h2 id="changes">12. Changes to this policy</h2>
+<p>When this policy changes we will update the draft date on this page. For significant changes we may ask for your consent again.</p>
 
-<h2 id="changes">9. Changes and contact</h2>
-<p>When this policy changes we will update the date on this page and may ask for your consent again. Operator: to be added. Contact: to be added. Governing law and dispute resolution: pending legal review.</p>
-<p>See also the <a href="/terms/">Terms of Service (draft)</a> and the <a href="/docs/">documentation</a>.</p>
+<h2 id="contact">13. Contact</h2>
+<ul>
+<li>Operator: [operator name, to be provided by the owner]</li>
+<li>Contact email: [contact email]</li>
+<li>Data protection officer: [data protection officer, to be provided by the owner]</li>
+<li>Cross-border transfer status: [outbound security assessment / standard contract / certification status, pending counsel review]</li>
+</ul>
+<p>See also the <a href="/terms/">Terms of Service (draft)</a>, <a href="/about/">About us</a> and the <a href="/docs/">documentation</a>.</p>
 </div>
   </main>
   <footer class="px-footer">
   <div class="px-footer-in">
-    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：macOS 与 Windows 版在开发与试用阶段；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the macOS and Windows apps are in development and trial; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
-    <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/privacy/" aria-current="page"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP 仍在开发中：Windows 版在开发与试用阶段；Mac 版仍处于实验阶段，暂不提供下载；Linux 为早期版本，可一键安装；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">PIXO TAP is still in development: the Windows app is in development and trial; the Mac app is still experimental, with no download for now; Linux is an early release with a one-line installer; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></li><li><a href="/privacy/" aria-current="page"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
   </div>
 </footer>
   <script src="/pages-assets/site.js" defer></script>
