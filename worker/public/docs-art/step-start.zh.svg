@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="示意图：灵动岛里开始并保存断点">
+<title>示意图：灵动岛里开始并保存断点</title>
+<rect width="640" height="360" rx="24" fill="#EAF3FA"/>
+<circle cx="70" cy="40" r="90" fill="#A9D4F6" opacity="0.28"/><circle cx="590" cy="320" r="110" fill="#F6DF77" opacity="0.30"/><circle cx="600" cy="50" r="60" fill="#FF777B" opacity="0.14"/><circle cx="40" cy="330" r="70" fill="#A8EEA2" opacity="0.22"/>
+
+<rect x="60" y="58" width="520" height="244" rx="34" fill="#000000" />
+<rect x="80" y="76" width="84" height="32" rx="10" fill="#333333" /><text x="122" y="98" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">专注</text>
+<text x="210" y="98" font-size="14" font-weight="400" fill="#999999" text-anchor="middle">项目</text><text x="274" y="98" font-size="14" font-weight="400" fill="#999999" text-anchor="middle">对话</text>
+<circle cx="552" cy="92" r="5" fill="#FF6B73"><animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
+<line x1="80" x2="560" y1="116" y2="116" stroke="#2E2E2E"/>
+<text x="320" y="188" font-size="60" font-weight="300" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">24:36</text>
+<rect x="80" y="208" width="480" height="4" rx="2" fill="#2E2E2E" /><rect x="80" y="208" width="300" height="4" rx="2" fill="#ADD6F7" ><animate attributeName="width" values="300;330;300" dur="6s" repeatCount="indefinite"/></rect>
+<rect x="80" y="228" width="150" height="40" rx="10" fill="#262626" /><text x="155" y="254" font-size="14" font-weight="400" fill="#DEDEDE" text-anchor="middle">记下断点</text>
+<rect x="242" y="228" width="150" height="40" rx="10" fill="#D42E42" /><text x="317" y="254" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">继续专注</text>
+<text x="84" y="290" font-size="11.5" font-weight="400" fill="#99C9F2" text-anchor="start">上次停在这里</text><text x="162" y="290" font-size="11.5" font-weight="400" fill="#DEDEDE" text-anchor="start">写完方案第二节</text>
+
+</svg>

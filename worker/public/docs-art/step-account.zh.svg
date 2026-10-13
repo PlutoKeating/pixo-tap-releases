@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="示意图：在浏览器里登录账号">
+<title>示意图：在浏览器里登录账号</title>
+<rect width="640" height="360" rx="24" fill="#F7F8FA"/>
+<circle cx="70" cy="40" r="90" fill="#A9D4F6" opacity="0.28"/><circle cx="590" cy="320" r="110" fill="#F6DF77" opacity="0.30"/><circle cx="600" cy="50" r="60" fill="#FF777B" opacity="0.14"/><circle cx="40" cy="330" r="70" fill="#A8EEA2" opacity="0.22"/>
+
+<rect x="100" y="28" width="440" height="304" rx="18" fill="#FFFFFF" stroke="#DEE4EB"/>
+<rect x="100" y="28" width="440" height="36" rx="18" fill="#F1F5F8" /><rect x="100" y="48" width="440" height="16" rx="0" fill="#F1F5F8" />
+<circle cx="122" cy="46" r="5" fill="#FF777B"/><circle cx="140" cy="46" r="5" fill="#F6DF77"/><circle cx="158" cy="46" r="5" fill="#A8EEA2"/>
+<rect x="180" y="36" width="300" height="20" rx="10" fill="#FFFFFF" /><text x="330" y="51" font-size="11.5" font-weight="400" fill="#6D6A60" text-anchor="middle">pixotap.plutokeating.beer/account</text>
+<text x="320" y="100" font-size="17" font-weight="700" fill="#1F2328" text-anchor="middle">登录你的 PIXO TAP 账号</text>
+<text x="190" y="124" font-size="12.5" font-weight="600" fill="#1F2328" text-anchor="start">邮箱</text><rect x="190" y="132" width="260" height="36" rx="12" fill="#FFFFFF" stroke="#6D6A60" stroke-opacity="0.5"/><text x="204" y="155" font-size="14" font-weight="400" fill="#6D6A60" text-anchor="start">demo@example.com</text><text x="190" y="184" font-size="12.5" font-weight="600" fill="#1F2328" text-anchor="start">密码</text><rect x="190" y="192" width="260" height="36" rx="12" fill="#FFFFFF" stroke="#6D6A60" stroke-opacity="0.5"/><text x="204" y="215" font-size="14" font-weight="400" fill="#6D6A60" text-anchor="start">••••••••••</text>
+<rect x="190" y="252" width="260" height="42" rx="21" fill="#D5374D" /><text x="320" y="278.5" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">登录</text>
+<text x="320" y="316" font-size="11.5" font-weight="400" fill="#6D6A60" text-anchor="middle">账号是可选的，不登录也能使用</text>
+
+</svg>

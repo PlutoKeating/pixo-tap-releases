@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="示意图：首次打开时的系统授权">
+<title>示意图：首次打开时的系统授权</title>
+<rect width="640" height="360" rx="24" fill="#F7F8FA"/>
+<circle cx="70" cy="40" r="90" fill="#A9D4F6" opacity="0.28"/><circle cx="590" cy="320" r="110" fill="#F6DF77" opacity="0.30"/><circle cx="600" cy="50" r="60" fill="#FF777B" opacity="0.14"/><circle cx="40" cy="330" r="70" fill="#A8EEA2" opacity="0.22"/>
+
+<rect x="160" y="36" width="320" height="292" rx="22" fill="#FFFFFF" stroke="#DEE4EB"/>
+<g transform="translate(190 56) scale(0.44)"><rect width="100" height="100" rx="24" fill="#242424"/><circle cx="34" cy="62" r="17" fill="#fff"/><circle cx="66" cy="62" r="17" fill="#fff"/><circle cx="37" cy="64" r="8" fill="#242424"/><circle cx="63" cy="64" r="8" fill="#242424"/><g><rect x="14" y="14" width="12" height="6" rx="3" fill="#A9D4F6"/><rect x="30" y="14" width="12" height="6" rx="3" fill="#F6DF77"/><rect x="46" y="14" width="12" height="6" rx="3" fill="#fff"/><rect x="62" y="14" width="12" height="6" rx="3" fill="#FF777B"/><rect x="78" y="14" width="8" height="6" rx="3" fill="#A8EEA2"/></g></g>
+<text x="246" y="76" font-size="13" font-weight="400" fill="#6D6A60" text-anchor="start">PIXO TAP 想要访问</text><text x="246" y="98" font-size="18" font-weight="700" fill="#1F2328" text-anchor="start">PIXO TAP</text>
+<rect x="180" y="122" width="280" height="44" rx="12" fill="#F7F8FA" /><text x="198" y="150" font-size="15" font-weight="400" fill="#1F2328" text-anchor="start">屏幕录制</text><rect x="412" y="132" width="40" height="24" rx="12" fill="#A8EEA2" /><circle cx="440" cy="144" r="9" fill="#fff"/><rect x="180" y="176" width="280" height="44" rx="12" fill="#F7F8FA" /><text x="198" y="204" font-size="15" font-weight="400" fill="#1F2328" text-anchor="start">辅助功能</text><rect x="412" y="186" width="40" height="24" rx="12" fill="#A8EEA2" /><circle cx="440" cy="198" r="9" fill="#fff"/><rect x="180" y="230" width="280" height="44" rx="12" fill="#F7F8FA" /><text x="198" y="258" font-size="15" font-weight="400" fill="#1F2328" text-anchor="start">相机（可选）</text><rect x="412" y="240" width="40" height="24" rx="12" fill="#DEE4EB" /><circle cx="424" cy="252" r="9" fill="#fff"/>
+<text x="320" y="300" font-size="12.5" font-weight="400" fill="#6D6A60" text-anchor="middle">只在你点击开始后才会记录</text>
+
+</svg>

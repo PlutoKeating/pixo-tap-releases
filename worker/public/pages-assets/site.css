@@ -101,7 +101,11 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--cream); color: var(--ink); font: var(--px-font-weight-regular) 16px/1.65 var(--font-body); }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--cream); color: var(--ink); font: var(--px-font-weight-regular) 16px/1.65 var(--font-body); }
+/* sticky footer：页脚始终贴在视口底部，内容少时 main 撑满剩余高度 */
+#root { flex: 1 0 auto; display: flex; flex-direction: column; min-width: 0; }
+:is(body, #root) > :not(.px-skip, script, noscript, style) { width: 100%; }
+:is(body, #root) > main { flex: 1 0 auto; }
 a { color: var(--brick); }
 [hidden] { display: none !important; }
 :focus-visible { outline: var(--px-size-selected-border-width) solid var(--focus); outline-offset: 2px; }
@@ -117,10 +121,6 @@ a { color: var(--brick); }
 .px-nav a { padding: 8px 14px; border-radius: var(--px-pill); color: var(--ink); opacity: 0.72; text-decoration: none; font-weight: var(--px-font-weight-semibold); font-size: var(--px-font-size-control); white-space: nowrap; }
 .px-nav a:hover { opacity: 1; }
 .px-nav a[aria-current="page"] { opacity: 1; background: var(--px-active-bg); }
-/* 「下载」是导航里的主行动，样式同首页的黑色胶囊 CTA */
-.px-nav a[href="/download/"] { opacity: 1; color: var(--on-ink); background: var(--ink); margin-inline: 6px; padding-inline: 18px; }
-.px-nav a[href="/download/"]:hover { background: var(--px-brand-black); }
-.px-nav a[href="/download/"][aria-current="page"] { box-shadow: 0 0 0 3px var(--px-active-bg); }
 .px-lang select { font: inherit; font-size: var(--px-font-size-caption); font-weight: var(--px-font-weight-semibold); background: color-mix(in srgb, #fff 60%, transparent); color: var(--ink); border: var(--px-size-border-width) solid var(--line-strong); border-radius: var(--px-pill); padding: 6px 14px; min-height: var(--px-size-control-primary); cursor: pointer; }
 .px-menu-btn { display: none; font: inherit; font-size: var(--px-font-size-caption); font-weight: var(--px-font-weight-semibold); background: color-mix(in srgb, #fff 60%, transparent); color: var(--ink); border: var(--px-size-border-width) solid var(--line-strong); border-radius: var(--px-pill); padding: 6px 16px; min-height: var(--px-size-control-primary); cursor: pointer; }
 @media (max-width: 760px) {
@@ -129,7 +129,6 @@ a { color: var(--brick); }
   .px-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; flex-direction: column; align-items: stretch; gap: 2px; padding: 8px 16px 16px; background: var(--cream); border-bottom: 1px solid var(--line); box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1); }
   .px-header[data-open] .px-nav { display: flex; }
   .px-nav a { padding: 12px 16px; font-size: 1rem; }
-  .px-nav a[href="/download/"] { margin: 4px 0; text-align: center; }
 }
 
 .px-footer { margin-top: 72px; padding: 40px 0 44px; color: rgba(251, 248, 237, 0.74); background: var(--ink); font-size: var(--px-font-size-body); }
@@ -154,7 +153,7 @@ a { color: var(--brick); }
 .px-btn:hover:not(:disabled):not([disabled]), .btn:hover:not(:disabled):not([disabled]) { --px-overlay: rgb(0 0 0 / var(--px-hover-overlay)); }
 .px-btn:active:not(:disabled):not([disabled]), .btn:active:not(:disabled):not([disabled]) { --px-overlay: rgb(0 0 0 / var(--px-press-overlay)); }
 .px-btn:disabled, .px-btn[disabled], .btn:disabled, .btn[disabled] { opacity: var(--px-disabled-alpha); cursor: not-allowed; }
-.px-btn-primary, .btn-primary { min-height: 44px; padding-inline: 24px; color: var(--on-ink); border-color: transparent; background: linear-gradient(var(--px-overlay), var(--px-overlay)), var(--ink); }
+.px-btn-primary, .btn-primary { min-height: 44px; padding-inline: 24px; color: var(--on-ink); border: 0; background: linear-gradient(var(--px-overlay), var(--px-overlay)), var(--ink); }
 .px-btn-primary:hover:not(:disabled):not([disabled]), .btn-primary:hover:not(:disabled):not([disabled]) { --px-overlay: rgb(255 255 255 / 0.14); }
 .px-btn-primary:active:not(:disabled):not([disabled]), .btn-primary:active:not(:disabled):not([disabled]) { --px-overlay: rgb(255 255 255 / 0.24); }
 .px-btn-coral { min-height: 44px; padding-inline: 24px; color: var(--on-coral); border-color: transparent; background: linear-gradient(var(--px-overlay), var(--px-overlay)), var(--coral); }
@@ -200,7 +199,7 @@ a { color: var(--brick); }
 /* 静态内容页（使用说明 / 隐私政策 / 用户协议 / 404）专用样式。 */
 html:not([lang="en"]) [data-l="en"], html[lang="en"] [data-l="zh"] { display: none !important; }
 .px-main { position: relative; isolation: isolate; max-width: var(--px-max, 920px); margin: 0 auto; padding: 8px 16px 0; min-height: 60vh; }
-.px-main::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -140px; width: min(900px, 140vw); height: 460px; transform: translateX(-50%); background: radial-gradient(ellipse 34% 50% at 20% 40%, color-mix(in srgb, var(--blue) 45%, transparent), transparent 70%), radial-gradient(ellipse 30% 46% at 80% 36%, color-mix(in srgb, var(--yellow) 45%, transparent), transparent 70%); pointer-events: none; }
+.px-main::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -140px; width: min(900px, 140vw); height: 460px; transform: translateX(-50%); background: radial-gradient(ellipse 34% 50% at 34% 42%, color-mix(in srgb, var(--blue) 45%, transparent), transparent 70%), radial-gradient(ellipse 30% 46% at 68% 36%, color-mix(in srgb, var(--yellow) 45%, transparent), transparent 70%); pointer-events: none; }
 .px-main h1 { font-size: clamp(2.25rem, 7vw, 3.6rem); line-height: 1.04; letter-spacing: -0.045em; font-weight: 800; margin: 44px 0 12px; }
 .px-main h2 { font-size: 1.35rem; margin: 40px 0 10px; scroll-margin-top: 72px; }
 .px-main h3 { font-size: 1.05rem; margin: 24px 0 6px; }
@@ -228,3 +227,17 @@ details.faq p { margin: 8px 0 0; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
 .px-main pre { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; overflow-x: auto; }
 .px-main pre code { background: none; padding: 0; word-break: normal; }
+/* /docs/ 的分步指南：每步左文右图，手机上图在下 */
+.px-main .steps { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 20px; }
+.px-main .steps li { max-width: none; margin: 0; }
+.step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 20px 28px; align-items: center; padding: 22px 24px; background: var(--surface); border: var(--px-size-border-width) solid var(--line); border-radius: var(--radius-md); scroll-margin-top: 80px; }
+.step-copy { min-width: 0; }
+.step-no { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-bottom: 8px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-weight: 800; }
+.px-main .step h2 { margin: 0 0 8px; font-size: 1.3rem; line-height: 1.25; }
+.step p { margin: 0 0 8px; color: var(--ink); }
+.step-note { color: var(--muted); font-size: 0.9rem; }
+.step pre { font-size: 0.82rem; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-all; overflow-x: visible; }
+.step-art { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
+.px-main h2.sec { margin: 40px 0 12px; }
+details.adv h3 { margin: 18px 0 6px; }
+@media (max-width: 700px) { .step { grid-template-columns: minmax(0, 1fr); padding: 18px 16px; } }

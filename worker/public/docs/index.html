@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" data-title-zh="使用说明 | PIXO TAP" data-title-en="Documentation | PIXO TAP" data-desc-zh="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。" data-desc-en="PIXO TAP documentation: installing on macOS, Windows and Linux, screen recording / accessibility / camera permissions, where data is stored, privacy commitments and FAQ.">
+<html lang="zh-CN" data-title-zh="使用说明 | PIXO TAP" data-title-en="Documentation | PIXO TAP" data-desc-zh="PIXO TAP 使用说明：五步上手——安装、授权、开始并记下断点、回来接回进度、（可选）登录账号，附常见问题。" data-desc-en="PIXO TAP documentation in five steps: install, grant access, start and mark a checkpoint, pick progress back up, and optionally sign in; plus an FAQ.">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>使用说明 | PIXO TAP</title>
-  <meta name="description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta name="description" content="PIXO TAP 使用说明：五步上手——安装、授权、开始并记下断点、回来接回进度、（可选）登录账号，附常见问题。">
   <link rel="canonical" href="https://pixotap.plutokeating.beer/docs/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PIXO TAP">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="使用说明 | PIXO TAP">
-  <meta property="og:description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta property="og:description" content="PIXO TAP 使用说明：五步上手——安装、授权、开始并记下断点、回来接回进度、（可选）登录账号，附常见问题。">
   <meta property="og:url" content="https://pixotap.plutokeating.beer/docs/">
   <meta property="og:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="使用说明 | PIXO TAP">
-  <meta name="twitter:description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
+  <meta name="twitter:description" content="PIXO TAP 使用说明：五步上手——安装、授权、开始并记下断点、回来接回进度、（可选）登录账号，附常见问题。">
   <meta name="twitter:image" content="https://pixotap.plutokeating.beer/pixo-tap-assets/brand/og-cover.jpg">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.png" type="image/png">
@@ -38,225 +38,107 @@
   <main class="px-main" id="main">
 <div data-l="zh" lang="zh-CN">
 <h1>使用说明</h1>
-<p class="lead">PIXO TAP 帮你在多项长期任务之间切换后接回进度。本页说明如何安装、需要哪些权限、数据放在哪里，以及常见问题。</p>
-<div class="callout"><strong>当前状态。</strong> macOS、Windows、Linux 三个平台均已提供正式安装包（版本号相互独立，以<a href="/download/">下载页</a>为准）。macOS 与 Windows 安装包目前未做 Apple / Microsoft 代码签名与公证，首次打开可能出现系统提示。Windows 1.43 安装包含可选的账号登录（邮箱与密码），但不含应用内一键更新，新版本在准备中；macOS 暂无账号登录；Linux 含邮箱账号登录。同步功能三端都尚未启用，目前为单设备，多端同步在开发中。网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。</div>
-<div class="table-wrap"><table>
-<thead><tr><th>平台</th><th>状态</th><th>获取方式</th></tr></thead>
-<tbody>
-<tr><td>macOS</td><td>已提供安装包（未签名公证）</td><td><a href="/download/">下载页</a>（.dmg），或一行命令；暂无账号登录</td></tr>
-<tr><td>Windows</td><td>已提供安装包（1.43，未签名）</td><td><a href="/download/">下载页</a>（setup.exe，另有 ZIP），或一行命令；含可选账号登录，不含应用内更新，新版本准备中</td></tr>
-<tr><td>Linux</td><td>已提供安装包（仅 x86_64）</td><td>一行命令，或在<a href="/download/">下载页</a>下载 tar.gz；含邮箱账号登录</td></tr>
-</tbody></table></div>
-<nav class="toc" aria-label="目录"><strong>目录</strong><ol>
-<li><a href="#install">安装</a></li><li><a href="#use">基本使用</a></li><li><a href="#permissions">权限</a></li><li><a href="#data">数据存放位置</a></li><li><a href="#privacy">隐私承诺</a></li><li><a href="#faq">常见问题</a></li></ol></nav>
+<p class="lead">五步上手，几分钟就够。</p>
+<ol class="steps">
+<li class="step" id="install">
+<div class="step-copy"><span class="step-no" aria-hidden="true">1</span><h2>安装</h2><p>在<a href="/download/">下载页</a>下载安装包；或在终端粘贴一行命令。</p>
+<pre><code>macOS / Linux：curl -fsSL https://pixotap.plutokeating.beer/install | bash
+Windows（PowerShell）：irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>
+<p class="step-note">首次打开如被系统拦截：macOS 右键应用选“打开”；Windows 点“更多信息”，再选“仍要运行”。</p></div>
+<img class="step-art" src="/docs-art/step-install.zh.svg" alt="示意图：点击下载安装包，或复制命令，完成安装" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="permissions">
+<div class="step-copy"><span class="step-no" aria-hidden="true">2</span><h2>首次打开，按提示授权</h2><p>macOS 需要“屏幕录制”，建议同时开启“辅助功能”；相机可选。权限随时可在系统设置里关闭。</p></div>
+<img class="step-art" src="/docs-art/step-permissions.zh.svg" alt="示意图：系统授权窗口，屏幕录制与辅助功能已开启，相机为可选" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="start">
+<div class="step-copy"><span class="step-no" aria-hidden="true">3</span><h2>开始工作，离开前记下断点</h2><p>在灵动岛（或工作台）选好项目，点“开始”。要离开时点“记下断点”。只有你点击开始后才会记录。</p></div>
+<img class="step-art" src="/docs-art/step-start.zh.svg" alt="示意图：灵动岛里的计时，以及“记下断点”和“继续专注”按钮" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="return">
+<div class="step-copy"><span class="step-no" aria-hidden="true">4</span><h2>回来时，一眼接回进度</h2><p>打开同一个项目，会看到上次停在哪里、这次先做什么。</p></div>
+<img class="step-art" src="/docs-art/step-return.zh.svg" alt="示意图：工作台显示上次停在这里与这次先做，并有“继续工作”按钮" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="account">
+<div class="step-copy"><span class="step-no" aria-hidden="true">5</span><h2>（可选）登录账号</h2><p>不登录也能使用。需要管理设备与数据时，在设置里点“登录”，在浏览器中完成授权。<a href="/account/">前往账号页</a></p></div>
+<img class="step-art" src="/docs-art/step-account.zh.svg" alt="示意图：浏览器里的账号登录页，填写邮箱与密码" width="640" height="360" loading="lazy">
+</li>
+</ol>
 
-<h2 id="install">安装</h2>
-<p>先到<a href="/download/">下载页</a>获取安装包，并按页面说明核对 SHA-256 校验值。macOS 与 Windows 安装包目前没有代码签名（macOS 另未公证），系统可能给出“未知发布者”或“无法验证开发者”的提示，请只使用来自下载页的文件。</p>
-<h3>macOS</h3>
-<ul>
-<li>系统要求：macOS 13 或更新，Apple 芯片与 Intel 通用。</li>
-<li>一行命令（在“终端”中运行）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
-<li>手动安装：在<a href="/download/">下载页</a>下载 .dmg，打开后把应用拖进“应用程序”。</li>
-<li>首次打开提示：安装包未做 Apple 代码签名与公证，系统可能提示“无法验证开发者”。请在“系统设置 > 隐私与安全性”中点“仍要打开”，或在应用图标上右键选择“打开”。</li>
-<li>卸载：把应用从“应用程序”拖入废纸篓；你的数据保留在 <code>~/Library/Application Support/PixoTap</code>。</li>
-</ul>
-<h3>Windows</h3>
-<ul>
-<li>一行命令（PowerShell）：<pre><code>irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>以下为手动安装。</li>
-<li>首次运行提示：安装包未做 Microsoft 代码签名，SmartScreen 可能提示“已保护你的电脑”，请选“更多信息 > 仍要运行”。卸载：在“设置 > 应用”中卸载 PIXO TAP，数据保留在 <code>%LocalAppData%\PixoTap</code>。</li>
-<li>系统要求：Windows 11 x64，或 Windows 10 x64 2004（build 19041）及以上。当前实际验收环境是 Windows 11，其它版本的兼容性尚待验证。</li>
-<li>推荐下载 <code>setup.exe</code> 安装程序：双击即装，每用户安装到 <code>%LocalAppData%\Programs\PixoTap</code>，不需要管理员权限，并创建开始菜单与桌面快捷方式；卸载会保留 <code>%LocalAppData%\PixoTap</code> 里的数据。安装程序缺少 VC++ 运行库时会请求一次提权来安装它。</li>
-<li>使用 ZIP 时：完整解压，保留 <code>Assets</code>、<code>x64</code>、<code>tessdata</code>、<code>Licenses</code> 等目录，再打开 <code>PixoTap.exe</code>。不要直接在压缩包里运行，也不要只复制 EXE。</li>
-<li>安装包与压缩包都已附带 .NET 运行时。文字识别（OCR）另需 Microsoft Visual C++ v14 x64 运行库；setup.exe 会在缺少时安装，使用 ZIP 时请先安装微软官方运行库再重新打开程序，安装可能需要管理员权限。</li>
-</ul>
+<h2 id="faq" class="sec">常见问题</h2>
+<details class="faq"><summary>我需要账号吗？</summary><p>不需要。账号是可选的，只支持邮箱加密码登录，用于管理资料、已授权设备、同意设置、数据导出与注销。</p></details>
+<details class="faq"><summary>数据保存在哪里？会上传吗？</summary><p>默认只保存在你的设备上：macOS 在 <code>~/Library/Application Support/PixoTap</code>，Windows 在 <code>%LocalAppData%\PixoTap</code>，Linux 在 <code>~/.local/share/PixoTap</code>。截图原图、照片、原文件内容和剪贴板正文不会上传。详见<a href="/privacy/">隐私政策</a>。</p></details>
+<details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥。没有密钥或断网时，仍会生成本地交接摘要，联网后继续分析。</p></details>
+<details class="faq"><summary>怎么卸载？</summary><p>macOS：把应用拖进废纸篓。Windows：在“设置 &gt; 应用”中卸载。Linux：运行高级里的卸载命令。卸载不会删除你的数据目录。</p></details>
+<details class="faq"><summary>怎么停止记录？</summary><p>点“记下断点”即可；隐藏入口或退出程序也会停止记录。</p></details>
 
+<details class="faq adv" id="advanced"><summary>高级</summary>
+<h3>校验下载文件（SHA-256）</h3>
+<p>下载页每个安装包下的“SHA-256”给出校验值，下载后在终端比对：</p>
+<pre><code>shasum -a 256 &lt;文件&gt;                       # macOS
+sha256sum &lt;文件&gt;                           # Linux
+Get-FileHash -Algorithm SHA256 &lt;文件&gt;      # Windows（PowerShell）</code></pre>
 <h3>Linux</h3>
-<ul>
-<li>系统要求：x86_64，Ubuntu 24.04 或更新版本（glibc 2.39+）。不支持 Alpine 等 musl 系统；arm64 暂无构建。</li>
-<li>在终端运行一键安装命令（只需要 curl、tar、sha256sum，不需要 root，脚本不会调用 sudo）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
-<li>脚本在运行时通过 GitHub 公开 API 找到包含 Linux 安装包的最新发布，用同一发布里的 <code>SHA256SUMS.txt</code> 校验，校验失败会中止且不改动已安装的版本。重复运行即升级；加 <code>--dry-run</code> 可只预览不安装，加 <code>--stable-only</code> 忽略预发布版本。</li>
-<li>安装位置：程序在 <code>~/.local/share/pixotap</code>，命令 <code>pixotap</code> 链接到 <code>~/.local/bin</code>（若该目录不在 PATH 中，脚本会提示），桌面入口与图标在 <code>~/.local/share</code>。安装后在应用菜单搜索 PixoTap，或在终端运行 <code>pixotap</code>。</li>
-<li>运行库（脚本只提示，不会自动安装）：<code>libwebkit2gtk-4.1</code>、<code>libayatana-appindicator3</code>，以及文字识别用的 <code>tesseract-ocr</code> 与中文语言包。Ubuntu / Debian：<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>保存 AI 服务密钥还需要系统的 Secret Service（如 <code>gnome-keyring</code> 或 KWallet）。</li>
-<li>卸载（保留 <code>~/.local/share/PixoTap</code> 中的你的数据）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre></li>
-<li>Linux 已知限制：只有 x86_64 构建；在 GNOME Wayland 下读取不到前台窗口与应用信息，记录里会如实写“窗口信息不可用”；本版摄像头不可用，结束照片不会生成；剪贴板在 Wayland 下不记录；桌宠在 Wayland 下不保证置顶，会降级为普通小窗；系统托盘在 GNOME 上需要 AppIndicator 扩展（Ubuntu 默认带），缺少时主窗口仍可正常使用。</li>
-</ul>
-
-<h2 id="use">基本使用</h2>
-<h3>macOS</h3>
-<ul>
-<li>默认入口是屏幕顶部的“灵动岛”：悬停展开，选择项目后点“继续工作”或“开始记录”，结束时点“保存断点”。可在设置中切换为桌宠入口。</li>
-<li>只有你明确点击开始后才会记录；浏览、切换页签、取消都不会开始记录。</li>
-<li>“专注”提供 25、45、60 分钟计时；“暂放”最多保存 20 个本机文件引用，不会移动或复制原文件。</li>
-<li>“聊一聊”打开 AI 对话，需要你自己的 DeepSeek 密钥；没有密钥时仍会生成本地交接摘要。</li>
-<li>菜单栏的笑脸始终可以召回、隐藏入口或退出。</li>
-</ul>
+<p>系统要求：Ubuntu 24.04 或更新（x86_64）。一行命令不需要 root，安装到 <code>~/.local</code>，重复运行即升级。需要的运行库：</p>
+<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>
+<p>卸载（保留 <code>~/.local/share/PixoTap</code> 中的数据）：</p>
+<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre>
+<p>保存 AI 密钥需要系统的 Secret Service（gnome-keyring 或 KWallet）。</p>
 <h3>Windows</h3>
-<ul>
-<li>从入口或托盘打开工作台，新建项目或子项目，选中后点击开始记录；在授权窗口里逐项选择活动信息、文件路径、截图/OCR 和结束照片。</li>
-<li>点击“保存断点”结束会话，恢复笔记会先保存在本机，再等待或执行在线分析。</li>
-<li>在入口上按 Alt+F4 会停止记录并隐藏入口，可从托盘再次显示；完全退出请用托盘菜单的“退出”。</li>
-</ul>
-<h3>Linux</h3>
-<ul>
-<li>流程与 macOS、Windows 一致：只有你明确同意并点击开始才会记录；浏览项目、设置不会记录；所有窗口都隐藏或退出时停止记录。点击“保存断点”结束会话，恢复笔记先保存在本机，再等待或执行在线分析。</li>
-<li>没有密钥或断网时，本地内容会保留，重启后继续处理。</li>
-</ul>
-<h3>恢复笔记</h3>
-<p>结束一次会话后，回到同一个项目会看到固定的四段：本次完成、推进到这里、当前卡点、下次先做。恢复内容不包含材料路径或网页地址。</p>
-
-<h2 id="permissions">权限</h2>
-<p>所有权限都可以随时在系统设置中关闭；拒绝权限时，对应功能不可用，其它功能仍可使用。</p>
-<div class="table-wrap"><table>
-<thead><tr><th>权限</th><th>用于</th><th>说明</th></tr></thead>
-<tbody>
-<tr><td>屏幕录制（macOS）</td><td>开始和结束时截取前台窗口，并在本机做文字识别</td><td>截图在本机处理；相同或近似画面会去重；密码工具、已识别的隐私浏览窗口和敏感路径默认跳过。</td></tr>
-<tr><td>辅助功能（macOS）</td><td>读取当前窗口标题、浏览器页面标题、应用公开的本地文件路径</td><td>不开启也能使用，只是线索更少。</td></tr>
-<tr><td>相机</td><td>结束会话时拍一张现场照片，帮助你回忆</td><td>macOS 在首次结束会话时请求；Windows 需要系统“允许桌面应用访问摄像头”。拒绝、无设备或取不到有效画面时不会生成照片。</td></tr>
-<tr><td>文件与剪贴板</td><td>记录新建、下载、修改、移动的文件名与路径；剪贴板变化</td><td>剪贴板只记录变化类型和前台应用，不保存正文。</td></tr>
-<tr><td>屏幕截图（Linux）</td><td>开始和结束时截取屏幕</td><td>通过系统的 XDG Desktop Portal，每次需在系统弹窗中授权，且只能截整个屏幕；被拒绝或没有门户时，本次会话不截图，活动与文件记录继续，界面会如实提示。系统是否记住授权取决于桌面版本。</td></tr>
-<tr><td>文件监听（Linux）</td><td>记录桌面、文稿、下载、图片、视频、音乐目录里的文件活动</td><td>只在你授权并开始记录后才监听；隐藏、敏感、临时与生成类文件按规则排除。</td></tr>
-</tbody></table></div>
-
-<h2 id="data">数据存放位置</h2>
-<ul>
-<li>macOS：<code>~/Library/Application Support/PixoTap/Projects/&lt;项目 ID&gt;/暂存/&lt;会话 ID&gt;</code>。原文件不会被搬动或复制。</li>
-<li>Windows：<code>%LocalAppData%\PixoTap</code>，包括 <code>Projects</code>、设置和 <code>IslandShelf\references.json</code>。备份时请先退出程序，再复制整个目录。</li>
-<li>Linux：<code>$XDG_DATA_HOME/PixoTap</code>，默认是 <code>~/.local/share/PixoTap</code>。卸载脚本会保留这个目录。</li>
-<li>DeepSeek 密钥：macOS 保存在系统钥匙串；Windows 由系统凭据保护保存；Linux 保存在系统 Secret Service（gnome-keyring 或 KWallet）。没有 Secret Service 时无法保存密钥，不会改存为明文文件。都不会写入项目文件或应用包。</li>
-<li>删除应用不会自动删除工作数据；如需清除，请在退出程序后自行删除上述目录。</li>
-</ul>
-
-<h2 id="privacy">隐私承诺</h2>
-<ul>
-<li>本地优先：不登录、不联网也能记录和恢复。</li>
-<li>截图原图、结束照片、原文件内容、剪贴板文字正文不会上传。</li>
-<li>只有在你配置了自己的密钥并主动触发分析时，本机识别出的 OCR 文字、活动时间线和应用名称才会发送给 AI 服务（目前为 DeepSeek）。OCR 文字可能含敏感信息，请按项目内容决定是否授权。</li>
-<li>使用遥测默认关闭；数据同步是可选功能，客户端目前尚未开放。开启前需要你明确同意“数据同步”（可随时撤回），同步内容端到端加密，服务器只保存密文。</li>
-<li>账号是可选的，由自托管的 Logto 登录服务管理，只支持邮箱加密码登录；登录后客户端不会自动上传你的数据。</li>
-</ul>
-<p>完整说明见<a href="/privacy/">隐私政策（草案）</a>。</p>
-
-<h2 id="faq">常见问题</h2>
-<details class="faq"><summary>我需要账号吗？</summary><p>不需要。不登录也能使用客户端的全部本地功能，登录后也不会自动上传你的数据。账号是可选的，用于管理资料、已授权设备、同意设置、数据导出与注销。登录只支持邮箱加密码：注册时用邮箱验证码验证，忘记密码时用邮箱验证码重置；不支持手机号登录和 Apple、Google、GitHub 等第三方登录，也没有多因素验证。Linux、Android 和 Windows 客户端可在设置里点“登录”，在浏览器里完成设备授权；macOS 客户端暂未接入登录。管理账号请到<a href="/account/">账号页面</a>。</p></details>
-<details class="faq"><summary>为什么下载页没有可下载的版本？</summary><p>说明该平台还没有发布，或所有发布都还是预发布版本（请在下载页打开“显示测试版”）。页面会如实显示“暂时没有可下载的版本”，不会显示虚构的版本号。请稍后再来。</p></details>
-<details class="faq"><summary>Windows 提示“未知发布者”怎么办？</summary><p>程序目前没有代码签名，系统可能弹出 SmartScreen 提示。请核对下载页给出的 SHA-256 后再运行。</p></details>
-<details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥，并自行承担相应的服务费用与条款。没有密钥或断网时，仍会生成本地交接摘要，待处理的分析在联网后继续。</p></details>
-<details class="faq"><summary>Linux 上提示缺少库或没有 Secret Service 怎么办？</summary><p>按“安装”一节安装对应的运行库；需要保存 AI 密钥时，请安装并解锁 gnome-keyring 或 KWallet。没有 Secret Service 时本地记录不受影响，只是无法保存密钥与登录令牌。</p></details>
-<details class="faq"><summary>如何停止记录？</summary><p>点击“保存断点”即可；隐藏入口或退出程序也会停止记录。在 macOS 上，也可以从菜单栏笑脸结束。</p></details>
-<details class="faq"><summary>有哪些平台的版本？</summary><p>macOS、Windows、Linux 均提供安装包（Linux 为 x86_64，见“安装”一节）。软件可以独立使用，不需要额外硬件。</p></details>
-<details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销请在<a href="/account/">账号中心</a>进行。</p></details>
-<p class="meta">发现说明与实际不符？以实际软件行为为准，欢迎反馈（联系方式待补充）。</p>
+<p>推荐 <code>setup.exe</code>：每用户安装，不需要管理员权限。使用 ZIP 时请完整解压后运行 <code>PixoTap.exe</code>。</p>
+</details>
 </div>
 <div data-l="en" lang="en">
 <h1>Documentation</h1>
-<p class="lead">PIXO TAP helps you pick up where you left off across several long-running tasks. This page covers installation, the permissions it asks for, where your data lives, and common questions.</p>
-<div class="callout"><strong>Current status.</strong> Official installers are available on macOS, Windows and Linux (each platform has its own version; the <a href="/download/">download page</a> is authoritative). The macOS and Windows installers are not yet Apple / Microsoft code-signed or notarized, so the system may show a prompt the first time you open them. The Windows 1.43 installer includes optional account sign-in (email and password) but no in-app one-click updater; a newer version is being prepared. macOS has no account sign-in yet; Linux includes email account sign-in. Sync is not enabled on any platform: PIXO TAP is single-device for now, and multi-device sync is under development. The interactive demo on the website and the "recognition" in the web prototype are simulated and do not read your device.</div>
-<div class="table-wrap"><table>
-<thead><tr><th>Platform</th><th>Status</th><th>How to get it</th></tr></thead>
-<tbody>
-<tr><td>macOS</td><td>Installer available (not signed or notarized)</td><td><a href="/download/">Download page</a> (.dmg) or the one-line command; no account sign-in yet</td></tr>
-<tr><td>Windows</td><td>Installer available (1.43, unsigned)</td><td><a href="/download/">Download page</a> (setup.exe, plus a ZIP) or the one-line command; optional account sign-in, no in-app updater, a newer version is being prepared</td></tr>
-<tr><td>Linux</td><td>Installer available (x86_64 only)</td><td>One-line command, or the tar.gz on the <a href="/download/">download page</a>; includes email account sign-in</td></tr>
-</tbody></table></div>
-<nav class="toc" aria-label="Contents"><strong>Contents</strong><ol>
-<li><a href="#install">Install</a></li><li><a href="#use">Basics</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#data">Where data is stored</a></li><li><a href="#privacy">Privacy commitments</a></li><li><a href="#faq">FAQ</a></li></ol></nav>
+<p class="lead">Five steps; a few minutes is enough.</p>
+<ol class="steps">
+<li class="step" id="install">
+<div class="step-copy"><span class="step-no" aria-hidden="true">1</span><h2>Install</h2><p>Download the installer from the <a href="/download/">download page</a>, or paste one command into a terminal.</p>
+<pre><code>macOS / Linux: curl -fsSL https://pixotap.plutokeating.beer/install | bash
+Windows (PowerShell): irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>
+<p class="step-note">If the system blocks the first launch: on macOS right-click the app and choose Open; on Windows click More info, then Run anyway.</p></div>
+<img class="step-art" src="/docs-art/step-install.en.svg" alt="Illustration: download the installer or copy the command to install" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="permissions">
+<div class="step-copy"><span class="step-no" aria-hidden="true">2</span><h2>Open it and grant access</h2><p>macOS needs Screen Recording and works best with Accessibility; the camera is optional. You can turn any permission off in system settings at any time.</p></div>
+<img class="step-art" src="/docs-art/step-permissions.en.svg" alt="Illustration: the system permission window with screen recording and accessibility on, camera optional" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="start">
+<div class="step-copy"><span class="step-no" aria-hidden="true">3</span><h2>Start working, mark a checkpoint when you leave</h2><p>Pick a project in the island (or the workbench) and press Start. When you step away, press Mark checkpoint. Nothing is recorded until you press Start.</p></div>
+<img class="step-art" src="/docs-art/step-start.en.svg" alt="Illustration: the island timer with Mark checkpoint and Keep focusing buttons" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="return">
+<div class="step-copy"><span class="step-no" aria-hidden="true">4</span><h2>Come back and pick up your progress</h2><p>Open the same project to see where you left off and what to do next.</p></div>
+<img class="step-art" src="/docs-art/step-return.en.svg" alt="Illustration: the workbench showing where you left off, what is next, and a Continue button" width="640" height="360" loading="lazy">
+</li>
+<li class="step" id="account">
+<div class="step-copy"><span class="step-no" aria-hidden="true">5</span><h2>(Optional) Sign in</h2><p>Everything works without an account. To manage devices and data, choose Sign in in Settings and finish authorization in your browser. <a href="/account/">Go to the account page</a></p></div>
+<img class="step-art" src="/docs-art/step-account.en.svg" alt="Illustration: the account sign-in page in a browser with email and password fields" width="640" height="360" loading="lazy">
+</li>
+</ol>
 
-<h2 id="install">Install</h2>
-<p>Get the installer from the <a href="/download/">download page</a> and verify its SHA-256 checksum as described there. The macOS and Windows installers currently have no code signing (and macOS is not notarized), so the system may warn about an unknown publisher or an unverified developer. Only use files from the download page.</p>
-<h3>macOS</h3>
-<ul>
-<li>Requirements: macOS 13 or newer; universal for Apple silicon and Intel.</li>
-<li>One-line command (run in Terminal):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
-<li>Manual install: download the .dmg from the <a href="/download/">download page</a>, open it and drag the app into Applications.</li>
-<li>First-open prompt: the installer is not Apple code-signed or notarized, so the system may say it cannot verify the developer. Choose "Open Anyway" in System Settings > Privacy &amp; Security, or right-click the app and choose Open.</li>
-<li>Uninstall: drag the app from Applications to the Trash; your data stays in <code>~/Library/Application Support/PixoTap</code>.</li>
-</ul>
-<h3>Windows</h3>
-<ul>
-<li>One-line command (PowerShell):<pre><code>irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>Manual install follows.</li>
-<li>First-run prompt: the installer is not Microsoft code-signed, so SmartScreen may warn; choose "More info > Run anyway". Uninstall: remove PIXO TAP in Settings > Apps; your data stays in <code>%LocalAppData%\PixoTap</code>.</li>
-<li>Requirements: Windows 11 x64, or Windows 10 x64 version 2004 (build 19041) or later. The tested environment is Windows 11; other versions still need verification.</li>
-<li>Recommended: the <code>setup.exe</code> installer. Double-click to install per user into <code>%LocalAppData%\Programs\PixoTap</code> with no administrator rights, with Start menu and desktop shortcuts; uninstalling keeps your data in <code>%LocalAppData%\PixoTap</code>. If the VC++ runtime is missing it asks for elevation once to install it.</li>
-<li>With the ZIP: extract the whole archive, keeping folders such as <code>Assets</code>, <code>x64</code>, <code>tessdata</code> and <code>Licenses</code>, then open <code>PixoTap.exe</code>. Do not run it from inside the archive or copy the EXE alone.</li>
-<li>Both packages ship with the .NET runtime. Text recognition (OCR) also needs the Microsoft Visual C++ v14 x64 runtime; setup.exe installs it when missing, with the ZIP install Microsoft's official runtime and reopen the app (administrator rights may be required).</li>
-</ul>
+<h2 id="faq" class="sec">FAQ</h2>
+<details class="faq"><summary>Do I need an account?</summary><p>No. Accounts are optional, use email and password only, and are for managing your profile, authorized devices, consents, data export and deletion.</p></details>
+<details class="faq"><summary>Where is my data stored? Is it uploaded?</summary><p>On your device by default: <code>~/Library/Application Support/PixoTap</code> on macOS, <code>%LocalAppData%\PixoTap</code> on Windows, <code>~/.local/share/PixoTap</code> on Linux. Original screenshots, photos, file contents and clipboard text are never uploaded. See the <a href="/privacy/">Privacy Policy</a>.</p></details>
+<details class="faq"><summary>What does AI need?</summary><p>Your own DeepSeek API key. Without a key, or offline, a local hand-off summary is still produced and analysis continues once you are online.</p></details>
+<details class="faq"><summary>How do I uninstall?</summary><p>macOS: drag the app to the Trash. Windows: remove it in Settings &gt; Apps. Linux: run the uninstall command under Advanced. Your data folder is kept.</p></details>
+<details class="faq"><summary>How do I stop recording?</summary><p>Press Mark checkpoint; hiding the entry point or quitting the app also stops recording.</p></details>
 
+<details class="faq adv" id="advanced"><summary>Advanced</summary>
+<h3>Verify a download (SHA-256)</h3>
+<p>Each installer on the download page has a SHA-256 value under it. After downloading, compare it in a terminal:</p>
+<pre><code>shasum -a 256 &lt;file&gt;                       # macOS
+sha256sum &lt;file&gt;                           # Linux
+Get-FileHash -Algorithm SHA256 &lt;file&gt;      # Windows (PowerShell)</code></pre>
 <h3>Linux</h3>
-<ul>
-<li>Requirements: x86_64, Ubuntu 24.04 or newer (glibc 2.39+). musl systems such as Alpine are not supported; there is no arm64 build yet.</li>
-<li>Run the one-line installer in a terminal (needs only curl, tar and sha256sum; no root, and the script never calls sudo):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
-<li>At run time the script uses the public GitHub API to find the newest release that contains the Linux package and verifies it against that release's <code>SHA256SUMS.txt</code>; on a mismatch it aborts and leaves any installed version untouched. Run it again to upgrade; add <code>--dry-run</code> to preview only, or <code>--stable-only</code> to ignore pre-releases.</li>
-<li>Locations: the app goes to <code>~/.local/share/pixotap</code>, the <code>pixotap</code> command is linked into <code>~/.local/bin</code> (the script warns if that directory is not on PATH), and the desktop entry and icons go under <code>~/.local/share</code>. Afterwards search for PixoTap in your app menu, or run <code>pixotap</code>.</li>
-<li>Runtime libraries (the script only prints hints, it installs nothing): <code>libwebkit2gtk-4.1</code>, <code>libayatana-appindicator3</code>, plus <code>tesseract-ocr</code> with the Chinese language pack for text recognition. On Ubuntu / Debian:<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>Saving an AI service key also needs the system Secret Service (such as <code>gnome-keyring</code> or KWallet).</li>
-<li>Uninstall (keeps your data in <code>~/.local/share/PixoTap</code>):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre></li>
-<li>Linux known limitations: x86_64 builds only; on GNOME Wayland the foreground window and app cannot be read, so records honestly say "window info unavailable"; the camera is not available in this release and no closing photo is made; the clipboard is not recorded on Wayland; the desk pet is not guaranteed to stay on top on Wayland and falls back to a normal small window; on GNOME the tray needs the AppIndicator extension (included in Ubuntu), and without it the main window still works.</li>
-</ul>
-
-<h2 id="use">Basics</h2>
-<h3>macOS</h3>
-<ul>
-<li>The default entry is the "Dynamic Island" at the top of the screen: hover to expand, pick a project, then click Continue work or Start recording; click Save checkpoint when you finish. You can switch to the desktop-companion entry in settings.</li>
-<li>Nothing is recorded until you explicitly start; browsing, switching tabs and cancelling never start recording.</li>
-<li>Focus offers 25, 45 and 60 minute timers; Shelf keeps up to 20 references to local files without moving or copying the originals.</li>
-<li>Chat opens the AI conversation and needs your own DeepSeek key; without a key a local hand-off summary is still generated.</li>
-<li>The smiley in the menu bar can always recall or hide the entry, or quit.</li>
-</ul>
+<p>Requires Ubuntu 24.04 or newer (x86_64). The one-line command needs no root, installs under <code>~/.local</code>, and running it again upgrades. Runtime libraries:</p>
+<pre><code>sudo apt install libwebkit2gtk-4.1-0 libayatana-appindicator3-1 tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim</code></pre>
+<p>Uninstall (your data in <code>~/.local/share/PixoTap</code> is kept):</p>
+<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall</code></pre>
+<p>Saving an AI key needs the system Secret Service (gnome-keyring or KWallet).</p>
 <h3>Windows</h3>
-<ul>
-<li>Open the workspace from the entry or the tray, create a project or sub-project, select it and start recording; in the consent window choose item by item: activity info, file paths, screenshots/OCR and the closing photo.</li>
-<li>Click Save checkpoint to end the session; the recovery note is saved locally first, then online analysis is awaited or run.</li>
-<li>Alt+F4 on the entry stops recording and hides it; show it again from the tray. To quit completely use Quit in the tray menu.</li>
-</ul>
-<h3>Linux</h3>
-<ul>
-<li>The flow matches macOS and Windows: nothing is recorded until you explicitly consent and click start; browsing projects or settings records nothing; recording stops when all windows are hidden or the app quits. Click Save checkpoint to end the session; the recovery note is saved locally first, then online analysis is awaited or run.</li>
-<li>Without a key or when offline, local content is kept and processing resumes after a restart.</li>
-</ul>
-<h3>Recovery notes</h3>
-<p>After a session ends, returning to the same project shows four fixed parts: what was done, where it got to, current blockers, and what to do first next time. Recovery notes do not include material paths or web addresses.</p>
-
-<h2 id="permissions">Permissions</h2>
-<p>Every permission can be turned off in system settings at any time. If a permission is denied only the matching feature is unavailable.</p>
-<div class="table-wrap"><table>
-<thead><tr><th>Permission</th><th>Used for</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>Screen recording (macOS)</td><td>Capturing the front window at start and end, with text recognition on your device</td><td>Screenshots are processed locally; identical or near-identical frames are de-duplicated; password managers, recognised private browsing windows and sensitive paths are skipped by default.</td></tr>
-<tr><td>Accessibility (macOS)</td><td>Reading the current window title, browser page title and local file paths exposed by apps</td><td>Optional; without it there are fewer clues.</td></tr>
-<tr><td>Camera</td><td>Taking one on-site photo when a session ends, to help you remember</td><td>macOS asks the first time a session ends; Windows needs "Let desktop apps access your camera". With permission denied, no device, or no valid frame, no photo is created.</td></tr>
-<tr><td>Files and clipboard</td><td>Recording names and paths of files created, downloaded, modified or moved; clipboard changes</td><td>For the clipboard only the kind of change and the front app are recorded, never the text.</td></tr>
-<tr><td>Screenshots (Linux)</td><td>Capturing the screen at start and end</td><td>Goes through the system XDG Desktop Portal: you approve in a system dialog and only the whole screen can be captured. If it is denied or no portal exists, that session takes no screenshots, activity and file records continue, and the app says so. Whether the system remembers your choice depends on the desktop version.</td></tr>
-<tr><td>File watching (Linux)</td><td>Recording file activity in Desktop, Documents, Downloads, Pictures, Videos and Music</td><td>Only after you consent and start recording; hidden, sensitive, temporary and generated files are excluded by rule.</td></tr>
-</tbody></table></div>
-
-<h2 id="data">Where data is stored</h2>
-<ul>
-<li>macOS: <code>~/Library/Application Support/PixoTap/Projects/&lt;project ID&gt;/暂存/&lt;session ID&gt;</code>. Original files are never moved or copied.</li>
-<li>Windows: <code>%LocalAppData%\PixoTap</code>, including <code>Projects</code>, settings and <code>IslandShelf\references.json</code>. Quit the app before backing up, then copy the whole folder.</li>
-<li>Linux: <code>$XDG_DATA_HOME/PixoTap</code>, by default <code>~/.local/share/PixoTap</code>. The uninstall script keeps this folder.</li>
-<li>DeepSeek key: stored in the macOS Keychain, protected by Windows credential protection, or kept in the Linux Secret Service (gnome-keyring or KWallet). Without a Secret Service the key cannot be saved at all rather than falling back to a plain file. It is never written into project files or the app bundle.</li>
-<li>Removing the app does not delete your working data; to erase it, quit the app and delete the folders above.</li>
-</ul>
-
-<h2 id="privacy">Privacy commitments</h2>
-<ul>
-<li>Local first: recording and recovery work without signing in or going online.</li>
-<li>Original screenshots, closing photos, file contents and clipboard text are never uploaded.</li>
-<li>Only when you have set your own key and trigger an analysis are the OCR text recognised on your device, the activity timeline and the app name sent to an AI service (currently DeepSeek). OCR text can contain sensitive information; decide per project whether to allow it.</li>
-<li>Usage telemetry is off by default; data sync is optional and not yet open in the clients. Before turning it on you must explicitly consent to "Data sync" (withdrawable at any time), synced content is end-to-end encrypted, and the server stores only ciphertext.</li>
-<li>Accounts are optional, managed by a self-hosted Logto sign-in service, and offer email-and-password sign-in only; signing in does not make the client upload your data automatically.</li>
-</ul>
-<p>See the full <a href="/privacy/">Privacy Policy (draft)</a>.</p>
-
-<h2 id="faq">FAQ</h2>
-<details class="faq"><summary>Do I need an account?</summary><p>No. Every local feature works without signing in, and signing in does not make the client upload your data automatically. Accounts are optional and are for managing your profile, authorized devices, consents, data export and deletion. Sign-in is email and password only: signing up is verified with an email code and a forgotten password is reset with an email code. Phone-number sign-in, third-party sign-in (Apple, Google, GitHub and the like) and multi-factor authentication are not offered. In the Linux, Android and Windows clients choose Sign in in Settings and finish device authorization in your browser; the macOS client does not support sign-in yet. Manage your account on the <a href="/account/">account page</a>.</p></details>
-<details class="faq"><summary>Why is nothing available on the download page?</summary><p>That platform has no published release yet, or every release is still a prerelease (turn on "Show beta builds" on the download page). The page honestly shows "Nothing to download yet" and never invents a version. Please check back later.</p></details>
-<details class="faq"><summary>Windows shows "unknown publisher".</summary><p>The program is not code-signed yet, so SmartScreen may warn. Verify the SHA-256 from the download page before running it.</p></details>
-<details class="faq"><summary>What do the AI features need?</summary><p>Your own DeepSeek API key; you are responsible for that service's fees and terms. Without a key or when offline, a local hand-off summary is still produced and pending analysis resumes once you are online.</p></details>
-<details class="faq"><summary>On Linux, a library is missing or there is no Secret Service. What now?</summary><p>Install the libraries listed under Install; to save an AI key, install and unlock gnome-keyring or KWallet. Without a Secret Service local records still work, you just cannot save keys or sign-in tokens.</p></details>
-<details class="faq"><summary>How do I stop recording?</summary><p>Click Save checkpoint. Hiding the entry or quitting also stops recording. On macOS you can also end it from the menu-bar smiley.</p></details>
-<details class="faq"><summary>Which platforms are supported?</summary><p>Installers are available for macOS, Windows and Linux (Linux is x86_64; see Install). The software works on its own and needs no extra hardware.</p></details>
-<details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion are done in the <a href="/account/">account centre</a>.</p></details>
-<p class="meta">Spotted a mismatch between this page and the app? The app's actual behaviour wins; feedback is welcome (contact details to be added).</p>
+<p>Prefer <code>setup.exe</code>: per-user install, no administrator rights. With the ZIP, extract everything and run <code>PixoTap.exe</code>.</p>
+</details>
 </div>
   </main>
   <footer class="px-footer">
