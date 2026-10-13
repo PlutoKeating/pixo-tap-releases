@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-10-13T22:39:53.074Z",
+  "items": [
+    {
+      "version": "1.44.0",
+      "published_at": "2026-10-13T22:39:21Z",
+      "notes_md": "# PixoTap 1.44.0（macOS）\n\n## 安装\n\n推荐一行命令（自动校验 SHA-256，装到“应用程序”，不需要管理员密码）：\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install-mac | bash\n```\n\n也可以手动下载 `PixoTap-1.44.0-mac-universal.dmg`，用 `SHA256SUMS.txt` 校验后打开，把 PixoTap 拖进“应用程序”。\n\n要求：macOS 13 或更高版本，同时支持 Apple 芯片与 Intel（通用二进制）。\n\n## 本版内容\n\n- **主窗口**：新增不依赖灵动岛的主窗口，含“工作台 / 入口 / 设置”，没有 GPU 加速（Metal）的环境下也能使用。\n- **灵动岛与桌宠**：屏幕顶部的灵动岛与桌面桌宠入口，需要支持 Metal 的 Mac。\n- 项目与子项目、开始与结束记录、保存断点、回顾与手记、暂放文件、专注计时、聊一聊（使用你自己的 DeepSeek 密钥，保存在系统钥匙串）。\n- 修复在没有 Metal 设备的环境（例如未直通 GPU 的虚拟机）中启动即崩溃的问题。\n\n## 已知限制\n\n- **安装包未做 Apple 开发者签名与公证**。通过一行安装命令安装不会触发系统隔离提示；手动下载的 DMG 首次打开时，需要按住 Control 点击应用并选择“打开”。\n- 目前没有账号登录与多设备同步；这两项在其它平台上线后会陆续补齐。\n- 桌宠与灵动岛在真实硬件上的完整体验未在本次发布前逐项验收；主窗口在无 GPU 环境下已验证可启动。\n\n## 校验\n\n用 `SHA256SUMS.txt` 校验：`shasum -a 256 -c SHA256SUMS.txt`。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "dmg",
+          "name": "PixoTap-1.44.0-mac-universal.dmg",
+          "size": 8214743,
+          "sha256": "9ef4025079fdede8ed8f17aa129c7eccd777f8d2e1e3e5110ef2c5bd13ce96ff",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/PixoTap-1.44.0-mac-universal.dmg"
+        },
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "zip",
+          "name": "PixoTap-1.44.0-mac-universal.zip",
+          "size": 8113921,
+          "sha256": "a916fba9c7766e509de216cf9adecf58e27ec53763e41720ee755233115ebd49",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/PixoTap-1.44.0-mac-universal.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 313,
+          "sha256": "20e38c61bbd1c11c3b8c0605ad89ebd02f72d025fd2dece9caab4211076093b2",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "7ca672ece73280e427b2ae1d4c5c9e95bc760541b29634f04bb737da16074f5f",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
+    {
+      "version": "0.3.0",
+      "published_at": "2026-10-12T22:51:20Z",
+      "notes_md": "# PixoTap 0.3.0（Linux）\n\n## 安装\n\n推荐一行命令（自动校验 SHA-256，只装到 `~/.local`，不需要 root）：\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n也可以手动下载 `PixoTap-0.3.0-linux-x86_64.tar.gz`，用 `SHA256SUMS.txt` 校验后运行包内的 `install.sh`。卸载（保留用户数据）：`curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall`。\n\n要求：x86_64，glibc ≥ 2.39（Ubuntu 24.04 及以上）；运行库 `libwebkit2gtk-4.1-0`、`libayatana-appindicator3-1`；OCR 需 `tesseract-ocr`、`tesseract-ocr-chi-sim`。\n\n## 本版内容\n\n- **灵动岛与桌宠可切换**：设置里的“默认入口”可在屏幕顶部的灵动岛与桌宠之间切换，立即生效，重启后保持。新安装默认灵动岛；升级前已保存的设置仍为桌宠，不会替你更换界面。\n- **桌宠不再抢焦点**：切换虚拟桌面时，桌宠不会把键盘焦点移到自己身上。\n- **账号登录（可选）**：设置 → 账户，使用邮箱和密码登录；注册与忘记密码通过邮箱验证码在网页完成。不登录也能使用全部本地功能，登录后不会自动上传数据。\n- 修复桌宠大小低于 100% 不生效、主窗口双滚动条等问题（见 0.2.0 之后的提交）。\n\n## 已知限制\n\n- GNOME Wayland 下整个应用经 XWayland 运行，分数缩放时画面可能略模糊。\n- 桌宠置顶与“所有虚拟桌面可见”在 GNOME Wayland 上依赖 XWayland；KDE、Sway、Hyprland 未在真机验证。\n- Dock 与 Alt-Tab 中的图标在本版未经人工肉眼确认。\n- 摄像头相关功能本版不可用。\n- 预发布版本，数据与行为可能变化。\n\n## 校验\n\n用 `SHA256SUMS.txt` 校验：`sha256sum -c --ignore-missing SHA256SUMS.txt`。`SHA256SUMS.txt.sig` 为发版签名（ECDSA P-256），公钥见发布仓库说明。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-0.3.0-linux-x86_64.tar.gz",
+          "size": 9908233,
+          "sha256": "8c7f99ee8c4d53f95daf14e04670b136345b3984d94f46616709df87cb4395c6",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.3.0/PixoTap-0.3.0-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 214,
+          "sha256": "c4266840d421764759751c67a8622424825dd13611d687d98c087b9a184dc581",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.3.0/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "110f0160bf69916e5842ec9fa1963ffe4f94f2f4c3a9073bc79dfe92c438b8fb",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.3.0/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "published_at": "2026-10-12T08:04:39Z",
+      "notes_md": "# PixoTap 0.2.0（Linux）\n\n## 安装\n\n推荐一行命令（自动校验 SHA-256，只装到 `~/.local`，不需要 root）：\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n也可以手动下载 `PixoTap-0.2.0-linux-x86_64.tar.gz`，用 `SHA256SUMS.txt` 校验后运行包内的 `install.sh`。卸载（保留用户数据）：`curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall`。\n\n要求：x86_64，glibc ≥ 2.39（Ubuntu 24.04 及以上）；运行库 `libwebkit2gtk-4.1-0`、`libayatana-appindicator3-1`；OCR 需 `tesseract-ocr`、`tesseract-ocr-chi-sim`。\n\n## 本版内容\n\n- 与 macOS 同一套设计系统的界面。\n- 桌宠置顶并出现在所有工作区（X11 原生；GNOME Wayland 通过 XWayland 实现），桌宠大小可在 60%–200% 调节。\n- 窗口与 Dock 使用 PixoTap 图标；主窗口只保留一条滚动条。\n- 可选的账户登录（设置 → 账户）：只支持邮箱加密码，注册与忘记密码通过邮箱验证码在网页完成；不登录也能使用全部本地功能，登录后不会自动上传数据。\n\n## 已知限制\n\n- GNOME Wayland 下整个应用经 XWayland 运行，分数缩放时画面可能略模糊；KDE、Sway、Hyprland 未在真机验证。\n- 账号登录依赖服务端登录服务，正在部署中，部署完成前登录会提示服务暂不可用，不影响本地使用。\n- 预发布版本，数据与行为可能变化。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-0.2.0-linux-x86_64.tar.gz",
+          "size": 9875085,
+          "sha256": "eb31001f4ec2d52f9e00aae4a0ca44e97ead5a18fd81fc49cb506ff0917ee372",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.2.0/PixoTap-0.2.0-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 100,
+          "sha256": "14ef37a394f198dcba162af6cd8540e209a544adc77a3cda35e154814c875f2a",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.2.0/SHA256SUMS.txt"
+        }
+      ]
+    },
+    {
+      "version": "1.43.0",
+      "published_at": "2026-10-12T08:04:16Z",
+      "notes_md": "# PixoTap 1.43.0（Windows）\n\n## 安装\n\n下载 `PixoTap-1.43.0-win-x64-setup.exe`，双击安装：每用户安装，无需管理员权限（系统缺少 Microsoft VC++ x64 运行库时会请求一次提权安装）。也提供免安装的 `PixoTap-1.43.0-win-x64.zip`，需完整解压后运行。\n\n要求：Windows 10 / 11 x64。\n\n## 本版内容\n\n- 与 macOS 同一套设计系统的界面：置顶入口（灵动岛 / 桌宠）、工作台、手记标注、设置。\n- 品牌图标覆盖可执行文件、托盘、窗口与安装器。\n- 可选的账户登录（设置 → 账户）：只支持邮箱加密码，注册与忘记密码都通过邮箱验证码在网页完成。登录是可选的，不登录也能使用全部本地功能，登录后也不会自动上传任何数据。\n- 键盘与读屏：折叠的入口可用键盘操作并向读屏软件暴露为按钮；支持 Windows 高对比度；声明按显示器 DPI。\n\n## 已知限制\n\n- 安装包未做代码签名，Windows SmartScreen 可能提示“未知发布者”。\n- 账号登录依赖服务端登录服务；该服务正在部署中，部署完成前设置里的“登录”会提示服务暂不可用，不影响本地使用。\n- 未在多显示器混合 DPI、真实读屏软件朗读、睡眠唤醒场景下验证；摄像头相关功能暂缓。\n- 预发布版本，数据与行为可能变化。\n\n## 校验\n\n用 `SHA256SUMS.txt` 校验：PowerShell 运行 `(Get-FileHash <文件> -Algorithm SHA256).Hash`，与对应行比对。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.43.0-win-x64-setup.exe",
+          "size": 94280707,
+          "sha256": "e91da505b0dec7e16ae8f0a417fde030240093b6e11caca8f8608585ee4d48fa",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.43.0/PixoTap-1.43.0-win-x64-setup.exe"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "zip",
+          "name": "PixoTap-1.43.0-win-x64.zip",
+          "size": 124165962,
+          "sha256": "65522bba17d7f1c4e06cb6a4a1182a93a2694b5c4c5c247f6d15a4ce30512422",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.43.0/PixoTap-1.43.0-win-x64.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 192,
+          "sha256": "573b80d92166b2ff75d93c22d3091f734679966ffddc16617e3352493c040077",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.43.0/SHA256SUMS.txt"
+        }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "published_at": "2026-10-11T02:31:15Z",
+      "notes_md": "PixoTap Linux 早期版本（0.1.0）。\n\n**一键安装**（不需要 root，安装到 `~/.local`）：\n\n```sh\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n- 仅支持 x86_64、glibc；需要 `libwebkit2gtk-4.1-0`、`libayatana-appindicator3-1`；OCR 需要 `tesseract-ocr` 与中文语言包 `tesseract-ocr-chi-sim`。\n- 安装脚本会用本发布里的 `SHA256SUMS.txt` 校验安装包，校验失败会中止。\n- 卸载（保留你的数据）：`curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall`\n\n**已知限制（GNOME Wayland）**：截图经系统 Portal 且需要你授权；前台窗口信息取不到时会如实记录“窗口信息不可用”；摄像头本版不可用；桌宠小窗不保证置顶；托盘依赖 GNOME 的 AppIndicator 扩展。尚未在真实桌面上做完整人工验收。\n\n本地优先：不登录也能使用；截图、照片、OCR 全文、剪贴板正文不会上传。账号服务暂未开放。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-0.1.0-linux-x86_64.tar.gz",
+          "size": 8971341,
+          "sha256": "cf6ff99ffb7ac951ddce4a448426453029c00f0ebadc539ebffa4a1537224f5d",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.1.0/PixoTap-0.1.0-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 100,
+          "sha256": "bffe844f4a9ffafad4086ce3cf3489ee8bc6572c4232bdd75d73632ea15bf783",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v0.1.0/SHA256SUMS.txt"
+        }
+      ]
+    }
+  ]
+}

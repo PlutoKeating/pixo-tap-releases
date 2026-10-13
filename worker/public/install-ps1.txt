@@ -1,0 +1,170 @@
+# PixoTap Windows 一键安装脚本（PowerShell 5.1 与 7 通用）。
+#
+#   irm https://pixotap.plutokeating.beer/install.ps1 | iex
+#
+# 带参数运行（管道方式无法传参，改用脚本块，或先保存为文件）：
+#   & ([scriptblock]::Create((irm https://pixotap.plutokeating.beer/install.ps1))) -Version v1.43.0
+#   & ([scriptblock]::Create((irm https://pixotap.plutokeating.beer/install.ps1))) -DryRun
+#   & ([scriptblock]::Create((irm https://pixotap.plutokeating.beer/install.ps1))) -Uninstall
+# 管道方式也可用环境变量：$env:PIXO_VERSION='v1.43.0'; $env:PIXO_DRYRUN='1'; $env:PIXO_UNINSTALL='1'
+#
+# 选项：
+#   -Version <tag>   安装指定 release（tag 名，如 v1.43.0）
+#   -DryRun          只查询并打印将要执行的动作，不下载、不安装、不卸载
+#   -Uninstall       调用已安装的卸载程序（保留用户数据）
+#
+# 只读查询公开发布仓库 PlutoKeating/pixo-tap-releases 的 GitHub Release（不需要令牌）。
+# 选取含 win-x64-setup.exe 的最新非草稿、非预发布 Release，用同一 Release 的 SHA256SUMS.txt
+# 校验 SHA-256，不符立即中止且不运行安装包。以每用户静默方式安装，不需要管理员权限。
+# 若 Release 带有 SHA256SUMS.txt.sig（已签名清单），会提示；本脚本不在 PowerShell 内验证签名。
+# 本脚本不记录任何敏感信息。保存为文件时请使用 UTF-8 编码（中文提示）。
+
+function Install-PixoTap {
+    param(
+        [string]$Version = '',
+        [switch]$DryRun,
+        [switch]$Uninstall
+    )
+
+    Set-StrictMode -Version 2.0
+    $ErrorActionPreference = 'Stop'
+    $ProgressPreference = 'SilentlyContinue'   # Windows PowerShell 5.1 下进度条会让下载慢几十倍
+
+    $repo = 'PlutoKeating/pixo-tap-releases'
+    $uninstallKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{6F4C0E7A-3B1D-4E58-9A52-7D1B0C2E94A1}_is1'
+    $silent = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART')
+
+    function Write-Info([string]$m) { Write-Host $m }
+    function Write-Note([string]$m) { Write-Host ('提示：' + $m) -ForegroundColor Yellow }
+    function Stop-Install([string]$m) { throw ('PixoTap 安装中止：' + $m) }
+
+    function Get-Text([string]$value) { if ($null -eq $value) { '' } else { [string]$value } }
+
+    # 老版本 Windows PowerShell 默认不启用 TLS 1.2，GitHub 只接受 TLS 1.2+。
+    try { [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 3072 } catch { }
+
+    if ($env:OS -ne 'Windows_NT') { Stop-Install '这个脚本只适用于 Windows。macOS 请用 install-mac，Linux 请用 install。' }
+
+    # ------------------------------------------------------------ 卸载
+    if ($Uninstall) {
+        $exe = $null
+        if (Test-Path -LiteralPath $uninstallKey) {
+            $raw = Get-Text ((Get-ItemProperty -LiteralPath $uninstallKey).UninstallString)
+            $raw = $raw.Trim()
+            if ($raw.StartsWith('"')) { $end = $raw.IndexOf('"', 1); if ($end -gt 1) { $exe = $raw.Substring(1, $end - 1) } }
+            elseif ($raw) { $exe = $raw }
+        }
+        if (-not $exe) {
+            $fallback = Join-Path $env:LOCALAPPDATA 'Programs\PixoTap\unins000.exe'
+            if (Test-Path -LiteralPath $fallback) { $exe = $fallback }
+        }
+        if (-not $exe -or -not (Test-Path -LiteralPath $exe)) { Stop-Install '没有找到已安装的 PixoTap（卸载程序不存在）。' }
+        if ($DryRun) {
+            Write-Info ('[DryRun] 将运行卸载程序：' + $exe + ' ' + ($silent -join ' '))
+            Write-Info '[DryRun] 用户数据不会被删除。'
+            return
+        }
+        Write-Info '正在卸载 PixoTap（保留用户数据）……'
+        $p = Start-Process -FilePath $exe -ArgumentList $silent -Wait -PassThru
+        if ($p.ExitCode -ne 0) { Stop-Install ('卸载程序返回了退出码 ' + $p.ExitCode + '。') }
+        Write-Info 'PixoTap 已卸载。你的用户数据没有被删除。'
+        return
+    }
+
+    # ------------------------------------------------------------ 查询 Release
+    $api = 'https://api.github.com/repos/' + $repo + '/releases?per_page=100'
+    Write-Info ('正在查询 ' + $repo + ' 的发布版本……')
+    try {
+        $releases = Invoke-RestMethod -Uri $api -Headers @{ 'Accept' = 'application/vnd.github+json'; 'User-Agent' = 'pixotap-install-ps1' } -UseBasicParsing -TimeoutSec 60
+    } catch {
+        Write-Info '无法从 GitHub 获取发布信息。请检查网络或代理设置；匿名请求有每小时次数上限，可稍后重试。'
+        Write-Info ('手工安装：打开 https://github.com/' + $repo + '/releases 下载 PixoTap-*-win-x64-setup.exe 与 SHA256SUMS.txt，校验后运行。')
+        Stop-Install ('查询失败：' + $_.Exception.Message)
+    }
+
+    $picked = $null
+    $wantTag = ''
+    if ($Version) { $wantTag = 'v' + $Version.TrimStart('v', 'V') }
+    foreach ($r in @($releases)) {
+        if ($r.draft) { continue }
+        if ($wantTag) {
+            if ($r.tag_name -ne $wantTag -and $r.tag_name -ne $Version) { continue }
+        } elseif ($r.prerelease) { continue }
+        $setup = @($r.assets | Where-Object { $_.name -match '^PixoTap-.+-win-x64-setup\.exe$' }) | Select-Object -First 1
+        if (-not $setup) { continue }
+        $picked = $r
+        break
+    }
+    if (-not $picked) {
+        if ($Version) { Stop-Install ('在 ' + $repo + ' 里没有找到版本 ' + $Version + ' 的 Windows 安装包。') }
+        Stop-Install ($repo + ' 里还没有包含 win-x64-setup.exe 的正式 release。')
+    }
+
+    $assets = @($picked.assets)
+    $setup = @($assets | Where-Object { $_.name -match '^PixoTap-.+-win-x64-setup\.exe$' }) | Select-Object -First 1
+    $sums = @($assets | Where-Object { $_.name -eq 'SHA256SUMS.txt' }) | Select-Object -First 1
+    $sig = @($assets | Where-Object { $_.name -eq 'SHA256SUMS.txt.sig' }) | Select-Object -First 1
+    if (-not $sums) { Stop-Install ('release ' + $picked.tag_name + ' 缺少 SHA256SUMS.txt，出于安全不会安装未校验的文件。') }
+    if ($setup.name -notmatch '^[A-Za-z0-9._-]+$') { Stop-Install ('安装包文件名不合法：' + $setup.name) }
+    foreach ($a in @($setup, $sums)) {
+        if (-not ([string]$a.browser_download_url).StartsWith('https://github.com/')) { Stop-Install ('不安全的下载地址：' + $a.browser_download_url) }
+    }
+
+    Write-Info ('找到版本 ' + $picked.tag_name + '：' + $setup.name)
+    if ($sig) { Write-Info '该版本带有已签名清单（SHA256SUMS.txt.sig）。注意：本脚本只校验 SHA-256，未在 PowerShell 内验证签名。' }
+    else { Write-Note '该版本没有签名清单，仅依赖 SHA-256 校验。' }
+
+    if ($DryRun) {
+        Write-Info ('[DryRun] 将下载：' + $setup.browser_download_url)
+        Write-Info ('[DryRun] 将下载：' + $sums.browser_download_url)
+        Write-Info '[DryRun] 将校验 SHA-256，不符则中止且不运行安装包。'
+        Write-Info ('[DryRun] 将以每用户静默方式运行：' + $setup.name + ' ' + ($silent -join ' '))
+        Write-Info '[DryRun] 完成后清理临时文件。未下载、未安装任何内容。'
+        return
+    }
+
+    # ------------------------------------------------------------ 下载与校验
+    $work = Join-Path ([IO.Path]::GetTempPath()) ('pixotap-install-' + [Guid]::NewGuid().ToString('N'))
+    New-Item -ItemType Directory -Path $work | Out-Null
+    try {
+        $setupFile = Join-Path $work $setup.name
+        $sumsFile = Join-Path $work 'SHA256SUMS.txt'
+        Write-Info ('下载 ' + $setup.name + ' ……')
+        Invoke-WebRequest -Uri $setup.browser_download_url -OutFile $setupFile -UseBasicParsing -Headers @{ 'User-Agent' = 'pixotap-install-ps1' }
+        Invoke-WebRequest -Uri $sums.browser_download_url -OutFile $sumsFile -UseBasicParsing -Headers @{ 'User-Agent' = 'pixotap-install-ps1' }
+
+        $expected = $null
+        foreach ($line in (Get-Content -LiteralPath $sumsFile)) {
+            if ($line -match '^\s*([0-9A-Fa-f]{64})\s+\*?(.+?)\s*$' -and $Matches[2] -eq $setup.name) { $expected = $Matches[1].ToLowerInvariant(); break }
+        }
+        if (-not $expected) { Stop-Install ('SHA256SUMS.txt 里没有 ' + $setup.name + ' 的校验值，已中止。') }
+        $actual = (Get-FileHash -LiteralPath $setupFile -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($actual -ne $expected) { Stop-Install 'SHA-256 校验失败，文件可能被篡改或下载不完整；没有运行安装包。' }
+        Write-Info 'SHA-256 校验通过。'
+
+        # ------------------------------------------------------------ 安装
+        Write-Info '正在安装 PixoTap（每用户、静默，不需要管理员权限）……'
+        $p = Start-Process -FilePath $setupFile -ArgumentList $silent -Wait -PassThru
+        if ($p.ExitCode -ne 0) { Stop-Install ('安装程序返回了退出码 ' + $p.ExitCode + '。') }
+        Write-Info ('PixoTap ' + $picked.tag_name + ' 安装完成。可在开始菜单中打开 PixoTap。')
+    } finally {
+        Remove-Item -LiteralPath $work -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# 解析入口：保存为文件或脚本块调用时用 $args；管道（iex）方式用环境变量。
+$pixoVersion = ''
+$pixoDry = $false
+$pixoUninstall = $false
+if ($env:PIXO_VERSION) { $pixoVersion = [string]$env:PIXO_VERSION }
+if ($env:PIXO_DRYRUN -eq '1') { $pixoDry = $true }
+if ($env:PIXO_UNINSTALL -eq '1') { $pixoUninstall = $true }
+for ($i = 0; $i -lt $args.Count; $i++) {
+    switch -Regex ([string]$args[$i]) {
+        '^-Version$' { if ($i + 1 -lt $args.Count) { $pixoVersion = [string]$args[$i + 1]; $i++ } else { throw '-Version 需要一个版本号。' } }
+        '^-DryRun$' { $pixoDry = $true }
+        '^-Uninstall$' { $pixoUninstall = $true }
+        default { throw ('未知参数：' + $args[$i]) }
+    }
+}
+Install-PixoTap -Version $pixoVersion -DryRun:$pixoDry -Uninstall:$pixoUninstall

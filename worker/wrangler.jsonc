@@ -20,7 +20,9 @@
       "/.well-known/jwks.json",
       "/account/*",
       "/admin/*",
-      "/install"
+      "/install",
+      "/install.ps1",
+      "/install-mac"
     ]
   },
   "d1_databases": [
