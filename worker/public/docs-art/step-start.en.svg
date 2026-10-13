@@ -1,17 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="Illustration: start and save a checkpoint in the island">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" width="560" height="340" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="Illustration: start and save a checkpoint in the island">
 <title>Illustration: start and save a checkpoint in the island</title>
-<rect width="640" height="360" rx="24" fill="#EAF3FA"/>
+<rect width="560" height="340" rx="24" fill="#EAF3FA"/>
 <circle cx="70" cy="40" r="90" fill="#A9D4F6" opacity="0.28"/><circle cx="590" cy="320" r="110" fill="#F6DF77" opacity="0.30"/><circle cx="600" cy="50" r="60" fill="#FF777B" opacity="0.14"/><circle cx="40" cy="330" r="70" fill="#A8EEA2" opacity="0.22"/>
 
-<rect x="60" y="58" width="520" height="244" rx="34" fill="#000000" />
-<rect x="80" y="76" width="84" height="32" rx="10" fill="#333333" /><text x="122" y="98" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Focus</text>
-<text x="210" y="98" font-size="14" font-weight="400" fill="#999999" text-anchor="middle">Projects</text><text x="274" y="98" font-size="14" font-weight="400" fill="#999999" text-anchor="middle">Chat</text>
-<circle cx="552" cy="92" r="5" fill="#FF6B73"><animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
-<line x1="80" x2="560" y1="116" y2="116" stroke="#2E2E2E"/>
-<text x="320" y="188" font-size="60" font-weight="300" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">24:36</text>
-<rect x="80" y="208" width="480" height="4" rx="2" fill="#2E2E2E" /><rect x="80" y="208" width="300" height="4" rx="2" fill="#ADD6F7" ><animate attributeName="width" values="300;330;300" dur="6s" repeatCount="indefinite"/></rect>
-<rect x="80" y="228" width="150" height="40" rx="10" fill="#262626" /><text x="155" y="254" font-size="14" font-weight="400" fill="#DEDEDE" text-anchor="middle">Mark checkpoint</text>
-<rect x="242" y="228" width="150" height="40" rx="10" fill="#D42E42" /><text x="317" y="254" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Keep focusing</text>
-<text x="84" y="290" font-size="11.5" font-weight="400" fill="#99C9F2" text-anchor="start">Left off here</text><text x="174" y="290" font-size="11.5" font-weight="400" fill="#DEDEDE" text-anchor="start">Finish section 2 of the plan</text>
+<rect x="36" y="36" width="488" height="268" rx="40" fill="#000000" />
+<rect x="62" y="56" width="104" height="40" rx="10" fill="#333333" /><text x="114" y="84" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">Focus</text>
+<text x="214" y="84" font-size="22" font-weight="400" fill="#999999" text-anchor="middle">Projects</text>
+<circle cx="494" cy="76" r="8" fill="#FF6B73"><animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
+<text x="280" y="176" font-size="88" font-weight="300" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">24:36</text>
+<rect x="62" y="196" width="436" height="6" rx="3" fill="#2E2E2E" /><rect x="62" y="196" width="290" height="6" rx="3" fill="#ADD6F7" ><animate attributeName="width" values="290;330;290" dur="6s" repeatCount="indefinite"/></rect>
+<rect x="62" y="220" width="210" height="52" rx="14" fill="#262626" /><text x="167" y="255" font-size="23" font-weight="400" fill="#DEDEDE" text-anchor="middle">Checkpoint</text>
+<rect x="288" y="220" width="210" height="52" rx="14" fill="#D42E42" /><text x="393" y="255" font-size="23" font-weight="700" fill="#FFFFFF" text-anchor="middle">Keep focusing</text>
+<text x="62" y="292" font-size="20" font-weight="400" fill="#99C9F2" text-anchor="start">Left off</text><text x="174" y="292" font-size="20" font-weight="400" fill="#DEDEDE" text-anchor="start">Finish section 2</text>
 
 </svg>

@@ -41,27 +41,30 @@
 <p class="lead">五步上手，几分钟就够。</p>
 <ol class="steps">
 <li class="step" id="install">
-<div class="step-copy"><span class="step-no" aria-hidden="true">1</span><h2>安装</h2><p>在<a href="/download/">下载页</a>下载安装包；或在终端粘贴一行命令。</p>
-<pre><code>macOS / Linux：curl -fsSL https://pixotap.plutokeating.beer/install | bash
-Windows（PowerShell）：irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>
-<p class="step-note">首次打开如被系统拦截：macOS 右键应用选“打开”；Windows 点“更多信息”，再选“仍要运行”。</p></div>
-<img class="step-art" src="/docs-art/step-install.zh.svg" alt="示意图：点击下载安装包，或复制命令，完成安装" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">1</span><h2>安装</h2></div><p>选你的系统，复制一行命令，或下载安装包。</p><div class="dtabs"><div class="dtab-list" role="tablist" aria-label="选择系统"><button class="dtab" type="button" role="tab" data-tab="mac" aria-selected="false">macOS</button><button class="dtab" type="button" role="tab" data-tab="win" aria-selected="false">Windows</button><button class="dtab" type="button" role="tab" data-tab="linux" aria-selected="false">Linux</button></div><div class="dpanel" role="tabpanel" data-tab="mac"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="curl -fsSL https://pixotap.plutokeating.beer/install | bash" data-copied="已复制" data-label="复制安装命令">复制安装命令</button><a class="dlink" href="/download/">下载安装包</a></div>
+<details class="dcmd"><summary>查看命令</summary><pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>首次打开被拦截：右键点击应用，选择“打开”。</span></p></div><div class="dpanel" role="tabpanel" data-tab="win"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="irm https://pixotap.plutokeating.beer/install.ps1 | iex" data-copied="已复制" data-label="复制安装命令">复制安装命令</button><a class="dlink" href="/download/">下载安装包</a></div>
+<details class="dcmd"><summary>查看命令</summary><pre><code>irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>首次运行被拦截：点“更多信息”，再选“仍要运行”。</span></p></div><div class="dpanel" role="tabpanel" data-tab="linux"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="curl -fsSL https://pixotap.plutokeating.beer/install | bash" data-copied="已复制" data-label="复制安装命令">复制安装命令</button></div>
+<details class="dcmd"><summary>查看命令</summary><pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>无需 root；再运行一次即可升级。</span></p></div></div></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-install.zh.svg" alt="示意图：点击下载安装包，或复制命令，完成安装" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="permissions">
-<div class="step-copy"><span class="step-no" aria-hidden="true">2</span><h2>首次打开，按提示授权</h2><p>macOS 需要“屏幕录制”，建议同时开启“辅助功能”；相机可选。权限随时可在系统设置里关闭。</p></div>
-<img class="step-art" src="/docs-art/step-permissions.zh.svg" alt="示意图：系统授权窗口，屏幕录制与辅助功能已开启，相机为可选" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">2</span><h2>首次打开，按提示授权</h2></div><p>macOS 需要“屏幕录制”，建议同时开启“辅助功能”；相机可选。权限随时可在系统设置里关闭。</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-permissions.zh.svg" alt="示意图：系统授权窗口，屏幕录制与辅助功能已开启，相机为可选" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="start">
-<div class="step-copy"><span class="step-no" aria-hidden="true">3</span><h2>开始工作，离开前记下断点</h2><p>在灵动岛（或工作台）选好项目，点“开始”。要离开时点“记下断点”。只有你点击开始后才会记录。</p></div>
-<img class="step-art" src="/docs-art/step-start.zh.svg" alt="示意图：灵动岛里的计时，以及“记下断点”和“继续专注”按钮" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">3</span><h2>开始工作，离开前记下断点</h2></div><p>在灵动岛（或工作台）选好项目，点“开始”。要离开时点“记下断点”。只有你点击开始后才会记录。</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-start.zh.svg" alt="示意图：灵动岛里的计时，以及“记下断点”和“继续专注”按钮" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="return">
-<div class="step-copy"><span class="step-no" aria-hidden="true">4</span><h2>回来时，一眼接回进度</h2><p>打开同一个项目，会看到上次停在哪里、这次先做什么。</p></div>
-<img class="step-art" src="/docs-art/step-return.zh.svg" alt="示意图：工作台显示上次停在这里与这次先做，并有“继续工作”按钮" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">4</span><h2>回来时，一眼接回进度</h2></div><p>打开同一个项目，会看到上次停在哪里、这次先做什么。</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-return.zh.svg" alt="示意图：工作台显示上次停在这里与这次先做，并有“继续工作”按钮" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="account">
-<div class="step-copy"><span class="step-no" aria-hidden="true">5</span><h2>（可选）登录账号</h2><p>不登录也能使用。需要管理设备与数据时，在设置里点“登录”，在浏览器中完成授权。<a href="/account/">前往账号页</a></p></div>
-<img class="step-art" src="/docs-art/step-account.zh.svg" alt="示意图：浏览器里的账号登录页，填写邮箱与密码" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">5</span><h2>（可选）登录账号</h2></div><p>不登录也能使用。需要管理设备与数据时，在设置里点“登录”，在浏览器中完成授权。<a href="/account/">前往账号页</a></p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-account.zh.svg" alt="示意图：浏览器里的账号登录页，填写邮箱与密码" width="560" height="340" loading="lazy"></figure>
 </li>
 </ol>
 
@@ -93,27 +96,30 @@ Get-FileHash -Algorithm SHA256 &lt;文件&gt;      # Windows（PowerShell）</co
 <p class="lead">Five steps; a few minutes is enough.</p>
 <ol class="steps">
 <li class="step" id="install">
-<div class="step-copy"><span class="step-no" aria-hidden="true">1</span><h2>Install</h2><p>Download the installer from the <a href="/download/">download page</a>, or paste one command into a terminal.</p>
-<pre><code>macOS / Linux: curl -fsSL https://pixotap.plutokeating.beer/install | bash
-Windows (PowerShell): irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre>
-<p class="step-note">If the system blocks the first launch: on macOS right-click the app and choose Open; on Windows click More info, then Run anyway.</p></div>
-<img class="step-art" src="/docs-art/step-install.en.svg" alt="Illustration: download the installer or copy the command to install" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">1</span><h2>Install</h2></div><p>Pick your system, then copy one command or download the installer.</p><div class="dtabs"><div class="dtab-list" role="tablist" aria-label="Choose your system"><button class="dtab" type="button" role="tab" data-tab="mac" aria-selected="false">macOS</button><button class="dtab" type="button" role="tab" data-tab="win" aria-selected="false">Windows</button><button class="dtab" type="button" role="tab" data-tab="linux" aria-selected="false">Linux</button></div><div class="dpanel" role="tabpanel" data-tab="mac"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="curl -fsSL https://pixotap.plutokeating.beer/install | bash" data-copied="Copied" data-label="Copy install command">Copy install command</button><a class="dlink" href="/download/">Download installer</a></div>
+<details class="dcmd"><summary>Show command</summary><pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>If the first launch is blocked: right-click the app and choose Open.</span></p></div><div class="dpanel" role="tabpanel" data-tab="win"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="irm https://pixotap.plutokeating.beer/install.ps1 | iex" data-copied="Copied" data-label="Copy install command">Copy install command</button><a class="dlink" href="/download/">Download installer</a></div>
+<details class="dcmd"><summary>Show command</summary><pre><code>irm https://pixotap.plutokeating.beer/install.ps1 | iex</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>If the first run is blocked: click More info, then Run anyway.</span></p></div><div class="dpanel" role="tabpanel" data-tab="linux"><div class="dact"><button class="px-btn px-btn-primary dcopy" type="button" data-copy="curl -fsSL https://pixotap.plutokeating.beer/install | bash" data-copied="Copied" data-label="Copy install command">Copy install command</button></div>
+<details class="dcmd"><summary>Show command</summary><pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></details>
+<p class="dnote"><svg class="dnote-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg><span>No root needed; run it again to upgrade.</span></p></div></div></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-install.en.svg" alt="Illustration: download the installer or copy the command to install" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="permissions">
-<div class="step-copy"><span class="step-no" aria-hidden="true">2</span><h2>Open it and grant access</h2><p>macOS needs Screen Recording and works best with Accessibility; the camera is optional. You can turn any permission off in system settings at any time.</p></div>
-<img class="step-art" src="/docs-art/step-permissions.en.svg" alt="Illustration: the system permission window with screen recording and accessibility on, camera optional" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">2</span><h2>Open it and grant access</h2></div><p>macOS needs Screen Recording and works best with Accessibility; the camera is optional. You can turn any permission off in system settings at any time.</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-permissions.en.svg" alt="Illustration: the system permission window with screen recording and accessibility on, camera optional" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="start">
-<div class="step-copy"><span class="step-no" aria-hidden="true">3</span><h2>Start working, mark a checkpoint when you leave</h2><p>Pick a project in the island (or the workbench) and press Start. When you step away, press Mark checkpoint. Nothing is recorded until you press Start.</p></div>
-<img class="step-art" src="/docs-art/step-start.en.svg" alt="Illustration: the island timer with Mark checkpoint and Keep focusing buttons" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">3</span><h2>Start working, mark a checkpoint when you leave</h2></div><p>Pick a project in the island (or the workbench) and press Start. When you step away, press Mark checkpoint. Nothing is recorded until you press Start.</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-start.en.svg" alt="Illustration: the island timer with Mark checkpoint and Keep focusing buttons" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="return">
-<div class="step-copy"><span class="step-no" aria-hidden="true">4</span><h2>Come back and pick up your progress</h2><p>Open the same project to see where you left off and what to do next.</p></div>
-<img class="step-art" src="/docs-art/step-return.en.svg" alt="Illustration: the workbench showing where you left off, what is next, and a Continue button" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">4</span><h2>Come back and pick up your progress</h2></div><p>Open the same project to see where you left off and what to do next.</p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-return.en.svg" alt="Illustration: the workbench showing where you left off, what is next, and a Continue button" width="560" height="340" loading="lazy"></figure>
 </li>
 <li class="step" id="account">
-<div class="step-copy"><span class="step-no" aria-hidden="true">5</span><h2>(Optional) Sign in</h2><p>Everything works without an account. To manage devices and data, choose Sign in in Settings and finish authorization in your browser. <a href="/account/">Go to the account page</a></p></div>
-<img class="step-art" src="/docs-art/step-account.en.svg" alt="Illustration: the account sign-in page in a browser with email and password fields" width="640" height="360" loading="lazy">
+<div class="step-copy"><div class="step-head"><span class="step-no" aria-hidden="true">5</span><h2>(Optional) Sign in</h2></div><p>Everything works without an account. To manage devices and data, choose Sign in in Settings and finish authorization in your browser. <a href="/account/">Go to the account page</a></p></div>
+<figure class="step-fig"><img class="step-art" src="/docs-art/step-account.en.svg" alt="Illustration: the account sign-in page in a browser with email and password fields" width="560" height="340" loading="lazy"></figure>
 </li>
 </ol>
 

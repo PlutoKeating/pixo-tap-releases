@@ -1,19 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="Illustration: pick your progress back up">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" width="560" height="340" font-family="'MiSans','Noto Sans CJK SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif" role="img" aria-label="Illustration: pick your progress back up">
 <title>Illustration: pick your progress back up</title>
-<rect width="640" height="360" rx="24" fill="#EAF3FA"/>
+<rect width="560" height="340" rx="24" fill="#EAF3FA"/>
 <circle cx="70" cy="40" r="90" fill="#A9D4F6" opacity="0.28"/><circle cx="590" cy="320" r="110" fill="#F6DF77" opacity="0.30"/><circle cx="600" cy="50" r="60" fill="#FF777B" opacity="0.14"/><circle cx="40" cy="330" r="70" fill="#A8EEA2" opacity="0.22"/>
 
-<rect x="40" y="36" width="560" height="288" rx="18" fill="#F7F8FA" stroke="#DEE4EB"/>
-<rect x="40" y="36" width="150" height="288" rx="18" fill="#F1F5F8" /><rect x="172" y="36" width="18" height="288" rx="0" fill="#F1F5F8" />
-<text x="58" y="74" font-size="12" font-weight="600" fill="#6D6A60" text-anchor="start">My projects</text>
-<rect x="50" y="86" width="130" height="32" rx="11" fill="#E7F0F8" /><text x="62" y="107" font-size="13" font-weight="600" fill="#A9D4F6" text-anchor="start">Product launch plan</text>
-<text x="62" y="140" font-size="13" font-weight="400" fill="#1F2328" text-anchor="start">Roadshow deck</text><text x="62" y="168" font-size="13" font-weight="400" fill="#1F2328" text-anchor="start">Study notes</text>
-<text x="212" y="80" font-size="22" font-weight="600" fill="#1F2328" text-anchor="start">Pick up where you left off.</text>
-<rect x="210" y="100" width="372" height="200" rx="20" fill="#EAF3FA" stroke="#D9E7F2"/>
-<text x="230" y="134" font-size="17" font-weight="600" fill="#1F2328" text-anchor="start">Product launch plan</text>
-<text x="230" y="166" font-size="12" font-weight="600" fill="#A9D4F6" text-anchor="start">Left off here</text><text x="230" y="186" font-size="13.5" font-weight="400" fill="#1F2328" text-anchor="start">The chart in section 2 still needs a source</text>
-<text x="230" y="218" font-size="12" font-weight="600" fill="#A9D4F6" text-anchor="start">Next up</text><text x="230" y="238" font-size="13.5" font-weight="500" fill="#1F2328" text-anchor="start">Add the source, then write the summary</text>
-<rect x="230" y="254" width="118" height="36" rx="11" fill="#D5374D" /><text x="289" y="277" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text>
-<rect x="358" y="254" width="108" height="36" rx="11" fill="#FFFFFF" stroke="#DEE4EB"/><text x="412" y="277" font-size="13.5" font-weight="400" fill="#1F2328" text-anchor="middle">Related files</text>
+<rect x="30" y="28" width="500" height="284" rx="26" fill="#F7F8FA" stroke="#DEE4EB" stroke-width="2"/>
+<text x="58" y="78" font-size="30" font-weight="800" fill="#1F2328" text-anchor="start">Pick up where you left off.</text>
+<rect x="52" y="100" width="456" height="192" rx="26" fill="#EAF3FA" stroke="#D9E7F2" stroke-width="2"/>
+<text x="76" y="140" font-size="26" font-weight="700" fill="#1F2328" text-anchor="start">Product launch plan</text>
+<text x="76" y="176" font-size="20" font-weight="700" fill="#A9D4F6" text-anchor="start">Left off here</text><text x="76" y="204" font-size="24" font-weight="400" fill="#1F2328" text-anchor="start">Add the chart source</text>
+<text x="76" y="236" font-size="20" font-weight="700" fill="#A9D4F6" text-anchor="start">Next up</text><text x="76" y="262" font-size="22" font-weight="400" fill="#1F2328" text-anchor="start">Write the section 2 summary</text>
+<rect x="344" y="222" width="140" height="54" rx="16" fill="#D5374D" /><text x="414" y="257" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">Continue</text>
 
 </svg>

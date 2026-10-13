@@ -227,17 +227,61 @@ details.faq p { margin: 8px 0 0; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
 .px-main pre { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; overflow-x: auto; }
 .px-main pre code { background: none; padding: 0; word-break: normal; }
-/* /docs/ 的分步指南：每步左文右图，手机上图在下 */
-.px-main .steps { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 20px; }
+/* /docs/ 的分步指南：左文右图（奇偶交替），序号圆章与标题同一行，步骤间用虚线串成路径；手机上下堆叠 */
+.px-main .steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 44px; counter-reset: none; }
 .px-main .steps li { max-width: none; margin: 0; }
-.step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 20px 28px; align-items: center; padding: 22px 24px; background: var(--surface); border: var(--px-size-border-width) solid var(--line); border-radius: var(--radius-md); scroll-margin-top: 80px; }
+.step { --c: var(--yellow); position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px 32px; align-items: center; padding: 26px 28px; background: var(--surface); border: var(--px-size-border-width) solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); scroll-margin-top: 84px; }
+.step:nth-child(2) { --c: var(--blue); } .step:nth-child(3) { --c: var(--green); } .step:nth-child(4) { --c: var(--red); } .step:nth-child(5) { --c: var(--yellow); }
+.step:not(:last-child)::after { content: ""; position: absolute; left: 50%; top: 100%; height: 44px; border-left: 3px dashed color-mix(in srgb, var(--ink) 28%, transparent); }
+.step:nth-child(even) .step-fig { order: -1; }
 .step-copy { min-width: 0; }
-.step-no { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-bottom: 8px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-weight: 800; }
-.px-main .step h2 { margin: 0 0 8px; font-size: 1.3rem; line-height: 1.25; }
-.step p { margin: 0 0 8px; color: var(--ink); }
-.step-note { color: var(--muted); font-size: 0.9rem; }
-.step pre { font-size: 0.82rem; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-all; overflow-x: visible; }
-.step-art { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
-.px-main h2.sec { margin: 40px 0 12px; }
+.step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.step-no { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--c); color: var(--ink); font-size: 1.15rem; font-weight: 800; box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 28%, transparent); }
+.px-main .step h2 { margin: 0; font-size: 1.45rem; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; scroll-margin-top: 84px; }
+.step p { margin: 0 0 10px; color: var(--ink); }
+.step-fig { position: relative; margin: 0; min-width: 0; }
+.step-fig::before { content: ""; position: absolute; inset: 14px -10px -12px 14px; border-radius: 26px; background: color-mix(in srgb, var(--c) 45%, transparent); transform: rotate(-1.6deg); }
+.step-art { position: relative; display: block; width: 100%; height: auto; border-radius: 22px; background: var(--surface); box-shadow: 0 14px 34px rgba(54, 48, 35, 0.16); }
+
+/* 安装步骤：系统分段标签 + 复制命令胶囊 + 提示卡片 */
+.dtabs { margin-top: 14px; }
+.dtab-list { display: inline-flex; gap: 4px; max-width: 100%; padding: 4px; background: var(--cream-2); border-radius: var(--px-pill); }
+.dtab { font: inherit; font-size: 0.92rem; font-weight: 600; min-height: 36px; padding: 2px 16px; color: var(--muted); background: transparent; border: 0; border-radius: var(--px-pill); cursor: pointer; white-space: nowrap; }
+.dtab[aria-selected="true"] { color: var(--on-ink); background: var(--ink); }
+.dpanel { margin-top: 14px; }
+.dpanel[hidden] { display: none; }
+.dtabs:not([data-ready]) .dpanel + .dpanel { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--line-strong); }
+.dact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.dcopy.is-copied { --px-overlay: color-mix(in srgb, var(--green) 55%, transparent); color: var(--ink); }
+.dlink { font-weight: 600; color: var(--ink); text-underline-offset: 3px; }
+.px-main .dcmd { margin: 10px 0 0; max-width: none; font-size: 0.88rem; }
+.dcmd summary { cursor: pointer; color: var(--muted); }
+.px-main .dcmd pre { margin: 8px 0 0; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-all; overflow-x: visible; }
+.px-main p.dnote { display: flex; align-items: flex-start; gap: 10px; max-width: none; margin: 14px 0 0; padding: 10px 14px; font-size: 0.9rem; line-height: 1.5; background: color-mix(in srgb, var(--yellow) 26%, #fff); border: 1px solid color-mix(in srgb, var(--yellow) 85%, var(--line)); border-radius: var(--radius-sm); }
+.dnote-ic { flex: none; margin-top: 1px; color: color-mix(in srgb, var(--ink) 75%, var(--yellow)); }
+
+/* 常见问题 / 高级：圆角卡片，展开有平滑动画 */
+.px-main h2.sec { margin: 56px 0 14px; font-size: 1.45rem; font-weight: 800; }
+details.faq { margin: 10px 0; padding: 0 20px; background: var(--surface); border: var(--px-size-border-width) solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+details.faq:last-of-type { border-bottom: var(--px-size-border-width) solid var(--line); }
+details.faq > summary { position: relative; padding: 16px 28px 16px 0; cursor: pointer; font-weight: 600; list-style: none; }
+details.faq > summary::-webkit-details-marker { display: none; }
+details.faq > summary::after { content: ""; position: absolute; right: 2px; top: 50%; width: 9px; height: 9px; margin-top: -7px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.25s ease; }
+details.faq[open] > summary::after { transform: rotate(-135deg); margin-top: -2px; }
+details.faq > :not(summary) { margin-left: 0; margin-right: 0; }
+details.faq > p:last-child, details.faq > pre:last-child { margin-bottom: 16px; }
 details.adv h3 { margin: 18px 0 6px; }
-@media (max-width: 700px) { .step { grid-template-columns: minmax(0, 1fr); padding: 18px 16px; } }
+
+/* 进场微动效（脚本只给“尚未进入视口”的块加 .will-reveal；减少动态时整体关闭） */
+.will-reveal { opacity: 0; transform: translateY(16px); }
+.will-reveal.in { opacity: 1; transform: none; transition: opacity 0.55s ease, transform 0.55s ease; }
+@media (prefers-reduced-motion: reduce) { .will-reveal, .will-reveal.in { opacity: 1; transform: none; transition: none; } details.faq > summary::after { transition: none; } }
+
+@media (max-width: 760px) {
+  .px-main .steps { gap: 40px; }
+  .step { grid-template-columns: minmax(0, 1fr); padding: 20px 18px; gap: 18px; }
+  .step:nth-child(even) .step-fig { order: 0; }
+  .step-fig::before { inset: 12px -4px -8px 10px; }
+  .px-main .step h2 { font-size: 1.3rem; }
+  .step:not(:last-child)::after { height: 40px; }
+}
