@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <title>使用说明 | PIXO TAP</title>
   <meta name="description" content="PIXO TAP 使用说明：macOS、Windows 与 Linux 的安装、屏幕录制/辅助功能/相机权限、数据存放位置、隐私承诺与常见问题。">
   <link rel="canonical" href="https://pixotap.plutokeating.beer/docs/">
@@ -29,7 +29,7 @@
   <a class="px-skip" href="#main"><span data-l="zh">跳到主要内容</span><span data-l="en">Skip to main content</span></a>
   <header class="px-header" id="px-header">
   <div class="px-header-in">
-    <a class="px-brand" href="/"><img src="/favicon.png" alt="" width="28" height="28">PIXO TAP</a>
+    <a class="px-brand" href="/"><img src="/pixo-tap-assets/brand/pixo-tap-logo.png" alt="PIXO TAP" width="164" height="51"></a>
     <nav class="px-nav" id="px-nav" data-aria-zh="主导航" data-aria-en="Main navigation" aria-label="主导航"><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a><a href="/docs/" aria-current="page"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></nav>
     <label class="px-lang"><span class="sr-only"><span data-l="zh">语言</span><span data-l="en">Language</span></span><select id="px-lang"><option value="zh">中文</option><option value="en">English</option></select></label>
     <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav"><span data-l="zh">菜单</span><span data-l="en">Menu</span></button>
@@ -39,15 +39,13 @@
 <div data-l="zh" lang="zh-CN">
 <h1>使用说明</h1>
 <p class="lead">PIXO TAP 帮你在多项长期任务之间切换后接回进度。本页说明如何安装、需要哪些权限、数据放在哪里，以及常见问题。</p>
-<div class="callout"><strong>当前状态。</strong> macOS、Windows、Linux 三个平台均已提供正式安装包（版本号相互独立，以<a href="/download/">下载页</a>为准）；Android、iOS 尚未发布；实体桌宠硬件仍是概念。macOS 与 Windows 安装包目前未做 Apple / Microsoft 代码签名与公证，首次打开可能出现系统提示。Windows 1.43 安装包含可选的账号登录（邮箱与密码），但不含应用内一键更新，新版本在准备中；macOS 暂无账号登录；Linux 含邮箱账号登录。同步功能三端都尚未启用，目前为单设备，多端同步在开发中。网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。</div>
+<div class="callout"><strong>当前状态。</strong> macOS、Windows、Linux 三个平台均已提供正式安装包（版本号相互独立，以<a href="/download/">下载页</a>为准）。macOS 与 Windows 安装包目前未做 Apple / Microsoft 代码签名与公证，首次打开可能出现系统提示。Windows 1.43 安装包含可选的账号登录（邮箱与密码），但不含应用内一键更新，新版本在准备中；macOS 暂无账号登录；Linux 含邮箱账号登录。同步功能三端都尚未启用，目前为单设备，多端同步在开发中。网站上的交互演示和 Web 原型中的“识别”是模拟，不会读取你的设备。</div>
 <div class="table-wrap"><table>
 <thead><tr><th>平台</th><th>状态</th><th>获取方式</th></tr></thead>
 <tbody>
 <tr><td>macOS</td><td>已提供安装包（未签名公证）</td><td><a href="/download/">下载页</a>（.dmg），或一行命令；暂无账号登录</td></tr>
 <tr><td>Windows</td><td>已提供安装包（1.43，未签名）</td><td><a href="/download/">下载页</a>（setup.exe，另有 ZIP），或一行命令；含可选账号登录，不含应用内更新，新版本准备中</td></tr>
 <tr><td>Linux</td><td>已提供安装包（仅 x86_64）</td><td>一行命令，或在<a href="/download/">下载页</a>下载 tar.gz；含邮箱账号登录</td></tr>
-<tr><td>Android</td><td>尚未发布</td><td>暂无</td></tr>
-<tr><td>iOS</td><td>尚未发布</td><td>暂无</td></tr>
 </tbody></table></div>
 <nav class="toc" aria-label="目录"><strong>目录</strong><ol>
 <li><a href="#install">安装</a></li><li><a href="#use">基本使用</a></li><li><a href="#permissions">权限</a></li><li><a href="#data">数据存放位置</a></li><li><a href="#privacy">隐私承诺</a></li><li><a href="#faq">常见问题</a></li></ol></nav>
@@ -57,7 +55,7 @@
 <h3>macOS</h3>
 <ul>
 <li>系统要求：macOS 13 或更新，Apple 芯片与 Intel 通用。</li>
-<li>一行命令（在“终端”中运行）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install-mac | bash</code></pre></li>
+<li>一行命令（在“终端”中运行）：<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
 <li>手动安装：在<a href="/download/">下载页</a>下载 .dmg，打开后把应用拖进“应用程序”。</li>
 <li>首次打开提示：安装包未做 Apple 代码签名与公证，系统可能提示“无法验证开发者”。请在“系统设置 > 隐私与安全性”中点“仍要打开”，或在应用图标上右键选择“打开”。</li>
 <li>卸载：把应用从“应用程序”拖入废纸篓；你的数据保留在 <code>~/Library/Application Support/PixoTap</code>。</li>
@@ -145,22 +143,20 @@
 <details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥，并自行承担相应的服务费用与条款。没有密钥或断网时，仍会生成本地交接摘要，待处理的分析在联网后继续。</p></details>
 <details class="faq"><summary>Linux 上提示缺少库或没有 Secret Service 怎么办？</summary><p>按“安装”一节安装对应的运行库；需要保存 AI 密钥时，请安装并解锁 gnome-keyring 或 KWallet。没有 Secret Service 时本地记录不受影响，只是无法保存密钥与登录令牌。</p></details>
 <details class="faq"><summary>如何停止记录？</summary><p>点击“保存断点”即可；隐藏入口或退出程序也会停止记录。在 macOS 上，也可以从菜单栏笑脸结束。</p></details>
-<details class="faq"><summary>有 Linux、Android、iOS 版本吗？实体桌宠呢？</summary><p>macOS、Windows、Linux 均已提供安装包（Linux 仅 x86_64，见“安装”一节）。Android、iOS 尚未发布，网站上也不提供下载。实体桌宠硬件仍是概念，没有硬件时软件也能独立使用。</p></details>
+<details class="faq"><summary>有哪些平台的版本？</summary><p>macOS、Windows、Linux 均提供安装包（Linux 为 x86_64，见“安装”一节）。软件可以独立使用，不需要额外硬件。</p></details>
 <details class="faq"><summary>如何删除我的数据？</summary><p>本机数据：退出程序后删除上文“数据存放位置”中的目录。账号数据导出与注销请在<a href="/account/">账号中心</a>进行。</p></details>
 <p class="meta">发现说明与实际不符？以实际软件行为为准，欢迎反馈（联系方式待补充）。</p>
 </div>
 <div data-l="en" lang="en">
 <h1>Documentation</h1>
 <p class="lead">PIXO TAP helps you pick up where you left off across several long-running tasks. This page covers installation, the permissions it asks for, where your data lives, and common questions.</p>
-<div class="callout"><strong>Current status.</strong> Official installers are available on macOS, Windows and Linux (each platform has its own version; the <a href="/download/">download page</a> is authoritative). Android and iOS are not released; the physical desk companion is still a concept. The macOS and Windows installers are not yet Apple / Microsoft code-signed or notarized, so the system may show a prompt the first time you open them. The Windows 1.43 installer includes optional account sign-in (email and password) but no in-app one-click updater; a newer version is being prepared. macOS has no account sign-in yet; Linux includes email account sign-in. Sync is not enabled on any platform: PIXO TAP is single-device for now, and multi-device sync is under development. The interactive demo on the website and the "recognition" in the web prototype are simulated and do not read your device.</div>
+<div class="callout"><strong>Current status.</strong> Official installers are available on macOS, Windows and Linux (each platform has its own version; the <a href="/download/">download page</a> is authoritative). The macOS and Windows installers are not yet Apple / Microsoft code-signed or notarized, so the system may show a prompt the first time you open them. The Windows 1.43 installer includes optional account sign-in (email and password) but no in-app one-click updater; a newer version is being prepared. macOS has no account sign-in yet; Linux includes email account sign-in. Sync is not enabled on any platform: PIXO TAP is single-device for now, and multi-device sync is under development. The interactive demo on the website and the "recognition" in the web prototype are simulated and do not read your device.</div>
 <div class="table-wrap"><table>
 <thead><tr><th>Platform</th><th>Status</th><th>How to get it</th></tr></thead>
 <tbody>
 <tr><td>macOS</td><td>Installer available (not signed or notarized)</td><td><a href="/download/">Download page</a> (.dmg) or the one-line command; no account sign-in yet</td></tr>
 <tr><td>Windows</td><td>Installer available (1.43, unsigned)</td><td><a href="/download/">Download page</a> (setup.exe, plus a ZIP) or the one-line command; optional account sign-in, no in-app updater, a newer version is being prepared</td></tr>
 <tr><td>Linux</td><td>Installer available (x86_64 only)</td><td>One-line command, or the tar.gz on the <a href="/download/">download page</a>; includes email account sign-in</td></tr>
-<tr><td>Android</td><td>Not released</td><td>None yet</td></tr>
-<tr><td>iOS</td><td>Not released</td><td>None yet</td></tr>
 </tbody></table></div>
 <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol>
 <li><a href="#install">Install</a></li><li><a href="#use">Basics</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#data">Where data is stored</a></li><li><a href="#privacy">Privacy commitments</a></li><li><a href="#faq">FAQ</a></li></ol></nav>
@@ -170,7 +166,7 @@
 <h3>macOS</h3>
 <ul>
 <li>Requirements: macOS 13 or newer; universal for Apple silicon and Intel.</li>
-<li>One-line command (run in Terminal):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install-mac | bash</code></pre></li>
+<li>One-line command (run in Terminal):<pre><code>curl -fsSL https://pixotap.plutokeating.beer/install | bash</code></pre></li>
 <li>Manual install: download the .dmg from the <a href="/download/">download page</a>, open it and drag the app into Applications.</li>
 <li>First-open prompt: the installer is not Apple code-signed or notarized, so the system may say it cannot verify the developer. Choose "Open Anyway" in System Settings > Privacy &amp; Security, or right-click the app and choose Open.</li>
 <li>Uninstall: drag the app from Applications to the Trash; your data stays in <code>~/Library/Application Support/PixoTap</code>.</li>
@@ -258,14 +254,14 @@
 <details class="faq"><summary>What do the AI features need?</summary><p>Your own DeepSeek API key; you are responsible for that service's fees and terms. Without a key or when offline, a local hand-off summary is still produced and pending analysis resumes once you are online.</p></details>
 <details class="faq"><summary>On Linux, a library is missing or there is no Secret Service. What now?</summary><p>Install the libraries listed under Install; to save an AI key, install and unlock gnome-keyring or KWallet. Without a Secret Service local records still work, you just cannot save keys or sign-in tokens.</p></details>
 <details class="faq"><summary>How do I stop recording?</summary><p>Click Save checkpoint. Hiding the entry or quitting also stops recording. On macOS you can also end it from the menu-bar smiley.</p></details>
-<details class="faq"><summary>Are there Linux, Android or iOS versions? What about the hardware?</summary><p>Installers exist for macOS, Windows and Linux (Linux is x86_64 only; see Install). Android and iOS are unreleased and nothing is offered for download. The physical desk companion is still a concept; the software works on its own without it.</p></details>
+<details class="faq"><summary>Which platforms are supported?</summary><p>Installers are available for macOS, Windows and Linux (Linux is x86_64; see Install). The software works on its own and needs no extra hardware.</p></details>
 <details class="faq"><summary>How do I delete my data?</summary><p>Local data: quit the app and delete the folders listed under Where data is stored. Account data export and deletion are done in the <a href="/account/">account centre</a>.</p></details>
 <p class="meta">Spotted a mismatch between this page and the app? The app's actual behaviour wins; feedback is welcome (contact details to be added).</p>
 </div>
   </main>
   <footer class="px-footer">
   <div class="px-footer-in">
-    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">macOS、Windows、Linux 均提供安装包；Android、iOS 尚未发布；实体桌宠硬件仍是概念。</span><span data-l="en">Installers are available for macOS, Windows and Linux; Android and iOS are not released; the physical desk companion is still a concept.</span></p></div>
+    <div class="px-footer-brand"><strong>PIXO TAP</strong><p><span data-l="zh">PIXO TAP：把多线程的任务，收束成清楚的下一步。</span><span data-l="en">PIXO TAP: bring many threads of work back to one clear next step.</span></p></div>
     <nav aria-label="站点链接" data-aria-zh="站点链接" data-aria-en="Site links"><ul class="px-footer-links"><li><a href="/"><span data-l="zh">首页</span><span data-l="en">Home</span></a></li><li><a href="/download/"><span data-l="zh">下载</span><span data-l="en">Download</span></a></li><li><a href="/docs/" aria-current="page"><span data-l="zh">使用说明</span><span data-l="en">Docs</span></a></li><li><a href="/account/"><span data-l="zh">账号</span><span data-l="en">Account</span></a></li><li><a href="/about/"><span data-l="zh">关于我们</span><span data-l="en">About</span></a></li><li><a href="/privacy/"><span data-l="zh">隐私政策</span><span data-l="en">Privacy</span></a></li><li><a href="/terms/"><span data-l="zh">用户协议</span><span data-l="en">Terms</span></a></li></ul></nav>
   </div>
 </footer>

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-13T22:39:53.074Z",
+  "generated_at": "2026-10-13T23:12:21.818Z",
   "items": [
     {
       "version": "1.44.0",
       "published_at": "2026-10-13T22:39:21Z",
-      "notes_md": "# PixoTap 1.44.0（macOS）\n\n## 安装\n\n推荐一行命令（自动校验 SHA-256，装到“应用程序”，不需要管理员密码）：\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install-mac | bash\n```\n\n也可以手动下载 `PixoTap-1.44.0-mac-universal.dmg`，用 `SHA256SUMS.txt` 校验后打开，把 PixoTap 拖进“应用程序”。\n\n要求：macOS 13 或更高版本，同时支持 Apple 芯片与 Intel（通用二进制）。\n\n## 本版内容\n\n- **主窗口**：新增不依赖灵动岛的主窗口，含“工作台 / 入口 / 设置”，没有 GPU 加速（Metal）的环境下也能使用。\n- **灵动岛与桌宠**：屏幕顶部的灵动岛与桌面桌宠入口，需要支持 Metal 的 Mac。\n- 项目与子项目、开始与结束记录、保存断点、回顾与手记、暂放文件、专注计时、聊一聊（使用你自己的 DeepSeek 密钥，保存在系统钥匙串）。\n- 修复在没有 Metal 设备的环境（例如未直通 GPU 的虚拟机）中启动即崩溃的问题。\n\n## 已知限制\n\n- **安装包未做 Apple 开发者签名与公证**。通过一行安装命令安装不会触发系统隔离提示；手动下载的 DMG 首次打开时，需要按住 Control 点击应用并选择“打开”。\n- 目前没有账号登录与多设备同步；这两项在其它平台上线后会陆续补齐。\n- 桌宠与灵动岛在真实硬件上的完整体验未在本次发布前逐项验收；主窗口在无 GPU 环境下已验证可启动。\n\n## 校验\n\n用 `SHA256SUMS.txt` 校验：`shasum -a 256 -c SHA256SUMS.txt`。\n",
+      "notes_md": "# PixoTap 1.44.0（macOS）\n\n## 安装\n\n推荐一行命令（自动校验 SHA-256，装到“应用程序”，不需要管理员密码）：\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install-mac | bash\n```\n\n也可以手动下载 `PixoTap-1.44.0-mac-universal.dmg`，用 `SHA256SUMS.txt` 校验后打开，把 PixoTap 拖进“应用程序”。\n\n要求：macOS 13 或更高版本，同时支持 Apple 芯片与 Intel（通用二进制）。\n\n## 本版内容\n\n- **主窗口**：新增不依赖灵动岛的主窗口，含“工作台 / 入口 / 设置”，没有 GPU 加速（Metal）的环境下也能使用。\n- **灵动岛与桌宠**：屏幕顶部的灵动岛与桌面桌宠入口，需要支持 Metal 的 Mac。\n- 项目与子项目、开始与结束记录、保存断点、回顾与手记、暂放文件、专注计时、聊一聊（使用你自己的 DeepSeek 密钥，保存在系统钥匙串）。\n- 修复在没有 Metal 设备的环境（例如未直通 GPU 的虚拟机）中启动即崩溃的问题。\n\n## 已知限制\n\n- **安装包未做 Apple 开发者签名与公证**。通过一行安装命令安装不会触发系统隔离提示；手动下载的 DMG 首次打开时，需要按住 Control 点击应用并选择“打开”。\n- 目前没有账号登录与多设备同步；这两项在其它平台上线后会陆续补齐。\n- 桌宠与灵动岛在真实硬件上的完整体验未在本次发布前逐项验收；主窗口在无 GPU 环境下已验证可启动。\n\n## 校验\n\n用 `SHA256SUMS.txt` 校验：`shasum -a 256 -c SHA256SUMS.txt`。\n\n---\n\n## Windows\n\n一行命令安装：\n\n```powershell\nirm https://pixotap.plutokeating.beer/install.ps1 | iex\n```\n\n或下载 `PixoTap-1.44.0-win-x64-setup.exe` 双击安装（每用户安装，无需管理员权限）。要求 Windows 10 / 11 x64。\n\n- 新增与 macOS 一致的主窗口（工作台 / 入口 / 设置）、新图标；设置里可选邮箱密码登录（设备授权），不登录也能使用全部本地功能。\n- 安装包未做代码签名，SmartScreen 可能提示“未知发布者”，请核对 `SHA256SUMS.txt`。\n",
       "prerelease": false,
       "assets": [
         {
@@ -26,12 +26,21 @@
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/PixoTap-1.44.0-mac-universal.zip"
         },
         {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.44.0-win-x64-setup.exe",
+          "size": 94548426,
+          "sha256": "5dad4853e3dd4951ff0c8025a7e32f2d6589874eefc8c4b94b37d992e8b68148",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/PixoTap-1.44.0-win-x64-setup.exe"
+        },
+        {
           "platform": "other",
           "arch": "unknown",
           "kind": "checksum",
           "name": "SHA256SUMS.txt",
-          "size": 313,
-          "sha256": "20e38c61bbd1c11c3b8c0605ad89ebd02f72d025fd2dece9caab4211076093b2",
+          "size": 412,
+          "sha256": "744777fa14de393ad6865e64a2cd94b42527172bc1f995e1443278e1612dd9c3",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/SHA256SUMS.txt"
         },
         {
@@ -40,7 +49,7 @@
           "kind": "signature",
           "name": "SHA256SUMS.txt.sig",
           "size": 97,
-          "sha256": "7ca672ece73280e427b2ae1d4c5c9e95bc760541b29634f04bb737da16074f5f",
+          "sha256": "674119f1e883bc1af6edf5217254f9fc8c09e90acee3da7ab0a9a921ef8c2787",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.44.0/SHA256SUMS.txt.sig"
         }
       ]

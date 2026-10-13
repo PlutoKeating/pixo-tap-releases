@@ -43,7 +43,7 @@ function Install-PixoTap {
     # 老版本 Windows PowerShell 默认不启用 TLS 1.2，GitHub 只接受 TLS 1.2+。
     try { [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 3072 } catch { }
 
-    if ($env:OS -ne 'Windows_NT') { Stop-Install '这个脚本只适用于 Windows。macOS 请用 install-mac，Linux 请用 install。' }
+    if ($env:OS -ne 'Windows_NT') { Stop-Install '这个脚本只适用于 Windows。macOS 与 Linux 请在终端运行：curl -fsSL https://pixotap.plutokeating.beer/install | bash' }
 
     # ------------------------------------------------------------ 卸载
     if ($Uninstall) {

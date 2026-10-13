@@ -1,21 +1,31 @@
 #!/usr/bin/env bash
-# PixoTap Linux 一键安装脚本。
+# PixoTap 一键安装脚本（macOS 与 Linux 共用一份，bash 3.2 兼容）。
 #
 #   curl -fsSL https://pixotap.plutokeating.beer/install | bash
 #   curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --version <tag>
 #   curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall
 #
-# 只依赖 curl、tar、sha256sum；不需要 root，不会调用 sudo。
-# 安装到 ~/.local/share/pixotap（符号链接 ~/.local/bin/pixotap，桌面入口与图标在 ~/.local/share）。
-# 版本不写死：运行时通过 GitHub 公开 API 找到包含 linux-x86_64 tar.gz 的最新 release，
-# 下载后用同一个 release 里的 SHA256SUMS.txt 校验，校验失败立即中止且不改动已安装的版本。
+# 脚本按 uname 自行判断系统：
+#   macOS（Darwin，arm64 / x86_64）  universal DMG（mac-universal.dmg）；PixoTap.app 装到 /Applications，
+#                                    不可写时改装到 ~/Applications；只用 curl、shasum、hdiutil、ditto。
+#   Linux（x86_64，glibc 2.39+）     linux-x86_64 tar.gz；每用户安装到 ~/.local/share/pixotap，
+#                                    符号链接 ~/.local/bin/pixotap，桌面入口与图标在 ~/.local/share；
+#                                    只用 curl、tar、sha256sum。
+#   其它系统（含 Windows 的 Git Bash / MSYS / Cygwin）  不安装，只提示 Windows 命令与下载页。
+# 两个系统都不需要 root，也不会调用 sudo。
+# 版本不写死：运行时通过 GitHub 公开 API 查询发布仓库，选取含本系统安装包的最新 release，
+# 用同一个 release 里的 SHA256SUMS.txt 校验 SHA-256，校验失败立即中止且不改动已安装的版本。
+# 注意：本脚本只校验 SHA-256，不验证 SHA256SUMS.txt.sig 签名（有签名清单时会提示）。
+# 用户数据不在安装目录内，替换与卸载都不会动它。
+# macOS 提示：安装包暂未公证，首次打开时 macOS 可能提示「无法验证开发者」，
+# 请在 访达 中右键点击 PixoTap 选择「打开」，或到 系统设置 > 隐私与安全性 中点「仍要打开」。
 #
 # 选项：
-#   --version <tag>   安装指定 release（tag 名，如 v0.1.0）
-#   --stable-only     忽略预发布版本（默认允许预发布并给出提示）
-#   --force           即使已是同一版本也重新安装
-#   --dry-run         只查找并打印将要执行的动作，不下载、不改动任何文件
-#   --uninstall       卸载（保留用户数据 ~/.local/share/PixoTap）
+#   --version <tag>   安装指定 release（tag 名，如 v1.0.0）
+#   --stable-only     忽略预发布版本（Linux 默认允许预发布并给出提示；macOS 默认就只装正式版）
+#   --force           即使已是同一版本也重新安装（macOS 本来每次都会重新安装）
+#   --dry-run         只查询并打印将要执行的动作，不下载、不改动任何文件
+#   --uninstall       卸载（保留用户数据）
 #   -h, --help        显示帮助
 # 环境变量：
 #   PIXO_RELEASES_REPO  发布仓库，默认 PlutoKeating/pixo-tap-releases
@@ -25,13 +35,17 @@
 set -euo pipefail
 
 DEFAULT_REPO="PlutoKeating/pixo-tap-releases"
+SITE_URL="https://pixotap.plutokeating.beer"
 APP_ID="beer.plutokeating.pixotap"
 MIN_GLIBC="2.39"
+MAC_APP_NAME="PixoTap.app"
 
 REPO="${PIXO_RELEASES_REPO:-$DEFAULT_REPO}"
 API_BASE="${PIXO_GITHUB_API:-https://api.github.com}"
-DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-BIN_DIR="$HOME/.local/bin"
+
+# 以下 Linux 路径只在 Linux 分支使用。
+DATA_HOME="${XDG_DATA_HOME:-${HOME:-}/.local/share}"
+BIN_DIR="${HOME:-}/.local/bin"
 INSTALL_ROOT="$DATA_HOME/pixotap"
 APP_DIR="$INSTALL_ROOT/app"
 DESKTOP_FILE="$DATA_HOME/applications/$APP_ID.desktop"
@@ -44,6 +58,13 @@ FORCE=0
 DRY_RUN=0
 DO_UNINSTALL=0
 WORK_DIR=""
+MOUNT_POINT=""
+TARGET_DIR=""
+
+# 由 detect_platform 设置：macos | linux
+PLATFORM=""
+ASSET_RE=""      # awk 正则：匹配本系统安装包的资产名
+ASSET_LABEL=""   # 给人看的安装包名称
 
 if [ -t 2 ]; then
   C_RED=$'\033[31m'; C_GRN=$'\033[32m'; C_YEL=$'\033[33m'; C_OFF=$'\033[0m'
@@ -58,31 +79,85 @@ die() { printf '%s错误：%s%s\n' "$C_RED" "$*" "$C_OFF" >&2; exit 1; }
 
 # shellcheck disable=SC2329  # 通过 trap 调用
 cleanup() {
+  if [ -n "$MOUNT_POINT" ] && [ -d "$MOUNT_POINT" ]; then
+    hdiutil detach "$MOUNT_POINT" -quiet >/dev/null 2>&1 || hdiutil detach "$MOUNT_POINT" -force -quiet >/dev/null 2>&1 || true
+  fi
   if [ -n "$WORK_DIR" ] && [ -d "$WORK_DIR" ]; then
     rm -rf "$WORK_DIR"
   fi
 }
 
+# 用 heredoc 而不是读脚本自身：curl | bash 时 $0 不是脚本文件。
 usage() {
-  sed -n '2,26p' "$0" 2>/dev/null | sed 's/^# \{0,1\}//' || true
+  cat >&2 <<'USAGE'
+PixoTap 一键安装脚本（macOS 与 Linux，自动判断系统）
+
+  curl -fsSL https://pixotap.plutokeating.beer/install | bash
+  curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --version <tag>
+  curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall
+
+选项：
+  --version <tag>   安装指定 release（tag 名，如 v1.0.0）
+  --stable-only     忽略预发布版本（Linux 默认允许预发布；macOS 默认只装正式版）
+  --force           即使已是同一版本也重新安装
+  --dry-run         只查询并打印将要执行的动作，不下载、不改动任何文件
+  --uninstall       卸载（保留用户数据）
+  -h, --help        显示帮助
+环境变量：
+  PIXO_RELEASES_REPO  发布仓库，默认 PlutoKeating/pixo-tap-releases
+  GITHUB_TOKEN        可选；仅用于 API 请求以提高限流额度
+Windows 请在 PowerShell 中运行：irm https://pixotap.plutokeating.beer/install.ps1 | iex
+USAGE
 }
 
-manual_hint() {
-  info "手工安装：打开 https://github.com/$REPO/releases ，下载 PixoTap-*-linux-x86_64.tar.gz 与 SHA256SUMS.txt，"
-  info "用 sha256sum -c 校验后解压，再运行包内的 install.sh（或把 bin/pixotap 放到 PATH 中）。"
+unsupported_system() { # $1 = 原因
+  info "错误：$1"
+  info ""
+  info "这个一键安装脚本只支持 macOS 与 Linux（x86_64）。"
+  info "如果你在 Windows 上，请打开 PowerShell 运行："
+  info "    irm $SITE_URL/install.ps1 | iex"
+  info "其它系统或想手工下载安装包：$SITE_URL/download/"
+  exit 1
 }
 
-# ---------------------------------------------------------------- 环境检查
+# ---------------------------------------------------------------- 系统判断
+
+detect_platform() {
+  local os arch
+  os="$(uname -s 2>/dev/null || echo unknown)"
+  arch="$(uname -m 2>/dev/null || echo unknown)"
+  case "$os" in
+    Darwin)
+      case "$arch" in
+        arm64|x86_64) ;;
+        *) unsupported_system "不支持的 macOS 架构：${arch}（只支持 arm64 与 x86_64）。" ;;
+      esac
+      PLATFORM="macos"
+      ASSET_RE='^PixoTap-.*mac-universal[.]dmg$'
+      ASSET_LABEL="macOS 安装包（mac-universal.dmg）"
+      STABLE_ONLY=1 # macOS 一直只选正式版；指定 --version 时不受此限
+      ;;
+    Linux)
+      [ "$arch" = "x86_64" ] || unsupported_system "目前只提供 x86_64 构建（当前架构：${arch}）。"
+      PLATFORM="linux"
+      ASSET_RE='linux-x86_64.*[.]tar[.]gz$'
+      ASSET_LABEL="linux-x86_64 安装包"
+      ;;
+    MINGW*|MSYS*|CYGWIN*)
+      unsupported_system "检测到 Windows 环境（${os}），请不要在 Git Bash / MSYS / Cygwin 里运行本脚本。"
+      ;;
+    *)
+      unsupported_system "不支持的系统：${os}（${arch}）。"
+      ;;
+  esac
+  [ -n "${HOME:-}" ] || die "没有 HOME 环境变量，无法确定安装位置。"
+}
 
 need_cmd() {
-  command -v "$1" >/dev/null 2>&1 || die "缺少命令 $1。请先安装它（例如 sudo apt install $2）后重试。"
+  command -v "$1" >/dev/null 2>&1 || die "缺少命令 $1。${2:+请先安装它（例如 sudo apt install $2）后重试。}"
 }
 
-check_platform() {
-  [ "$(uname -s)" = "Linux" ] || die "PixoTap 的 Linux 版只支持 Linux（当前是 $(uname -s)）。"
-  local arch
-  arch="$(uname -m)"
-  [ "$arch" = "x86_64" ] || die "目前只提供 x86_64 构建（当前架构：$arch）。"
+check_platform_linux() {
   local ldd_out
   ldd_out="$(ldd --version 2>&1 | head -n 1 || true)"
   if printf '%s' "$ldd_out" | grep -qi musl; then
@@ -93,7 +168,7 @@ check_platform() {
   if [ -n "$glibc" ]; then
     local lowest
     lowest="$(printf '%s\n%s\n' "$MIN_GLIBC" "$glibc" | sort -V | head -n 1)"
-    [ "$lowest" = "$MIN_GLIBC" ] || die "glibc 版本过低（$glibc），本构建需要 ${MIN_GLIBC}+（Ubuntu 24.04 或更新）。"
+    [ "$lowest" = "$MIN_GLIBC" ] || die "glibc 版本过低（${glibc}），本构建需要 ${MIN_GLIBC}+（Ubuntu 24.04 或更新）。"
   else
     warn "无法识别 glibc 版本，继续安装；若启动失败请确认系统为 Ubuntu 24.04 或更新。"
   fi
@@ -101,7 +176,15 @@ check_platform() {
   need_cmd tar tar
   need_cmd sha256sum coreutils
   need_cmd gzip gzip
-  [ -n "${HOME:-}" ] || die "没有 HOME 环境变量，无法确定安装位置。"
+}
+
+check_platform_macos() {
+  need_cmd curl
+  if [ "$DRY_RUN" != 1 ]; then
+    need_cmd shasum
+    need_cmd hdiutil
+    need_cmd ditto
+  fi
 }
 
 # 只允许 https，或本机回环地址的 http（仅用于本地测试服务器）。
@@ -111,6 +194,29 @@ url_ok() {
     http://127.0.0.1:*|http://127.0.0.1/*|http://localhost:*|http://localhost/*) return 0 ;;
     *) return 1 ;;
   esac
+}
+
+# 资产下载地址：Linux 沿用 url_ok；macOS 更严，只接受 https://github.com/（测试时设了 PIXO_GITHUB_API 才放开回环 http）。
+asset_url_ok() {
+  if [ "$PLATFORM" = "macos" ]; then
+    case "$1" in
+      https://github.com/*) return 0 ;;
+      http://127.0.0.1:*|http://127.0.0.1/*|http://localhost:*|http://localhost/*) [ -n "${PIXO_GITHUB_API:-}" ] ;;
+      *) return 1 ;;
+    esac
+  else
+    url_ok "$1"
+  fi
+}
+
+manual_hint() {
+  if [ "$PLATFORM" = "macos" ]; then
+    info "手工安装：打开 https://github.com/$REPO/releases ，下载 PixoTap-*-mac-universal.dmg 与 SHA256SUMS.txt，"
+    info "用 shasum -a 256 校验后打开 DMG，把 PixoTap 拖到「应用程序」。"
+  else
+    info "手工安装：打开 https://github.com/$REPO/releases ，下载 PixoTap-*-linux-x86_64.tar.gz 与 SHA256SUMS.txt，"
+    info "用 sha256sum -c 校验后解压，再运行包内的 install.sh（或把 bin/pixotap 放到 PATH 中）。"
+  fi
 }
 
 # ---------------------------------------------------------------- 发现发布版本
@@ -158,21 +264,30 @@ PICKED_PRE=""
 PICKED_TAR_NAME=""
 PICKED_TAR_URL=""
 PICKED_SUMS_URL=""
+PICKED_SIG_URL=""
 
 asset_url() { # $1 = 资产列表 "a=url;b=url;"  $2 = 资产名
   printf '%s' "$1" | tr ';' '\n' | awk -F= -v n="$2" '$1 == n { sub(/^[^=]*=/, ""); print; exit }'
+}
+
+# 请求 GitHub API；有 GITHUB_TOKEN 时带上（bash 3.2 下空数组在 set -u 里会报错，所以分两个分支）。
+api_get() { # $1 = url  $2 = 输出文件；打印 HTTP 状态码
+  if [ -n "${GITHUB_TOKEN:-}" ]; then
+    curl -sS --connect-timeout 15 --max-time 60 -o "$2" -w '%{http_code}' \
+      -H 'Accept: application/vnd.github+json' -A 'pixotap-install' -H "Authorization: Bearer $GITHUB_TOKEN" "$1"
+  else
+    curl -sS --connect-timeout 15 --max-time 60 -o "$2" -w '%{http_code}' \
+      -H 'Accept: application/vnd.github+json' -A 'pixotap-install' "$1"
+  fi
 }
 
 find_release() {
   local url="$API_BASE/repos/$REPO/releases?per_page=100"
   url_ok "$url" || die "不安全的 API 地址：$url"
   local body="$WORK_DIR/releases.json" code
-  local -a auth=()
-  if [ -n "${GITHUB_TOKEN:-}" ]; then auth=(-H "Authorization: Bearer $GITHUB_TOKEN"); fi
   info "正在查询 $REPO 的发布版本……"
-  if ! code="$(curl -sS --connect-timeout 15 --max-time 60 -o "$body" -w '%{http_code}' \
-        -H 'Accept: application/vnd.github+json' "${auth[@]}" "$url")"; then
-    info "无法连接 GitHub（$API_BASE）。请检查网络或代理设置。"
+  if ! code="$(api_get "$url" "$body")"; then
+    info "无法连接 GitHub（${API_BASE}）。请检查网络或代理设置。"
     manual_hint
     exit 1
   fi
@@ -180,29 +295,33 @@ find_release() {
     200) ;;
     403|429)
       if grep -qi 'rate limit' "$body" 2>/dev/null || [ "$code" = 429 ]; then
-        info "GitHub API 限流（HTTP $code）：匿名请求每小时有次数上限。"
+        info "GitHub API 限流（HTTP ${code}）：匿名请求每小时有次数上限。"
         info "稍后（通常一小时内）重试；或设置 GITHUB_TOKEN 后重试：GITHUB_TOKEN=xxx bash install.sh"
       else
-        info "GitHub 拒绝了请求（HTTP $code）。"
+        info "GitHub 拒绝了请求（HTTP ${code}）。"
       fi
       manual_hint
       exit 1
       ;;
     404)
-      info "找不到发布仓库 $REPO（HTTP 404），或它还没有任何 release。"
+      info "找不到发布仓库 ${REPO}（HTTP 404），或它还没有任何 release。"
       manual_hint
       exit 1
       ;;
     *)
-      info "GitHub API 返回了意外状态 HTTP $code。"
+      info "GitHub API 返回了意外状态 HTTP ${code}。"
       manual_hint
       exit 1
       ;;
   esac
-  local line tag draft pre assets tar_name sums_url tar_url
+  # 先解析成逐行文件，再用文件重定向读取（不用进程替换 / here-string，兼容 bash 3.2）。
+  local rows="$WORK_DIR/releases.rows" line tag draft pre assets name sums_url
+  parse_releases <"$body" >"$rows"
   while IFS= read -r line; do
     [ -n "$line" ] || continue
-    IFS='|' read -r tag draft pre assets <<<"$line"
+    IFS='|' read -r tag draft pre assets <<EOT
+$line
+EOT
     [ -n "$tag" ] || continue
     [ "$draft" != "true" ] || continue
     if [ -n "$WANT_VERSION" ] && [ "$tag" != "$WANT_VERSION" ] && [ "$tag" != "v${WANT_VERSION#v}" ]; then
@@ -211,33 +330,39 @@ find_release() {
     if [ "$STABLE_ONLY" = 1 ] && [ "$pre" = "true" ] && [ -z "$WANT_VERSION" ]; then
       continue
     fi
-    tar_name="$(printf '%s' "$assets" | tr ';' '\n' | awk -F= '$1 ~ /linux-x86_64.*\.tar\.gz$/ { print $1; exit }')"
-    [ -n "$tar_name" ] || continue
-    tar_url="$(asset_url "$assets" "$tar_name")"
+    name="$(printf '%s' "$assets" | tr ';' '\n' | awk -F= -v re="$ASSET_RE" '$1 ~ re { print $1; exit }')"
+    [ -n "$name" ] || continue
+    PICKED_TAG="$tag"; PICKED_PRE="$pre"; PICKED_TAR_NAME="$name"
+    PICKED_TAR_URL="$(asset_url "$assets" "$name")"
     sums_url="$(asset_url "$assets" "SHA256SUMS.txt")"
-    PICKED_TAG="$tag"; PICKED_PRE="$pre"; PICKED_TAR_NAME="$tar_name"
-    PICKED_TAR_URL="$tar_url"; PICKED_SUMS_URL="$sums_url"
+    PICKED_SUMS_URL="$sums_url"
+    PICKED_SIG_URL="$(asset_url "$assets" "SHA256SUMS.txt.sig")"
     break
-  done < <(parse_releases <"$body")
+  done <"$rows"
   if [ -z "$PICKED_TAG" ]; then
     if [ -n "$WANT_VERSION" ]; then
-      die "在 $REPO 里没有找到版本 $WANT_VERSION 的 linux-x86_64 安装包。"
+      die "在 $REPO 里没有找到版本 $WANT_VERSION 的 ${ASSET_LABEL}。"
     fi
-    info "$REPO 里还没有包含 linux-x86_64 安装包的 release。"
+    if [ "$PLATFORM" = "macos" ]; then
+      info "暂无 macOS 发布：$REPO 里还没有包含 mac-universal.dmg 的正式 release。"
+    else
+      info "$REPO 里还没有包含 $ASSET_LABEL 的 release。"
+    fi
     manual_hint
     exit 1
   fi
   [ -n "$PICKED_SUMS_URL" ] || die "release $PICKED_TAG 缺少 SHA256SUMS.txt，出于安全不会安装未校验的文件。"
-  url_ok "$PICKED_TAR_URL" || die "不安全的下载地址：$PICKED_TAR_URL"
-  url_ok "$PICKED_SUMS_URL" || die "不安全的校验文件地址：$PICKED_SUMS_URL"
+  case "$PICKED_TAR_NAME" in *[!A-Za-z0-9._-]*) die "安装包文件名不合法：$PICKED_TAR_NAME" ;; esac
+  asset_url_ok "$PICKED_TAR_URL" || die "不安全的下载地址：$PICKED_TAR_URL"
+  asset_url_ok "$PICKED_SUMS_URL" || die "不安全的校验文件地址：$PICKED_SUMS_URL"
 }
 
 # ---------------------------------------------------------------- 下载与校验
 
 download() { # $1 url $2 目标文件
-  local -a progress=(-sS)
-  if [ -t 2 ]; then progress=(--progress-bar); fi
-  if ! curl -fL "${progress[@]}" --retry 2 --connect-timeout 15 --max-time 900 -o "$2" "$1"; then
+  local progress="-sS"
+  if [ -t 2 ]; then progress="--progress-bar"; fi
+  if ! curl -fL "$progress" --retry 2 --connect-timeout 15 --max-time 900 -A 'pixotap-install' -o "$2" "$1"; then
     info "下载失败：$1"
     manual_hint
     exit 1
@@ -250,7 +375,11 @@ verify_sha256() { # $1 文件  $2 SHA256SUMS.txt  $3 资产名
   if [ -z "$expected" ]; then
     die "SHA256SUMS.txt 里没有 $3 的校验值，已中止（未改动已安装的版本）。"
   fi
-  actual="$(sha256sum "$1" | awk '{ print tolower($1) }')"
+  if command -v sha256sum >/dev/null 2>&1; then
+    actual="$(sha256sum "$1" | awk '{ print tolower($1) }')"
+  else
+    actual="$(shasum -a 256 "$1" | awk '{ print tolower($1) }')"
+  fi
   if [ "$expected" != "$actual" ]; then
     info "期望：$expected"
     info "实际：$actual"
@@ -259,7 +388,7 @@ verify_sha256() { # $1 文件  $2 SHA256SUMS.txt  $3 资产名
   ok "SHA256 校验通过。"
 }
 
-# ---------------------------------------------------------------- 安装
+# ---------------------------------------------------------------- Linux 安装
 
 installed_version() {
   if [ -f "$APP_DIR/VERSION" ]; then cat "$APP_DIR/VERSION"; fi
@@ -322,13 +451,11 @@ install_package() {
   if ! mv "$stage" "$APP_DIR"; then
     [ -z "$old" ] || mv "$old" "$APP_DIR"
     rm -rf "$stage"
-    die "无法写入 $APP_DIR，已还原。"
+    die "无法写入 ${APP_DIR}，已还原。"
   fi
   [ -z "$old" ] || rm -rf "$old"
   integrate
 }
-
-# ---------------------------------------------------------------- 依赖提示（不自动 sudo）
 
 distro_family() {
   local id="" like=""
@@ -428,8 +555,6 @@ check_runtime() {
   return "$problems"
 }
 
-# ---------------------------------------------------------------- 卸载
-
 do_uninstall() {
   local -a targets=("$APP_DIR" "$DESKTOP_FILE")
   local dir
@@ -465,6 +590,70 @@ do_uninstall() {
   info "DeepSeek 密钥与登录令牌在系统密钥环中（服务名 PixoTap），可用「密码和密钥」应用删除。"
 }
 
+# ---------------------------------------------------------------- macOS 安装
+
+# 目标目录：优先 /Applications；已存在于 ~/Applications 则沿用；/Applications 不可写则 ~/Applications。
+mac_pick_target() {
+  if [ -d "$HOME/Applications/$MAC_APP_NAME" ] && [ ! -d "/Applications/$MAC_APP_NAME" ]; then
+    TARGET_DIR="$HOME/Applications"
+  elif [ -w "/Applications" ]; then
+    TARGET_DIR="/Applications"
+  else
+    TARGET_DIR="$HOME/Applications"
+    warn "/Applications 不可写（不使用 sudo），改装到 ${TARGET_DIR}。"
+  fi
+}
+
+mac_quit_running() {
+  if pgrep -x "PixoTap" >/dev/null 2>&1; then
+    info "正在退出运行中的 PixoTap……"
+    osascript -e 'tell application "PixoTap" to quit' >/dev/null 2>&1 || true
+    local i=0
+    while pgrep -x "PixoTap" >/dev/null 2>&1 && [ $i -lt 15 ]; do sleep 1; i=$((i + 1)); done
+    if pgrep -x "PixoTap" >/dev/null 2>&1; then
+      die "PixoTap 仍在运行，请手动退出后重试。"
+    fi
+  fi
+}
+
+mac_install_package() {
+  local dmg_file="$WORK_DIR/$PICKED_TAR_NAME" sums_file="$WORK_DIR/SHA256SUMS.txt"
+  info "下载 $PICKED_TAR_NAME ……"
+  download "$PICKED_TAR_URL" "$dmg_file"
+  download "$PICKED_SUMS_URL" "$sums_file"
+  verify_sha256 "$dmg_file" "$sums_file" "$PICKED_TAR_NAME"
+  MOUNT_POINT="$WORK_DIR/mnt"
+  mkdir -p "$MOUNT_POINT"
+  hdiutil attach "$dmg_file" -nobrowse -readonly -noverify -mountpoint "$MOUNT_POINT" -quiet >/dev/null || { MOUNT_POINT=""; die "挂载 DMG 失败。"; }
+  [ -d "$MOUNT_POINT/$MAC_APP_NAME" ] || die "安装包结构不正确（缺少 ${MAC_APP_NAME}），已中止。"
+  mkdir -p "$TARGET_DIR"
+  local stage="$TARGET_DIR/.PixoTap-install.$$.app"
+  rm -rf "$stage"
+  ditto "$MOUNT_POINT/$MAC_APP_NAME" "$stage" || { rm -rf "$stage"; die "复制应用失败。"; }
+  if [ -d "$TARGET_DIR/$MAC_APP_NAME" ]; then
+    mac_quit_running
+    rm -rf "${TARGET_DIR:?}/$MAC_APP_NAME" || { rm -rf "$stage"; die "无法替换已有的 $TARGET_DIR/${MAC_APP_NAME}。"; }
+  fi
+  mv "$stage" "$TARGET_DIR/$MAC_APP_NAME" || { rm -rf "$stage"; die "无法放置 $TARGET_DIR/${MAC_APP_NAME}。"; }
+}
+
+mac_uninstall() {
+  local found="" d app
+  for d in "/Applications" "$HOME/Applications"; do
+    if [ -d "$d/$MAC_APP_NAME" ]; then found="$found $d/$MAC_APP_NAME"; fi
+  done
+  [ -n "$found" ] || die "没有找到已安装的 PixoTap。"
+  for app in $found; do
+    if [ "$DRY_RUN" = 1 ]; then
+      info "[dry-run] 将退出运行中的 PixoTap 并删除 ${app}（用户数据不会被删除）。"
+    else
+      mac_quit_running
+      rm -rf "$app" || die "无法删除 ${app}（权限不足？请在访达中手动移到废纸篓）。"
+      info "已删除 ${app}。你的用户数据没有被删除。"
+    fi
+  done
+}
+
 # ---------------------------------------------------------------- 主流程
 
 parse_args() {
@@ -484,14 +673,41 @@ parse_args() {
   done
 }
 
-main() {
-  parse_args "$@"
-  trap cleanup EXIT
+main_macos() {
+  if [ "$DO_UNINSTALL" = 1 ]; then
+    mac_uninstall
+    return 0
+  fi
+  check_platform_macos
+  WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pixotap-install.XXXXXX")"
+  find_release
+  info "找到版本 ${PICKED_TAG}：$PICKED_TAR_NAME"
+  if [ -n "$PICKED_SIG_URL" ]; then
+    info "该版本带有已签名清单（SHA256SUMS.txt.sig）。注意：本脚本只校验 SHA-256，未验证签名。"
+  else
+    warn "该版本没有签名清单，仅依赖 SHA-256 校验。"
+  fi
+  mac_pick_target
+  warn "安装包暂未公证；首次打开时 macOS 可能提示「无法验证开发者」，请右键点击 PixoTap 选择「打开」。"
+  if [ "$DRY_RUN" = 1 ]; then
+    info "[dry-run] 将下载：$PICKED_TAR_URL"
+    info "[dry-run] 将下载：$PICKED_SUMS_URL"
+    info "[dry-run] 将用 shasum -a 256 校验，不符则中止。"
+    info "[dry-run] 将挂载 DMG，把 $MAC_APP_NAME 复制到 ${TARGET_DIR}（已存在则先退出运行中的实例并替换，用户数据不受影响），再卸载镜像并清理临时文件。"
+    return 0
+  fi
+  mac_install_package
+  info "PixoTap $PICKED_TAG 已安装到 $TARGET_DIR/${MAC_APP_NAME}。"
+  info "打开方式：open \"$TARGET_DIR/$MAC_APP_NAME\"（首次打开请右键选择「打开」）。"
+  info "卸载：curl -fsSL $SITE_URL/install | bash -s -- --uninstall"
+}
+
+main_linux() {
   if [ "$DO_UNINSTALL" = 1 ]; then
     do_uninstall
     return 0
   fi
-  check_platform
+  check_platform_linux
   WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pixotap-install.XXXXXX")"
   find_release
   local current
@@ -501,7 +717,7 @@ main() {
   fi
   if [ "$DRY_RUN" = 1 ]; then
     info "（dry-run）不会下载或修改任何文件。将会："
-    info "  版本：$PICKED_TAG（当前已安装：${current:-无}）"
+    info "  版本：${PICKED_TAG}（当前已安装：${current:-无}）"
     info "  下载：$PICKED_TAR_URL"
     info "  校验：$PICKED_SUMS_URL"
     info "  安装到：$APP_DIR"
@@ -511,20 +727,27 @@ main() {
   fi
   mkdir -p "$INSTALL_ROOT"
   if [ "$current" = "$PICKED_TAG" ] && [ "$FORCE" = 0 ] && [ -x "$APP_DIR/bin/pixotap" ]; then
-    ok "已是最新版本 $PICKED_TAG，无需更新（--force 可强制重新安装）。"
+    ok "已是最新版本 ${PICKED_TAG}，无需更新（--force 可强制重新安装）。"
     integrate
   else
     install_package
-    if [ -n "$current" ]; then ok "已从 $current 更新到 $PICKED_TAG。"; else ok "PixoTap $PICKED_TAG 安装完成。"; fi
+    if [ -n "$current" ]; then ok "已从 $current 更新到 ${PICKED_TAG}。"; else ok "PixoTap $PICKED_TAG 安装完成。"; fi
   fi
   check_runtime || true # 只是提示，不影响安装结果
   info ""
   info "启动：在应用菜单搜索 PixoTap，或运行  $BIN_DIR/pixotap"
-  info "卸载：curl -fsSL https://pixotap.plutokeating.beer/install | bash -s -- --uninstall"
+  info "卸载：curl -fsSL $SITE_URL/install | bash -s -- --uninstall"
   if [ "$current" != "" ] && [ "$current" != "$PICKED_TAG" ]; then
     info "如果 PixoTap 正在运行，请退出后重新打开以使用新版本。"
   fi
   return 0
+}
+
+main() {
+  parse_args "$@"
+  detect_platform
+  trap cleanup EXIT
+  if [ "$PLATFORM" = "macos" ]; then main_macos; else main_linux; fi
 }
 
 # 整个脚本读完后才执行 main（防止 curl | bash 在网络中断时只执行了半截脚本）。

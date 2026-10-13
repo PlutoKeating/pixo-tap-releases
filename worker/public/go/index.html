@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN" data-title-zh="在浏览器中打开 | PIXO TAP" data-title-en="Open in your browser | PIXO TAP" data-desc-zh="用手机自带浏览器打开 PIXO TAP 官网。" data-desc-en="Open the PIXO TAP website in your phone browser.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>在浏览器中打开 | PIXO TAP</title>
+  <meta name="description" content="用手机自带浏览器打开 PIXO TAP 官网。">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/pages-assets/site.css">
+  <link rel="stylesheet" href="/pages-assets/go.css">
+  <script>try{if(localStorage.getItem('pixo-language')==='en')document.documentElement.lang='en'}catch(e){}</script>
+</head>
+<body class="go" data-state="pending">
+  <label class="go-lang"><span class="sr-only"><span data-l="zh">语言</span><span data-l="en">Language</span></span><select id="px-lang"><option value="zh">中文</option><option value="en">English</option></select></label>
+
+  <main class="go-main" id="main">
+    <section class="go-pending" data-view="pending">
+      <img class="go-logo" src="/favicon.png" alt="" width="56" height="56">
+      <p class="go-title"><span data-l="zh">正在前往 PIXO TAP 官网…</span><span data-l="en">Taking you to the PIXO TAP website…</span></p>
+      <p><a class="px-btn px-btn-primary" data-go-target href="/"><span data-l="zh">没有自动跳转？点这里</span><span data-l="en">Not redirected? Tap here</span></a></p>
+      <noscript><p><span data-l="zh">需要启用 JavaScript 才能自动跳转；也可以直接访问首页。</span><span data-l="en">JavaScript is needed for the automatic redirect; you can also open the home page directly.</span></p></noscript>
+    </section>
+
+    <section class="go-guide" data-view="guide" hidden aria-labelledby="go-h1">
+      <div class="go-pointer" aria-hidden="true">
+        <span class="go-dots">···</span>
+        <svg class="go-arrow" viewBox="0 0 64 96" width="64" height="96" focusable="false"><path d="M32 92 V16" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M12 34 L32 10 L52 34" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="go-card">
+        <img class="go-logo" src="/favicon.png" alt="" width="48" height="48">
+        <h1 id="go-h1"><span data-l="zh">请在浏览器中打开</span><span data-l="en">Please open this in your browser</span></h1>
+        <p class="go-lead"><span data-l="zh">微信 / QQ 内置浏览器暂时无法直接打开本站，换到手机自带的浏览器就能正常访问。</span><span data-l="en">The built-in WeChat / QQ browser cannot open this site directly. Your phone’s own browser can.</span></p>
+        <ol class="go-steps">
+          <li><span data-l="zh">点击屏幕<strong>右上角</strong>的「<strong>···</strong>」</span><span data-l="en">Tap the “<strong>···</strong>” at the <strong>top right</strong> of the screen</span></li>
+          <li><span data-l="zh">选择「<strong>在浏览器中打开</strong>」</span><span data-l="en">Choose “<strong>Open in browser</strong>”</span></li>
+        </ol>
+        <p class="go-tip" data-only="ios" hidden><span data-l="zh">iPhone 上这一项可能叫「在默认浏览器中打开」或「在 Safari 中打开」。</span><span data-l="en">On iPhone this may read “Open in default browser” or “Open in Safari”.</span></p>
+
+        <div class="go-link">
+          <p class="go-link-label"><span data-l="zh">或复制链接，到浏览器地址栏粘贴打开：</span><span data-l="en">Or copy the link and paste it in your browser:</span></p>
+          <code class="go-url" data-go-link>/</code>
+          <button class="px-btn px-btn-primary go-copy" id="go-copy" type="button"><span data-l="zh">复制链接</span><span data-l="en">Copy link</span></button>
+          <p class="go-status" id="go-copy-status" role="status" aria-live="polite"></p>
+          <span hidden data-say="ok"><span data-l="zh">已复制，请打开浏览器粘贴访问</span><span data-l="en">Copied. Paste it into your browser.</span></span>
+          <span hidden data-say="fail"><span data-l="zh">复制失败，请长按上面的链接手动复制</span><span data-l="en">Copy failed. Press and hold the link above to copy it.</span></span>
+        </div>
+
+        <div class="go-android" data-only="android" hidden>
+          <button class="px-btn go-intent" id="go-intent" type="button"><span data-l="zh">尝试用系统浏览器打开</span><span data-l="en">Try opening in the system browser</span></button>
+          <p class="go-tip"><span data-l="zh">部分手机与微信版本会拦截这个跳转；没有反应时请用上面的两种方式。</span><span data-l="en">Some phones and WeChat versions block this jump. If nothing happens, use one of the two methods above.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/pages-assets/site.js" defer></script>
+  <script src="/pages-assets/go.js" defer></script>
+</body>
+</html>
