@@ -110,12 +110,8 @@
 
 
     /* 全局页顶/页脚来自共享的 px-chrome 块（sites/pages/assets/shell.css 为唯一来源）；首页只做两处适配：页顶固定在滚动场景之上、页脚紧贴上一节。 */
-    .px-header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; }
-    .px-footer { margin-top: 0; }
-    .home-chips { position: fixed; z-index: 89; top: 78px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; max-width: calc(100vw - 24px); }
-    .home-chips a { padding: 5px 14px; border: 1px solid rgba(24,25,21,.18); border-radius: 999px; background: rgba(255,255,255,.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap; }
-    .home-chips a:hover { background: var(--yellow); }
-    @media (max-width: 900px) { .home-chips { display: none; } }
+    body > .px-header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; }
+    body > .px-footer { margin-top: 0; }
 
     .section-shell {
       width: min(1180px, calc(100% - 36px));
@@ -1577,13 +1573,6 @@
       <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav">菜单</button>
     </div>
   </header>
-  <nav class="home-chips" aria-label="页内导航">
-    <a href="#product-overview">产品</a>
-    <a href="#pain">为什么多线程变难</a>
-    <a href="#how">怎么变成下一步</a>
-    <a href="#solution">选择搭子</a>
-  </nav>
-
   <main id="main">
     <section class="hero" id="top" aria-label="红色 PIXO TAP 桌宠陪伴学生学习的场景">
       <div class="hero-sticky">
@@ -2014,7 +2003,6 @@
         "PIXO TAP 首页": "PIXO TAP home",
         "主导航": "Main navigation",
         "站点导航": "Site navigation",
-        "页内导航": "On-page navigation",
         "站点链接": "Site links",
         "选择搭子": "Choose your companion",
         "语言选择": "Language selector",
@@ -2565,6 +2553,151 @@
           }
         }
       });
+    })();
+  </script>
+  <script>
+    // 滚动吸附（画面磁吸）：用户每次滚动（滚轮 / 触摸 / 键盘 / 滚动条）停下后，自动平滑吸到“下一个关键画面”，
+    // 不会停在两屏之间或动画未完成的中间态。吸附点在每次停下时按当前布局实时计算（见 sites/landing/docs/README.md 的“关键画面清单”）。
+    // 方向感：向下滚就吸向下一个，向上滚就吸向上一个；页脚附近（最后一个吸附点之后）自由滚动。
+    // 刻意不用 CSS scroll-snap：首页有 sticky / pinned 的长场景，其内部分步由滚动进度驱动，mandatory 会与之冲突，这里用 proximity 思路 + JS 校正。
+    (() => {
+      const root = document.documentElement;
+      const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const IDLE_MS = 140;      // 停止滚动多久后触发吸附
+      const MIN_MOVE = 8;       // 小于这个位移视为抖动，只回到最近的吸附点
+      const TOL = 3;            // 已在吸附点上的容差（px）
+      const DONE_FROM_PRODUCT = [0, 0.245, 0.364, 0.449, 0.544, 0.68, 1];
+      // 产品场景（#product-overview）整体进度 P 的“完成态”：由 product-3d-interaction.mjs 的 PRODUCT_PHASE_END=0.68 与 FEATURE_WINDOWS 推出——
+      // 宠物排开(0)、大桌宠聚焦(overview .36)、三条能力文案各自完全显现(overview .535 / .66 / .80)、屏幕场景完全清晰(.68)、笔记本场景完成(1)。
+      let restY = window.scrollY;
+      let timer = 0;
+      let animation = 0;
+      let animatingUntil = 0;
+      let touching = false;
+      let pointerDown = false;
+      let enabled = !reduceQuery.matches;
+
+      const vh = () => window.innerHeight;
+      const maxY = () => Math.max(0, (document.scrollingElement || root).scrollHeight - vh());
+      const absTop = el => el.getBoundingClientRect().top + window.scrollY;
+      const isPinned = (section, stickySelector) => {
+        const sticky = section.querySelector(stickySelector);
+        return Boolean(sticky) && getComputedStyle(sticky).position === "sticky" && section.offsetHeight > vh() * 1.2;
+      };
+
+      function sectionAnchors(section, out) {
+        const height = section.offsetHeight;
+        if (!height) return;
+        const top = absTop(section);
+        const spare = height - vh();
+        const steps = spare > vh() * 0.12 ? Math.ceil(spare / (vh() * 0.9)) : 0;
+        for (let i = 0; i <= steps; i += 1) out.push(top + (steps ? spare * i / steps : 0));
+      }
+
+      function anchors() {
+        const out = [];
+        const sections = [...document.querySelectorAll("main > section, body > section")];
+        for (const section of sections) {
+          if (!section.offsetHeight) continue;
+          const top = absTop(section);
+          if (section.classList.contains("hero") && isPinned(section, ".hero-sticky")) {
+            out.push(top, top + section.offsetHeight - vh());
+          } else if (section.id === "product-overview" && isPinned(section, ".product-overview-sticky")) {
+            const travel = section.offsetHeight - vh();
+            DONE_FROM_PRODUCT.forEach(progress => out.push(top + travel * progress));
+          } else if (section.id === "solution" && getComputedStyle(section.querySelector(".solution-stage")).position === "sticky" && section.offsetHeight > vh() * 1.2) {
+            const travel = section.offsetHeight - vh();
+            for (let i = 0; i < 5; i += 1) out.push(top + travel * (i + 0.5) / 5); // 与 petScrollTop() 一致
+          } else {
+            sectionAnchors(section, out);
+          }
+        }
+        const closing = document.getElementById("start");
+        const clamp = y => Math.min(Math.max(0, Math.round(y)), maxY());
+        if (closing) out.push(absTop(closing));
+        const sorted = out.map(clamp).sort((a, b) => a - b);
+        return sorted.filter((y, i) => i === 0 || y - sorted[i - 1] > 24);
+      }
+
+      function pickTarget(y, list) {
+        if (!list.length) return null;
+        const last = list[list.length - 1];
+        if (y >= last - 1) return null;                 // 最后一个关键画面之后（页脚附近）：自由滚动
+        const nearest = list.reduce((best, a) => (Math.abs(a - y) < Math.abs(best - y) ? a : best), list[0]);
+        if (Math.abs(nearest - y) <= TOL) return null;  // 已经停在吸附点上
+        const moved = y - restY;
+        if (Math.abs(moved) < MIN_MOVE) return nearest;
+        const near = Math.min(80, vh() * 0.1);
+        if (moved > 0) {
+          // 向下：优先吸到“刚越过起点”且离得很近的吸附点，否则吸到下一个
+          const close = list.find(a => a > restY + TOL && Math.abs(a - y) <= near && a >= y - near);
+          return close ?? list.find(a => a >= y - 1) ?? last;
+        }
+        const close = [...list].reverse().find(a => a < restY - TOL && Math.abs(a - y) <= near && a <= y + near);
+        return close ?? [...list].reverse().find(a => a <= y + 1) ?? list[0];
+      }
+
+      function cancelAnimation() {
+        if (animation) window.cancelAnimationFrame(animation);
+        animation = 0;
+        animatingUntil = 0;
+        root.style.scrollBehavior = "";
+      }
+
+      function animateTo(target) {
+        cancelAnimation();
+        const from = window.scrollY;
+        const distance = target - from;
+        const duration = Math.min(820, Math.max(380, Math.abs(distance) * 0.5));
+        const startedAt = performance.now();
+        animatingUntil = startedAt + duration + 120;
+        root.style.scrollBehavior = "auto";
+        const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const frame = now => {
+          const t = Math.min(1, (now - startedAt) / duration);
+          window.scrollTo(0, from + distance * ease(t));
+          if (t < 1) {
+            animation = window.requestAnimationFrame(frame);
+          } else {
+            animation = 0;
+            window.scrollTo(0, target);
+            root.style.scrollBehavior = "";
+            restY = window.scrollY;
+          }
+        };
+        animation = window.requestAnimationFrame(frame);
+      }
+
+      function settle() {
+        timer = 0;
+        if (!enabled || touching || pointerDown || animation) return;
+        const target = pickTarget(window.scrollY, anchors());
+        if (target === null) { restY = window.scrollY; return; }
+        animateTo(target);
+      }
+
+      function schedule() {
+        if (!enabled) return;
+        window.clearTimeout(timer);
+        timer = window.setTimeout(settle, IDLE_MS);
+      }
+
+      window.addEventListener("scroll", () => { if (!animation) schedule(); }, { passive: true });
+      // 吸附动画进行中吞掉滚轮（含触控板惯性），避免被打断；其余情况交给浏览器原生滚动，停下后再吸附。
+      window.addEventListener("wheel", event => {
+        if (enabled && animation && performance.now() < animatingUntil) event.preventDefault();
+      }, { passive: false });
+      window.addEventListener("touchstart", () => { touching = true; cancelAnimation(); }, { passive: true });
+      const touchDone = () => { touching = false; schedule(); };
+      window.addEventListener("touchend", touchDone, { passive: true });
+      window.addEventListener("touchcancel", touchDone, { passive: true });
+      window.addEventListener("pointerdown", event => { if (event.pointerType === "mouse") pointerDown = true; });
+      window.addEventListener("pointerup", () => { pointerDown = false; schedule(); });
+      window.addEventListener("keydown", cancelAnimation);
+      window.addEventListener("resize", () => { restY = window.scrollY; });
+      const onReduceChange = () => { enabled = !reduceQuery.matches; if (!enabled) cancelAnimation(); };
+      if (reduceQuery.addEventListener) reduceQuery.addEventListener("change", onReduceChange);
+      window.__pixoSnap = { anchors, pickTarget: y => pickTarget(y, anchors()), get enabled() { return enabled; } };
     })();
   </script>
   <script src="pixo-tap-assets/product-3d/product-3d-offline.bundle.js?v=20260810-4"></script>
