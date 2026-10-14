@@ -33,7 +33,7 @@
   Cross-Origin-Resource-Policy: same-origin
 
 /
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-Dh6chFyx39WMzXaP5FBvlAvS3opm3S2S48Ch2HzdZQI=' 'sha256-HnZaw+Vcb1Kt6O3ASBArI/FFE0cMEN7FP5+WdNtjPHs='; style-src 'self' 'sha256-MT+5wOwE3mjw0yfGaH1UFdRjyY6+xwhmjmRehVNC8ck='; img-src 'self' data: blob:; font-src 'self'; media-src 'self'; connect-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-V/JS4/aT0ctdnutfR06mlBM9iNBI2bHgHxX71YtGPt4=' 'sha256-xnrXsCVIkPgA0jBpbbK3LLb/DQmHjtrjr9w61rC3eIg='; style-src 'self' 'sha256-IkGeoAMd8d9kBjcz/1lLy4TH4XN4v00f6H8YILt/5kw='; img-src 'self' data: blob:; font-src 'self'; media-src 'self'; connect-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests
   Cross-Origin-Resource-Policy: same-origin
 
 /privacy/

@@ -105,95 +105,17 @@
       background-size: 200px 200px;
     }
 
-    .site-header {
-      position: fixed;
-      z-index: 90;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 18px clamp(18px, 4vw, 58px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(251,248,237,.94), rgba(251,248,237,.72), transparent);
-      backdrop-filter: blur(10px);
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      flex: 0 0 auto;
-      text-decoration: none;
-    }
-    .brand-logo { display: block; width: clamp(185px, 14.5vw, 220px); height: auto; }
-    .nav-links { display: flex; align-items: center; gap: clamp(16px, 2.8vw, 40px); }
-    .nav-links a { font-size: 13px; font-weight: 600; text-decoration: none; }
-    .nav-links a:not(.nav-cta) { opacity: .72; }
-    .nav-links a:hover { opacity: 1; }
-    .language-picker { position: relative; display: inline-flex; align-items: center; }
-    .language-picker::after {
-      content: "⌄";
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      pointer-events: none;
-      font-size: 12px;
-      transform: translateY(-58%);
-    }
-    .language-picker select {
-      min-height: 38px;
-      padding: 0 28px 0 12px;
-      appearance: none;
-      border: 1px solid rgba(24,25,21,.42);
-      border-radius: 999px;
-      color: var(--ink);
-      background: rgba(255,255,255,.5);
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .nav-cta {
-      padding: 10px 17px;
-      color: white;
-      background: var(--ink);
-      border-radius: 999px;
-    }
-    .nav-cta-short { display: none; }
-    .site-links { display: none; align-items: center; gap: clamp(14px, 1.6vw, 26px); }
-    .site-links a, .site-menu a { font-size: 13px; font-weight: 600; text-decoration: none; }
-    .site-links a { opacity: .72; }
-    .site-links a:hover { opacity: 1; }
-    .menu-toggle {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border: 1px solid rgba(24,25,21,.42);
-      border-radius: 999px;
-      color: var(--ink);
-      background: rgba(255,255,255,.5);
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .site-menu {
-      position: absolute;
-      top: 100%;
-      right: clamp(10px, 4vw, 58px);
-      width: min(260px, calc(100vw - 20px));
-      padding: 8px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: var(--cream);
-      box-shadow: var(--shadow);
-    }
-    .site-menu[hidden] { display: none; }
-    .site-menu a { display: block; padding: 12px 14px; border-radius: 10px; font-size: 15px; }
-    .site-menu a:hover, .site-menu a:focus-visible { background: var(--cream-2); }
-    .site-menu a[aria-current="page"] { color: var(--brick); }
     @media (min-width: 1500px) {
-      .site-links { display: flex; }
-      .menu-toggle, .site-menu { display: none; }
     }
+
+
+    /* 全局页顶/页脚来自共享的 px-chrome 块（sites/pages/assets/shell.css 为唯一来源）；首页只做两处适配：页顶固定在滚动场景之上、页脚紧贴上一节。 */
+    .px-header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; }
+    .px-footer { margin-top: 0; }
+    .home-chips { position: fixed; z-index: 89; top: 78px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; max-width: calc(100vw - 24px); }
+    .home-chips a { padding: 5px 14px; border: 1px solid rgba(24,25,21,.18); border-radius: 999px; background: rgba(255,255,255,.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .home-chips a:hover { background: var(--yellow); }
+    @media (max-width: 900px) { .home-chips { display: none; } }
 
     .section-shell {
       width: min(1180px, calc(100% - 36px));
@@ -1238,7 +1160,6 @@
     :focus-visible { outline: 3px solid var(--brick); outline-offset: 4px; }
 
     @media (max-width: 920px) {
-      .nav-links a:not(.nav-cta) { display: none; }
       .hero-grid, .split-heading, .signup-grid { grid-template-columns: 1fr; }
       .how-heading { gap: 32px; }
       .pain-split { min-height: 0; grid-template-columns: minmax(0, 1fr); }
@@ -1284,14 +1205,6 @@
     }
 
     @media (max-width: 640px) {
-      .site-header { padding: 10px 14px; }
-      .brand-logo { width: 154px; }
-      .nav-links { gap: 8px; }
-      .language-picker select { min-height: 34px; padding-inline: 10px 24px; }
-      .language-picker::after { right: 8px; }
-      .nav-cta { padding: 8px 13px; }
-      .nav-cta { white-space: nowrap; }
-      body.lang-en .nav-cta { padding-inline: 11px; font-size: 11px; }
       .hero { height: 180svh; min-height: 0; padding: 0; }
       .hero-sticky { height: 100svh; }
       .hero-grid { width: min(100%, calc(100% - 28px)); }
@@ -1443,12 +1356,6 @@
     }
 
     @media (max-width: 640px) and (max-height: 640px) {
-      .brand-logo { width: 128px; }
-      .nav-links { gap: 6px; }
-      .language-picker select { min-height: 32px; padding-inline: 8px 21px; font-size: 11px; }
-      .language-picker::after { right: 7px; }
-      .nav-cta { padding: 7px 10px; font-size: 11px; }
-      .menu-toggle { min-height: 32px; padding: 0 10px; font-size: 11px; }
       .hero { height: auto; min-height: 760px; }
       .hero-sticky { position: relative; height: auto; min-height: 760px; align-items: start; }
       .hero-grid { min-height: 760px; align-items: start; padding-top: 62px; }
@@ -1477,16 +1384,6 @@
     }
 
     @media (max-width: 390px) {
-      .site-header { padding-inline: 10px; }
-      .brand-logo { width: 112px; }
-      .nav-links { gap: 5px; }
-      .language-picker select { min-height: 32px; padding-inline: 8px 21px; font-size: 11px; }
-      .language-picker::after { right: 7px; }
-      .menu-toggle { padding: 0 8px; }
-      .nav-cta,
-      body.lang-en .nav-cta { padding: 7px 10px; font-size: 0; }
-      .nav-cta .nav-cta-long { display: none; }
-      .nav-cta .nav-cta-short { display: inline; font: 700 11px/1.4 var(--font-body); }
       .music-toggle { display: none; }
     }
 
@@ -1500,14 +1397,6 @@
     .closing-card .button { align-self: flex-start; min-height: 46px; }
     .button.cta-download { color: white; background: var(--brick); border-color: var(--brick); }
     .closing-note { margin: 28px 0 0; color: var(--muted); font-size: 13px; }
-    .site-footer { padding: 40px 0 44px; color: rgba(251,248,237,.74); background: var(--ink); font-size: 14px; }
-    .site-footer-in { display: flex; flex-wrap: wrap; gap: 24px 56px; justify-content: space-between; }
-    .site-footer strong { color: var(--cream); letter-spacing: .06em; }
-    .site-footer p { max-width: 36em; margin: 8px 0 0; }
-    .site-footer ul { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; align-content: flex-start; }
-    .site-footer a { display: inline-block; padding: 6px 0; color: rgba(251,248,237,.86); }
-    .site-footer a:hover { color: var(--yellow); }
-    .site-footer .site-credit { width: 100%; margin: 0; font-size: 12px; color: rgba(251,248,237,.52); }
     @media (max-width: 860px) {
       .closing { padding: 72px 0 56px; }
       .closing-grid { grid-template-columns: 1fr; }
@@ -1561,7 +1450,107 @@
       }
     }
 
-  </style>
+  /* px-tokens:start（由 tools/site-tokens.mjs 从 brand/design-system/tokens.json 生成，勿手改；改 tokens 后运行 node tools/site-tokens.mjs）*/
+:root {
+  --px-brand-cream: #fbf8ed;
+  --px-brand-ink: #181915;
+  --px-brand-muted: #6d6a60;
+  --px-brand-brick: #ae4b3f;
+  --px-brand-red: #ff777b;
+  --px-brand-blue: #a9d4f6;
+  --px-brand-yellow: #f6df77;
+  --px-brand-black: #242424;
+  --px-brand-green: #a8eea2;
+  --px-wb-canvas: #f7f8fa;
+  --px-wb-surface: #ffffff;
+  --px-wb-border: #dee4eb;
+  --px-wb-sidebar: #f1f5f8;
+  --px-wb-hero: #eaf3fa;
+  --px-wb-hero-border: #d9e7f2;
+  --px-wb-coral: #d5374d;
+  --px-wb-blue: #326991;
+  --px-wb-warning: #866114;
+  --px-wb-selection: #e7f0f8;
+  --px-wb-text: #1f2328;
+  --px-wb-muted: #5f6670;
+  --px-wb-on-coral: #ffffff;
+  --px-radius-control-workbench: 11px;
+  --px-radius-control-island: 10px;
+  --px-radius-panel: 14px;
+  --px-radius-surface: 16px;
+  --px-radius-hero: 20px;
+  --px-size-control-primary: 40px;
+  --px-size-control-secondary: 36px;
+  --px-size-touch-min: 36px;
+  --px-size-border-width: 1px;
+  --px-size-selected-border-width: 2px;
+  --px-font-size-footnote: 11px;
+  --px-font-size-caption: 12px;
+  --px-font-size-control: 13px;
+  --px-font-size-body: 14px;
+  --px-font-size-body-large: 15px;
+  --px-font-size-notebook-title: 17px;
+  --px-font-size-heading: 18px;
+  --px-font-size-title: 24px;
+  --px-font-size-display: 26px;
+  --px-font-size-timer: 58px;
+  --px-font-weight-light: 300;
+  --px-font-weight-regular: 400;
+  --px-font-weight-medium: 500;
+  --px-font-weight-semibold: 600;
+  --px-hover-overlay: 0.07;
+  --px-press-overlay: 0.16;
+  --px-disabled-alpha: 0.38;
+  --px-font-web: system-ui, -apple-system, Segoe UI, PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --px-wb-canvas: #1c1f24;
+    --px-wb-surface: #272b31;
+    --px-wb-border: #414853;
+    --px-wb-sidebar: #252c34;
+    --px-wb-hero: #253544;
+    --px-wb-hero-border: #3b5062;
+    --px-wb-coral: #cf3a50;
+    --px-wb-blue: #9fcbea;
+    --px-wb-warning: #e3c87f;
+    --px-wb-selection: #314657;
+    --px-wb-text: #ecedef;
+    --px-wb-muted: #a3a9b1;
+  }
+}
+/* px-tokens:end */
+/* ==== px-chrome:start（全站统一的页顶与页脚，只引用 px-tokens 变量；pages / download / account / admin / landing 的样式块逐字一致，由 tools/site-tokens.mjs 同步，勿手改）==== */
+.px-header *, .px-footer * { box-sizing: border-box; }
+.px-header, .px-footer { --pc-line: color-mix(in srgb, var(--px-brand-ink) 16%, transparent); --pc-line-strong: color-mix(in srgb, var(--px-brand-ink) 42%, transparent); --pc-active: color-mix(in srgb, var(--px-brand-yellow) 55%, transparent); }
+.px-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--px-brand-cream) 90%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.px-header-in { position: relative; margin: 0 auto; padding: 10px clamp(16px, 4vw, 48px); display: flex; align-items: center; gap: 12px; min-height: 72px; }
+.px-brand { display: inline-flex; align-items: center; flex: 0 0 auto; color: var(--px-brand-ink); text-decoration: none; white-space: nowrap; }
+.px-brand img { display: block; width: clamp(140px, 12vw, 184px); height: auto; }
+.px-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.px-nav a { padding: 8px 14px; border-radius: 999px; color: var(--px-brand-ink); opacity: 0.72; text-decoration: none; font-weight: var(--px-font-weight-semibold); font-size: var(--px-font-size-control); line-height: 1.5; white-space: nowrap; }
+.px-nav a:hover { opacity: 1; }
+.px-nav a[aria-current="page"] { opacity: 1; background: var(--pc-active); }
+.px-lang { display: inline-flex; margin: 0; }
+.px-lang select { font: inherit; font-size: var(--px-font-size-caption); font-weight: var(--px-font-weight-semibold); background: color-mix(in srgb, white 60%, transparent); color: var(--px-brand-ink); border: var(--px-size-border-width) solid var(--pc-line-strong); border-radius: 999px; padding: 6px 14px; min-height: var(--px-size-control-primary); cursor: pointer; }
+.px-menu-btn { display: none; font: inherit; font-size: var(--px-font-size-caption); font-weight: var(--px-font-weight-semibold); background: color-mix(in srgb, white 60%, transparent); color: var(--px-brand-ink); border: var(--px-size-border-width) solid var(--pc-line-strong); border-radius: 999px; padding: 6px 16px; min-height: var(--px-size-control-primary); cursor: pointer; }
+@media (max-width: 760px) {
+  .px-menu-btn { display: inline-flex; align-items: center; }
+  .px-lang { margin-left: auto; }
+  .px-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; flex-direction: column; align-items: stretch; gap: 2px; padding: 8px 16px 16px; background: var(--px-brand-cream); border-bottom: 1px solid var(--pc-line); box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1); }
+  .px-header[data-open] .px-nav { display: flex; }
+  .px-nav a { padding: 12px 16px; font-size: 1rem; }
+}
+.px-footer { margin-top: 72px; padding: 40px 0 44px; color: rgba(251, 248, 237, 0.74); background: var(--px-brand-ink); font-size: var(--px-font-size-body); line-height: 1.65; }
+.px-footer-in { margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 24px 56px; justify-content: space-between; }
+.px-footer-brand { max-width: 34em; }
+.px-footer-brand strong { color: var(--px-brand-cream); letter-spacing: 0.06em; }
+.px-footer-brand p { margin: 8px 0 0; }
+.px-footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 22px; align-content: flex-start; }
+.px-footer-links a { color: rgba(251, 248, 237, 0.86); display: inline-block; padding: 6px 0; text-decoration: none; }
+.px-footer-links a:hover, .px-footer-links a[aria-current="page"] { color: var(--px-brand-yellow); }
+/* ==== px-chrome:end ==== */
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -1574,30 +1563,26 @@
     <span id="musicLabel">3 Strikes</span>
   </button>
 
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="PIXO TAP 首页"><img class="brand-logo" src="pixo-tap-assets/brand/pixo-tap-logo.png" alt=""></a>
-    <nav class="site-links" aria-label="站点导航">
+  <header class="px-header" id="px-header">
+    <div class="px-header-in">
+      <a class="px-brand" href="/" data-home><img src="pixo-tap-assets/brand/pixo-tap-logo.png" alt="PIXO TAP" width="164" height="51"></a>
+      <nav class="px-nav" id="px-nav" aria-label="主导航">
+      <a href="/" data-home aria-current="page">首页</a>
       <a href="/download/" data-site-path="/download/">下载</a>
       <a href="/docs/" data-site-path="/docs/">使用说明</a>
       <a href="/account/" data-site-path="/account/">账号</a>
-    </nav>
-    <nav class="nav-links" aria-label="主导航">
-      <a href="#product-overview">产品</a>
-      <a href="#pain">为什么多线程变难</a>
-      <a href="#how">怎么变成下一步</a>
-      <label class="language-picker"><span class="sr-only">语言选择</span><select id="languageSelect" aria-label="语言选择"><option value="zh">中文</option><option value="en">EN</option></select></label>
-      <a class="nav-cta" href="#solution" aria-label="选择搭子"><span class="nav-cta-long">选择搭子</span><span class="nav-cta-short" aria-hidden="true">选择</span></a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">菜单</button>
-    </nav>
-    <nav class="site-menu" id="siteMenu" aria-label="站点导航" hidden>
-      <a href="#top" aria-current="page">首页</a>
-      <a href="/download/" data-site-path="/download/">下载</a>
-      <a href="/docs/" data-site-path="/docs/">使用说明</a>
-      <a href="/account/" data-site-path="/account/">账号</a>
-      <a href="/privacy/" data-site-path="/privacy/">隐私政策</a>
-      <a href="/terms/" data-site-path="/terms/">用户协议</a>
-    </nav>
+      <a href="/about/" data-site-path="/about/">关于我们</a>
+      </nav>
+      <label class="px-lang"><span class="sr-only">语言选择</span><select id="languageSelect"><option value="zh">中文</option><option value="en">English</option></select></label>
+      <button class="px-menu-btn" id="px-menu-btn" type="button" aria-expanded="false" aria-controls="px-nav">菜单</button>
+    </div>
   </header>
+  <nav class="home-chips" aria-label="页内导航">
+    <a href="#product-overview">产品</a>
+    <a href="#pain">为什么多线程变难</a>
+    <a href="#how">怎么变成下一步</a>
+    <a href="#solution">选择搭子</a>
+  </nav>
 
   <main id="main">
     <section class="hero" id="top" aria-label="红色 PIXO TAP 桌宠陪伴学生学习的场景">
@@ -1855,23 +1840,20 @@
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="section-shell site-footer-in">
-      <div>
-        <strong>PIXO TAP</strong>
-        <p>PIXO TAP：把多线程的任务，收束成清楚的下一步。</p>
-      </div>
+  <footer class="px-footer">
+    <div class="px-footer-in">
+      <div class="px-footer-brand"><strong>PIXO TAP</strong><p>PIXO TAP：把多线程的任务，收束成清楚的下一步。</p></div>
       <nav aria-label="站点链接">
-        <ul>
-          <li><a href="#top">首页</a></li>
+        <ul class="px-footer-links">
+          <li><a href="/" data-home aria-current="page">首页</a></li>
           <li><a href="/download/" data-site-path="/download/">下载</a></li>
           <li><a href="/docs/" data-site-path="/docs/">使用说明</a></li>
           <li><a href="/account/" data-site-path="/account/">账号</a></li>
+          <li><a href="/about/" data-site-path="/about/">关于我们</a></li>
           <li><a href="/privacy/" data-site-path="/privacy/">隐私政策</a></li>
           <li><a href="/terms/" data-site-path="/terms/">用户协议</a></li>
         </ul>
       </nav>
-      <p class="site-credit">中文字体：MiSans（小米）。页面素材与第三方库保留各自权利归属。</p>
     </div>
   </footer>
 
@@ -1882,6 +1864,7 @@
         "下载": "Download",
         "使用说明": "Docs",
         "账号": "Account",
+        "关于我们": "About",
         "菜单": "Menu",
         "首页": "Home",
         "隐私政策": "Privacy",
@@ -2031,6 +2014,7 @@
         "PIXO TAP 首页": "PIXO TAP home",
         "主导航": "Main navigation",
         "站点导航": "Site navigation",
+        "页内导航": "On-page navigation",
         "站点链接": "Site links",
         "选择搭子": "Choose your companion",
         "语言选择": "Language selector",
@@ -2554,25 +2538,24 @@
     (() => {
       const SITE_ORIGIN = "https://pixotap.plutokeating.beer";
       if (location.protocol === "file:") {
+        document.querySelectorAll("a[data-home]").forEach(link => { link.href = "#top"; });
         document.querySelectorAll("a[data-site-path]").forEach(link => {
           link.href = SITE_ORIGIN + link.getAttribute("data-site-path");
         });
       }
-      const toggle = document.getElementById("menuToggle");
-      const menu = document.getElementById("siteMenu");
-      if (!toggle || !menu) return;
+      const header = document.getElementById("px-header");
+      const toggle = document.getElementById("px-menu-btn");
+      if (!header || !toggle) return;
       const setOpen = open => {
-        menu.hidden = !open;
+        if (open) header.setAttribute("data-open", ""); else header.removeAttribute("data-open");
         toggle.setAttribute("aria-expanded", String(open));
       };
-      toggle.addEventListener("click", () => setOpen(menu.hidden));
-      menu.addEventListener("click", event => { if (event.target.closest("a")) setOpen(false); });
-      document.addEventListener("click", event => {
-        if (!menu.hidden && !event.target.closest("#siteMenu, #menuToggle")) setOpen(false);
-      });
+      toggle.addEventListener("click", () => setOpen(!header.hasAttribute("data-open")));
+      header.querySelectorAll(".px-nav a").forEach(link => link.addEventListener("click", () => setOpen(false)));
       document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && !menu.hidden) { setOpen(false); toggle.focus(); }
+        if (event.key === "Escape" && header.hasAttribute("data-open")) { setOpen(false); toggle.focus(); }
       });
+      window.matchMedia("(min-width: 761px)").addEventListener("change", event => { if (event.matches) setOpen(false); });
       window.addEventListener("storage", event => {
         if (event.key === "pixo-language") {
           const select = document.getElementById("languageSelect");
