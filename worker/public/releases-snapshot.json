@@ -1,6 +1,77 @@
 {
-  "generated_at": "2026-10-14T07:55:37.237Z",
+  "generated_at": "2026-10-14T12:40:24.995Z",
   "items": [
+    {
+      "version": "1.46.0",
+      "published_at": "2026-10-14T12:23:05Z",
+      "notes_md": "# PixoTap 1.46.0\n\n## 本版核心更新：聊一聊（多会话智能伙伴）三端全量重构\n\n- **多会话对话管理（项目会话 + 独立临时会话）**：\n  - 支持在具体项目下创建多个独立会话，或切换到不绑定项目的「临时聊聊」会话；支持自动提炼首条消息作为会话标题、手动重命名、置顶、搜索与删除确认。\n- **自适应上下文与常驻记忆**：\n  - 项目会话自动注入最新恢复笔记（四段摘要）、阶段进程与关联资料文件名索引（绝不上传截图原图、文件正文或剪贴板正文）；支持对关键消息一键「钉住（Pin）」作为会话常驻上下文，并对超出滑窗的早期轮次自动生成滚动摘要（Rolling Summary）防止长对话失忆。\n- **富文本排版与流式交互**：\n  - 取消“两句以内”硬限制，改为自适应深度（日常简短灵动，探讨卡点与方案时结构清晰深入）；Linux 端支持右侧停靠侧栏与宽屏双栏切换、SSE 流式打字机生成、单条消息重试/重新生成/删除，以及完整 GFM 表格、Mermaid 矢量图、ASCII 流程图、LaTeX 数学公式、Emoji 与代码块复制；Windows 与 macOS 端同步支持多会话切换、项目/临时范围切换与钉住记忆。\n- **多会话端到端加密同步**：\n  - 按会话 UUID 在已授权设备间端到端加密同步完整会话（标题、置顶、滚动摘要、钉住状态与消息列表）及删除墓碑。\n\n## 安装\n\n### macOS 与 Linux（一行命令，自动校验 SHA-256）\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n### Windows（PowerShell 一行命令，自动校验 SHA-256，每用户安装无需管理员权限）\n\n```powershell\nirm https://pixotap.plutokeating.beer/install.ps1 | iex\n```\n\n## 校验\n\n- Linux：`sha256sum -c --ignore-missing SHA256SUMS.txt`\n- macOS：`shasum -a 256 -c --ignore-missing SHA256SUMS.txt`\n- Windows：`Get-FileHash PixoTap-1.46.0-win-x64-setup.exe -Algorithm SHA256`\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "other",
+          "name": "latest.json",
+          "size": 1013,
+          "sha256": "dc77aa5e8359edd4cba88888783b223c53701dc92a0b10c8805fe3359fb15f65",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/latest.json"
+        },
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-1.46.0-linux-x86_64.tar.gz",
+          "size": 10290211,
+          "sha256": "fef35eec224ff42cec5e400d7645c9b1e8c79153c61508abd693a9e1f49051a6",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "dmg",
+          "name": "PixoTap-1.46.0-mac-universal.dmg",
+          "size": 8588706,
+          "sha256": "fe2d4695a566914e12c0bcbd7bbbca01a80221a7b4c4893fd32291bf93ee7c9e",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-mac-universal.dmg"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.46.0-win-x64-setup.exe",
+          "size": 94576455,
+          "sha256": "286dc6cadada329443d66ff711d864b1d5b217834ef1ff3524c79e7d23ced3b6",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-win-x64-setup.exe"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "zip",
+          "name": "PixoTap-1.46.0-win-x64.zip",
+          "size": 124268135,
+          "sha256": "0b94415710cad267978f08213e5989f37db7b9475c2a55ab22285143100f538e",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-win-x64.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 585,
+          "sha256": "e0426d0023f53b0a89e087afe82b380e13ea4b8d19a40b543656acca15688dd9",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "723afa17ad7df0cf985319365c1f8823c57f4f067e75895e581a64e52031495a",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
     {
       "version": "1.45.1",
       "published_at": "2026-10-14T07:53:00Z",

@@ -29,7 +29,7 @@
     {
       "binding": "DB",
       "database_name": "pixotap-db",
-      "database_id": "869ec19e-f366-4f9f-822f-19bb62e8e3af"
+      "database_id": "00000000-0000-0000-0000-000000000000"
     }
   ],
   "ratelimits": [
