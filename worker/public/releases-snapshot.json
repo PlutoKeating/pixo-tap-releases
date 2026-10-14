@@ -1,6 +1,77 @@
 {
-  "generated_at": "2026-10-14T06:09:54.285Z",
+  "generated_at": "2026-10-14T07:55:37.237Z",
   "items": [
+    {
+      "version": "1.45.1",
+      "published_at": "2026-10-14T07:53:00Z",
+      "notes_md": "# PixoTap 1.45.1\n\n## 本版修复与更新\n\n- **修复多端同步拉取返回 `需要处理`（422 `unknown_device`）与状态提示遮蔽问题**：\n  - `sync_pull_checked` 不再附带本机未在服务端注册的随机 `device_id` 参数，修复开启多端同步并保存密钥后拉取返回 422 的问题。\n  - 修复设置页收到 `sync:state` 更新时旧的“同步密钥已保存”提示遮蔽真实同步状态信息的问题，并在同步卡片内直接提供账号登录面板。\n  - 支持在点击“生成新恢复密钥”轮换密钥后直接覆盖云端旧密文并完成同步。\n- **修复 Linux 灵动岛拖入图片后界面被替换为图片且无法操作的问题**：\n  - 启用 Tauri 原生拖放拦截（移除 `dragDropEnabled: false`），阻止 WebKitGTK 将拖入的本地图片/文件当作 `file://` URL 直接导航打开。\n  - 在 `on_page_load`、全局 `window` 与灵动岛组件三层阻断非应用内页面导航，支持通过原生 `DragDropEvent` 与 `text/uri-list` 将拖入的图片/文件安全加入灵动岛「暂放」页。\n\n## 安装\n\n### macOS 与 Linux（一行命令，自动校验 SHA-256）\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n### Windows（PowerShell 一行命令，自动校验 SHA-256，每用户安装无需管理员权限）\n\n```powershell\nirm https://pixotap.plutokeating.beer/install.ps1 | iex\n```\n\n## 校验\n\n- Linux：`sha256sum -c --ignore-missing SHA256SUMS.txt`\n- macOS：`shasum -a 256 -c --ignore-missing SHA256SUMS.txt`\n- Windows：`Get-FileHash PixoTap-1.45.1-win-x64-setup.exe -Algorithm SHA256`\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "other",
+          "name": "latest.json",
+          "size": 1017,
+          "sha256": "0595addf4343ec88bdf97b06d76d3707863d7f4b306b305d0348dbf55fe326a9",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/latest.json"
+        },
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-1.45.1-linux-x86_64.tar.gz",
+          "size": 10154005,
+          "sha256": "916b205cccdcdab56b2ef1a55f2d19d2cc2ab73f706d0fd84acf8181b6283e91",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/PixoTap-1.45.1-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "dmg",
+          "name": "PixoTap-1.45.1-mac-universal.dmg",
+          "size": 8518629,
+          "sha256": "4672f31086f8fbc5dddf0774d71f11163714ad64cb48a951c121dbe9f63642b6",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/PixoTap-1.45.1-mac-universal.dmg"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.45.1-win-x64-setup.exe",
+          "size": 94563156,
+          "sha256": "ad83dce0bcfe97ed4cf12a56ca346881de505963f0a530c30e3a636bbf3ff0fe",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/PixoTap-1.45.1-win-x64-setup.exe"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "zip",
+          "name": "PixoTap-1.45.1-win-x64.zip",
+          "size": 124262667,
+          "sha256": "f97919547d471a093567561ffffb9c1e2eff95e51cb0cf77df6b06cd15d02da8",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/PixoTap-1.45.1-win-x64.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 585,
+          "sha256": "44a654cf0933a7559356a9b0304d32805338ffecd79183c8f5834b98667bec7b",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "8e53cdf902bce8a43e7a8a491f906528d325b96acacd0c73e34ee8a3248f3b73",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.45.1/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
     {
       "version": "1.45.0",
       "published_at": "2026-10-14T06:06:40Z",
