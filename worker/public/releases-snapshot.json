@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T03:15:07.998Z",
+  "generated_at": "2026-10-15T05:18:34.893Z",
   "items": [
     {
       "version": "1.46.0",
@@ -13,7 +13,7 @@
           "kind": "other",
           "name": "latest.json",
           "size": 1013,
-          "sha256": "ae7738e7ca5871ec75a776f3f690fdbbbbea95f67863f89cef3e8f837eb4e373",
+          "sha256": "dc6afa29ca548cba00beeae2eed4eb5059cffd243e2567ec12450b6191ba9cbb",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/latest.json"
         },
         {
@@ -21,8 +21,8 @@
           "arch": "x64",
           "kind": "tar.gz",
           "name": "PixoTap-1.46.0-linux-x86_64.tar.gz",
-          "size": 10289992,
-          "sha256": "5c8d24c2543a6d504aa70130b4a4c00a15ce3e7f477fd8f2b4e13625784bc359",
+          "size": 10289906,
+          "sha256": "5d26b944e7d99ce681522c3704929631a042902621f314c72588a2144418e0d2",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-linux-x86_64.tar.gz"
         },
         {
@@ -30,8 +30,8 @@
           "arch": "universal",
           "kind": "dmg",
           "name": "PixoTap-1.46.0-mac-universal.dmg",
-          "size": 8588706,
-          "sha256": "fe2d4695a566914e12c0bcbd7bbbca01a80221a7b4c4893fd32291bf93ee7c9e",
+          "size": 8589475,
+          "sha256": "d861cc9785136998977b2a453adad151bddbdf0b168b79b3b6939a67e31d1bd7",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-mac-universal.dmg"
         },
         {
@@ -39,8 +39,8 @@
           "arch": "x64",
           "kind": "exe",
           "name": "PixoTap-1.46.0-win-x64-setup.exe",
-          "size": 94576455,
-          "sha256": "286dc6cadada329443d66ff711d864b1d5b217834ef1ff3524c79e7d23ced3b6",
+          "size": 94577739,
+          "sha256": "5f4e0d84340ba02f6bc66874e520bd003001d5ae4d992249a941b7722d05ccda",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-win-x64-setup.exe"
         },
         {
@@ -48,8 +48,8 @@
           "arch": "x64",
           "kind": "zip",
           "name": "PixoTap-1.46.0-win-x64.zip",
-          "size": 124268135,
-          "sha256": "0b94415710cad267978f08213e5989f37db7b9475c2a55ab22285143100f538e",
+          "size": 124268160,
+          "sha256": "b9614f8929e1c8fd735f914069de2d072cc9f89cf3a72dbc4a8b147c86a830cb",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-win-x64.zip"
         },
         {
@@ -58,7 +58,7 @@
           "kind": "checksum",
           "name": "SHA256SUMS.txt",
           "size": 585,
-          "sha256": "44167101d01824d9614f5ffcdbee2acab79c12af9f8a09f5d42d171e056cd6df",
+          "sha256": "67ce066cf6250dbef19f5902707855ce9354a08ef603aa73473ad96efbcea023",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt"
         },
         {
@@ -67,7 +67,7 @@
           "kind": "signature",
           "name": "SHA256SUMS.txt.sig",
           "size": 97,
-          "sha256": "c594749545768e7f29adfe0e931e4c08381fb138d7a37e731c292b81e7e40eb1",
+          "sha256": "ff311f2d1b72fd799c75739195789dfe80b2b17d167646200bc85787b993b8ea",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt.sig"
         }
       ]
