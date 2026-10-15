@@ -1,6 +1,77 @@
 {
-  "generated_at": "2026-10-15T05:18:34.893Z",
+  "generated_at": "2026-10-15T05:39:42.031Z",
   "items": [
+    {
+      "version": "1.46.1",
+      "published_at": "2026-10-15T05:37:18Z",
+      "notes_md": "# PixoTap 1.46.1\n\n## 本版修复与更新\n\n- **Linux 端多会话聊天窗口与宽屏双栏布局修复**：\n  - 修复切换为宽屏双栏聊天模式（`workbench--chat-wide`）时，因 `.main` 与 `.main--hidden` CSS 层叠顺序导致中间工作区未隐藏、聊天面板掉入左栏下方第 2 行并被挤压截断的问题；为工作台与聊天侧栏显式锁定 Grid 行列坐标并为中间区域设置原生 `hidden` 属性。\n  - 修复聊天消息自动滚动使用 `scrollIntoView` 时连带滚动外层工作台页面的问题，改为仅在 `.chat__log` 容器内部滚动。\n  - 修复会话列表项单列 Grid 隐式列宽未设 `minmax(0, 1fr)` 导致长预览文本将置顶/重命名/删除按钮挤出可视区的问题，并补充窄窗口响应式宽度断点。\n- **Windows 端聊天窗口工具栏与顶栏防溢出修复**：\n  - 将 `ChatWindow` 底部 6 个操作按钮拆分为会话操作行（`＋新对话`、`临时/项目`、`钉住记忆`）与底部状态/动作行（`status` + `分析当前窗口文字`、`清空对话`、`取消`），解决 `426px` 默认宽度下底部按钮溢出并挤压状态提示文字的问题。\n  - 为顶栏角色名、关联项目/会话标题与状态栏启用单行省略号截断（`NoWrap` + `CharacterEllipsis`），防止长名称撑高 `40px` 顶栏。\n- **macOS 端聊天顶栏压缩优先级与空会话问候语重置**：\n  - 为 `DeepSeekChatWindowController` 顶栏角色名设置 `.required` 抗压缩优先级、为上下文徽章设置 `.defaultLow` 抗压缩优先级与尾部省略截断。\n  - 修复 `DeepSeekChatCoordinator` 切换至尚无回复的新建会话或临时会话时未重置为角色问候语的问题。\n\n## 安装\n\n### macOS 与 Linux（一行命令，自动校验 SHA-256）\n\n```bash\ncurl -fsSL https://pixotap.plutokeating.beer/install | bash\n```\n\n### Windows（PowerShell 一行命令，自动校验 SHA-256，每用户安装无需管理员权限）\n\n```powershell\nirm https://pixotap.plutokeating.beer/install.ps1 | iex\n```\n\n## 校验\n\n- Linux：`sha256sum -c --ignore-missing SHA256SUMS.txt`\n- macOS：`shasum -a 256 -c --ignore-missing SHA256SUMS.txt`\n- Windows：`Get-FileHash PixoTap-1.46.1-win-x64-setup.exe -Algorithm SHA256`\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "other",
+          "name": "latest.json",
+          "size": 1013,
+          "sha256": "1ca9e02ee189ee05db651699130cd74d282e1ad624ae50ec1b89e0bcaea39d24",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/latest.json"
+        },
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-1.46.1-linux-x86_64.tar.gz",
+          "size": 10289907,
+          "sha256": "c213937617362b759bb4910ff09ba91ba99aa0cf04cbb9b57795166662e0c6c1",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/PixoTap-1.46.1-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "dmg",
+          "name": "PixoTap-1.46.1-mac-universal.dmg",
+          "size": 8589486,
+          "sha256": "682eda3768d5c7a5aa9d09e79e01958f018af6169c9241e3f52c8de9124e1863",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/PixoTap-1.46.1-mac-universal.dmg"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.46.1-win-x64-setup.exe",
+          "size": 94565546,
+          "sha256": "5e55539c82ab3911aae7a781a59f1c363c7c1d91686e001d2e7d72670b6c6d88",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/PixoTap-1.46.1-win-x64-setup.exe"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "zip",
+          "name": "PixoTap-1.46.1-win-x64.zip",
+          "size": 124268152,
+          "sha256": "1af077652e828aff28781d3b3babb275b446c228e989a024eab81ba5584ba5b8",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/PixoTap-1.46.1-win-x64.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 585,
+          "sha256": "b7ee3ed692acfd0bb8d3ce207f4dbbdbfc26c1dd1e62a47214d0e844eac6ba49",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "332cbed4c788fbcfe040c7bbf7762f5fbb774c6d6d7dcaf41abebaf607ccb20b",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.1/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
     {
       "version": "1.46.0",
       "published_at": "2026-10-14T12:23:05Z",
