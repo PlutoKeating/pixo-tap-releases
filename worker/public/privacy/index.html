@@ -38,10 +38,10 @@
   <main class="px-main" id="main">
 <div data-l="zh" lang="zh-CN">
 <h1>隐私政策</h1>
-<p class="meta">生效日期：2026-10-12</p>
+<p class="meta">生效日期：2026-10-15</p>
 
 <h2 id="summary">一句话概括</h2>
-<p>PIXO TAP 是本地优先的软件。截图原图、照片、原文件内容和剪贴板正文只保存在你的设备上，不会上传。账号、同步、遥测和 AI 分析都是可选的：只有你自己配置了 AI 服务密钥并主动触发分析时，本机识别出的 OCR 文字和活动时间线文字才会直接从你的设备发送给该 AI 服务。同步尚未在客户端开放，客户端目前不同步任何数据；将来开启同步前须你明确同意，且同步内容须端到端加密。反馈正文同样端到端加密，服务器只保存密文。</p>
+<p>PIXO TAP 是本地优先的软件。截图原图、照片、原文件内容和剪贴板正文只保存在你的设备上，不会上传。账号、同步、遥测和 AI 分析都是可选的：只有你自己配置了 AI 服务密钥并主动触发分析或发起对话时，本机识别出的 OCR 文字、活动时间线文字、对话消息以及自动注入的项目文字摘要与暂放区文件元信息才会直接从你的设备发送给该 AI 服务。同步默认关闭，开启前须你明确同意并设置同步口令或恢复密钥，同步内容全程端到端加密。反馈正文同样端到端加密，服务器只保存密文。</p>
 
 <h2 id="collection">1. 屏幕、键盘与其他采集的范围</h2>
 <ul>
@@ -62,7 +62,7 @@
 <tr><td>屏幕与 OCR</td><td>截图原图（仅本机）、识别出的文字</td><td>仅本机；截图不上传</td><td>否。OCR 文字只在你触发 AI 分析时发送，见第 4 节</td></tr>
 <tr><td>相机照片</td><td>会话结束时拍摄的一张照片（仅在你开启后）</td><td>仅本机</td><td>否</td></tr>
 <tr><td>剪贴板</td><td>只记录变化的类型与前台应用；剪贴板正文不保存</td><td>本机</td><td>否</td></tr>
-<tr><td>AI 请求</td><td>OCR 文字与活动时间线文字（仅当你配置密钥并触发分析时）；AI 服务密钥存于系统钥匙串或凭据存储</td><td>密钥仅存于本机；请求由你的设备直接发送，不经过我们的服务器</td><td>是，发送到 DeepSeek（位于中国）</td></tr>
+<tr><td>AI 请求</td><td>OCR 文字、活动时间线文字，以及对话消息与自动注入的项目文字摘要和暂放区文件元信息（仅当你配置密钥并触发分析或对话时）；AI 服务密钥存于系统钥匙串或凭据存储</td><td>密钥仅存于本机；请求由你的设备直接发送，不经过我们的服务器</td><td>是，发送到 DeepSeek（位于中国）</td></tr>
 <tr><td>遥测</td><td>使用统计（仅当你明确同意后）；记录不含用户 ID 或任何账号标识，服务器无法把它与你的账号关联</td><td>服务器</td><td>是，发送到服务器。默认关闭，客户端均不开启</td></tr>
 <tr><td>服务器日志</td><td>请求 URL（查询串不含密钥）、时间、IP 地址（日志中屏蔽 IPv4 与 IPv6）、已脱敏的应用日志、用户与管理员操作的审计记录（含用户与对象 ID）</td><td>Cloudflare 平台日志与我们的应用日志</td><td>由 Cloudflare 处理</td></tr>
 <tr><td>Cookie 与浏览器存储</td><td>公开页面不设置 Cookie。浏览器中仅保存 <code>pixo-language</code>（localStorage，语言偏好）与 <code>pixo-selected-pet</code>（sessionStorage，本次会话的桌宠选择）。账号中心与管理后台另使用必要的 HttpOnly 会话 Cookie 与 CSRF 令牌，用于登录状态</td><td>你的浏览器</td><td>否</td></tr>
@@ -93,16 +93,17 @@
 
 <h2 id="sync">4. 同步与遥测</h2>
 <ul>
-<li><strong>同步默认关闭。</strong>客户端默认不同步任何数据；同步须由你主动开启并明确同意“数据同步”（sync）。即使将来开启，也只同步你选择的元数据，例如项目结构、恢复笔记和设置；不包含截图、照片、原文件、剪贴板正文、OCR 全文或活动时间线。同步内容在你的设备上加密后才上传，服务器只保存加密信封，无法解密；未同意或已撤回同意时，服务器拒绝同步请求，明文同步也会被服务器拒绝。</li>
+<li><strong>同步默认关闭。</strong>客户端默认不同步任何数据；同步须由你主动开启、设置同步口令或恢复密钥并明确同意“数据同步”（sync）。开启后只同步你选择的元数据与文本记录，例如项目结构、恢复笔记、多会话对话、偏好设置和端到端加密的 AI 密钥；不包含截图、照片、原文件正文、剪贴板正文、OCR 全文或活动时间线。同步内容在你的设备上加密后才上传，服务器只保存加密信封，无法解密；未同意或已撤回同意时，服务器拒绝同步请求，明文同步也会被服务器拒绝。</li>
 <li><strong>反馈端到端加密。</strong>你提交的反馈正文在你的设备上加密，服务器只保存密文，仅发送者本机可以解密。服务端与运营方均无法读取正文；管理后台不显示反馈的任何信息（包括元数据）。我们不会因客服或员工需要处理问题而读取用户内容。</li>
 <li><strong>遥测默认关闭。</strong>客户端均不开启遥测。服务器只为已明确同意遥测的用户存储遥测记录，并拒绝包含 URL、邮箱、IP 地址或文件路径形式的值。遥测记录不含用户 ID 或任何账号标识，服务器无法把它与你的账号关联：它保留 90 天后自动删除，注销账号时不会按账号删除它，导出也不包含它。你可以撤回同意，撤回后服务器不再接收遥测。</li>
 </ul>
 
 <h2 id="ai">5. 发送给第三方 AI 服务的数据</h2>
-<p>客户端使用你自带密钥的 AI 服务（目前为 DeepSeek，服务地址为 api.deepseek.com）。只有你配置了密钥并主动开始分析时，才会发送：</p>
+<p>客户端使用你自带密钥的 AI 服务（目前为 DeepSeek，服务地址为 api.deepseek.com）。只有你配置了密钥并主动开始分析或发起伙伴对话时，才会发送：</p>
 <ul>
 <li>设备上识别出的 OCR 文字（经客户端清洗）；</li>
-<li>带时间戳的活动时间线文字。</li>
+<li>带时间戳的活动时间线文字；</li>
+<li>你在聊天框中输入的消息，以及自动注入的项目恢复摘要与暂放区文件元信息（仅文件名、类型与大小）。</li>
 </ul>
 <p>不会发送：截图像素、照片、原文件内容、剪贴板正文。OCR 文字本身可能包含敏感信息，请按项目内容决定是否授权分析。发送后的处理受该 AI 服务自身的条款与隐私政策约束，我们无法控制。该服务位于中国，数据传输是因为你选择使用它。没有密钥或离线时，客户端只在本地生成摘要。</p>
 <p>本网站不代理 AI 请求。</p>
@@ -180,10 +181,10 @@
 </div>
 <div data-l="en" lang="en">
 <h1>Privacy Policy</h1>
-<p class="meta">Effective date: 2026-10-12</p>
+<p class="meta">Effective date: 2026-10-15</p>
 
 <h2 id="summary">In one paragraph</h2>
-<p>PIXO TAP is local-first software. Original screenshots, photos, original file contents and clipboard text stay on your device and are never uploaded. Accounts, sync, telemetry and AI analysis are all optional: only when you have configured your own AI service key and trigger an analysis is the OCR text recognised on your device, and the activity timeline text, sent directly from your device to that AI service. Sync is not open in the clients yet, and the clients do not sync any data at present; before you can turn sync on you must explicitly consent, and synced content must be end-to-end encrypted. Feedback text is also end-to-end encrypted, and the server stores only ciphertext.</p>
+<p>PIXO TAP is local-first software. Original screenshots, photos, original file contents and clipboard text stay on your device and are never uploaded. Accounts, sync, telemetry and AI analysis are all optional: only when you have configured your own AI service key and trigger an analysis or chat is the OCR text recognised on your device, the activity timeline text, or your chat messages and auto-injected project summary / shelf file metadata sent directly from your device to that AI service. Sync is off by default; before you can turn sync on you must explicitly consent and configure a sync passphrase or recovery key, and synced content is end-to-end encrypted. Feedback text is also end-to-end encrypted, and the server stores only ciphertext.</p>
 
 <h2 id="collection">1. Scope of screen, keyboard and other collection</h2>
 <ul>
