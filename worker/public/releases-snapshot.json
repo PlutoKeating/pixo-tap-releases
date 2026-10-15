@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T12:40:24.995Z",
+  "generated_at": "2026-10-15T03:15:07.998Z",
   "items": [
     {
       "version": "1.46.0",
@@ -13,7 +13,7 @@
           "kind": "other",
           "name": "latest.json",
           "size": 1013,
-          "sha256": "dc77aa5e8359edd4cba88888783b223c53701dc92a0b10c8805fe3359fb15f65",
+          "sha256": "ae7738e7ca5871ec75a776f3f690fdbbbbea95f67863f89cef3e8f837eb4e373",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/latest.json"
         },
         {
@@ -21,8 +21,8 @@
           "arch": "x64",
           "kind": "tar.gz",
           "name": "PixoTap-1.46.0-linux-x86_64.tar.gz",
-          "size": 10290211,
-          "sha256": "fef35eec224ff42cec5e400d7645c9b1e8c79153c61508abd693a9e1f49051a6",
+          "size": 10289992,
+          "sha256": "5c8d24c2543a6d504aa70130b4a4c00a15ce3e7f477fd8f2b4e13625784bc359",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/PixoTap-1.46.0-linux-x86_64.tar.gz"
         },
         {
@@ -58,7 +58,7 @@
           "kind": "checksum",
           "name": "SHA256SUMS.txt",
           "size": 585,
-          "sha256": "e0426d0023f53b0a89e087afe82b380e13ea4b8d19a40b543656acca15688dd9",
+          "sha256": "44167101d01824d9614f5ffcdbee2acab79c12af9f8a09f5d42d171e056cd6df",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt"
         },
         {
@@ -67,7 +67,7 @@
           "kind": "signature",
           "name": "SHA256SUMS.txt.sig",
           "size": 97,
-          "sha256": "723afa17ad7df0cf985319365c1f8823c57f4f067e75895e581a64e52031495a",
+          "sha256": "c594749545768e7f29adfe0e931e4c08381fb138d7a37e731c292b81e7e40eb1",
           "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.0/SHA256SUMS.txt.sig"
         }
       ]
