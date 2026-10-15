@@ -1,6 +1,77 @@
 {
-  "generated_at": "2026-10-15T08:35:04.461Z",
+  "generated_at": "2026-10-15T09:30:22.571Z",
   "items": [
+    {
+      "version": "1.46.4",
+      "published_at": "2026-10-15T09:27:16Z",
+      "notes_md": "# PixoTap 1.46.4\n\n## 更新内容\n\n（发布后由维护者补充面向用户的说明。）\n\n## 安装\n\n| 平台 | 文件 | 说明 |\n| --- | --- | --- |\n| macOS 13 及以上 | `PixoTap-1.46.4-mac-universal.dmg` | Apple 芯片与 Intel 通用。当前为临时签名、未公证，首次打开需按住 Control 点击选择“打开” |\n| Windows 10/11 x64 | `PixoTap-1.46.4-win-x64-setup.exe`（推荐）、`PixoTap-1.46.4-win-x64.zip` | setup.exe 双击安装（每用户，无需管理员权限）；ZIP 需完整解压后运行。未做代码签名，SmartScreen 可能提示 |\n| Linux x86_64 | `PixoTap-1.46.4-linux-x86_64.tar.gz` | 推荐一行安装：`curl -fsSL https://pixotap.plutokeating.beer/install \\| bash`（自动校验 SHA-256）；也可手动下载 tar.gz，校验后运行包内 install.sh |\n\n并非每个版本都包含全部平台；没有对应文件即表示该平台本版本未发布。\n\n## 校验\n\n下载后用 `SHA256SUMS.txt` 校验：\n\n```bash\nsha256sum -c --ignore-missing SHA256SUMS.txt   # Linux\nshasum -a 256 -c --ignore-missing SHA256SUMS.txt   # macOS\n```\n\nWindows PowerShell：`(Get-FileHash <文件> -Algorithm SHA256).Hash` 并与 `SHA256SUMS.txt` 中对应行比对。\n\n## 已知限制\n\n- 预发布版本仍在验证中，数据与行为可能变化。\n- 当前 Mac / Windows 版本尚未接入账号登录与云同步。\n",
+      "prerelease": false,
+      "assets": [
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "other",
+          "name": "latest.json",
+          "size": 1017,
+          "sha256": "a47266054fbf41d3aa99e3587bc565dfcaf3a27d671e775b9b5475b03954a278",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/latest.json"
+        },
+        {
+          "platform": "linux",
+          "arch": "x64",
+          "kind": "tar.gz",
+          "name": "PixoTap-1.46.4-linux-x86_64.tar.gz",
+          "size": 10409177,
+          "sha256": "70651b082c1175e0416f80cb8d5b4f9eb94a040379121e48589d7f0031a928c9",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/PixoTap-1.46.4-linux-x86_64.tar.gz"
+        },
+        {
+          "platform": "mac",
+          "arch": "universal",
+          "kind": "dmg",
+          "name": "PixoTap-1.46.4-mac-universal.dmg",
+          "size": 8690661,
+          "sha256": "19acc7ba6fef9f2ce40a18168467b65a473b33a22d00001f68178131416e88d8",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/PixoTap-1.46.4-mac-universal.dmg"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "exe",
+          "name": "PixoTap-1.46.4-win-x64-setup.exe",
+          "size": 94581992,
+          "sha256": "dade6149c5543c34b5b0224d8747310d3405aa13509b937914fd36516d2dd63e",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/PixoTap-1.46.4-win-x64-setup.exe"
+        },
+        {
+          "platform": "win",
+          "arch": "x64",
+          "kind": "zip",
+          "name": "PixoTap-1.46.4-win-x64.zip",
+          "size": 124283611,
+          "sha256": "53dbc54119aa3b6e610b0b413e20166f912d9d578af3b2601da302a470407cc9",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/PixoTap-1.46.4-win-x64.zip"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "checksum",
+          "name": "SHA256SUMS.txt",
+          "size": 585,
+          "sha256": "cd1aa5905ece9d443cdb8010c726d6f33a4885b455b8bee74507943cae47f541",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/SHA256SUMS.txt"
+        },
+        {
+          "platform": "other",
+          "arch": "unknown",
+          "kind": "signature",
+          "name": "SHA256SUMS.txt.sig",
+          "size": 97,
+          "sha256": "d05f9bf52c8685e9219a1b85744065c2969e332046a9e45a8de6da1efc441d47",
+          "url": "https://github.com/PlutoKeating/pixo-tap-releases/releases/download/v1.46.4/SHA256SUMS.txt.sig"
+        }
+      ]
+    },
     {
       "version": "1.46.3",
       "published_at": "2026-10-15T08:30:23Z",

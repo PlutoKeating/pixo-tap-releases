@@ -71,7 +71,7 @@
 <h2 id="faq" class="sec">常见问题</h2>
 <details class="faq"><summary>我需要账号吗？</summary><p>不需要。账号是可选的，只支持邮箱加密码登录，用于管理资料、已授权设备、同意设置、数据导出与注销。</p></details>
 <details class="faq"><summary>数据保存在哪里？会上传吗？</summary><p>默认只保存在你的设备上：macOS 在 <code>~/Library/Application Support/PixoTap</code>，Windows 在 <code>%LocalAppData%\PixoTap</code>，Linux 在 <code>~/.local/share/PixoTap</code>。截图原图、照片、原文件内容和剪贴板正文不会上传。详见<a href="/privacy/">隐私政策</a>。</p></details>
-<details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥。没有密钥或断网时，仍会生成本地交接摘要，联网后继续分析。配置密钥后还可使用“聊一聊”智能伙伴（支持独立对话小窗口与工作台展开双栏会话列表，自动同步项目恢复摘要与暂放区文件清单，不上传原文件正文）。</p></details>
+<details class="faq"><summary>AI 功能需要什么？</summary><p>需要你自己的 DeepSeek API 密钥。没有密钥或断网时，仍会生成本地交接摘要，联网后继续分析。配置密钥后还可使用“聊一聊”多会话智能伙伴 Agent（支持独立对话小窗口与工作台展开双栏会话列表、自动注入项目恢复摘要与暂放区文件清单，并内置 <code>read</code> / <code>grep</code> / <code>search</code> / <code>web_search</code> / <code>edit</code> / <code>write</code> / <code>shell</code> 工具按需本机检索与执行）。</p></details>
 <details class="faq"><summary>怎么卸载？</summary><p>macOS：把应用拖进废纸篓。Windows：在“设置 &gt; 应用”中卸载。Linux：运行高级里的卸载命令。卸载不会删除你的数据目录。</p></details>
 <details class="faq"><summary>怎么停止记录？</summary><p>点“记下断点”即可；隐藏入口或退出程序也会停止记录。</p></details>
 
@@ -126,7 +126,7 @@ Get-FileHash -Algorithm SHA256 &lt;文件&gt;      # Windows（PowerShell）</co
 <h2 id="faq" class="sec">FAQ</h2>
 <details class="faq"><summary>Do I need an account?</summary><p>No. Accounts are optional, use email and password only, and are for managing your profile, authorized devices, consents, data export and deletion.</p></details>
 <details class="faq"><summary>Where is my data stored? Is it uploaded?</summary><p>On your device by default: <code>~/Library/Application Support/PixoTap</code> on macOS, <code>%LocalAppData%\PixoTap</code> on Windows, <code>~/.local/share/PixoTap</code> on Linux. Original screenshots, photos, file contents and clipboard text are never uploaded. See the <a href="/privacy/">Privacy Policy</a>.</p></details>
-<details class="faq"><summary>What does AI need?</summary><p>Your own DeepSeek API key. Without a key, or offline, a local hand-off summary is still produced and analysis continues once you are online. With a key configured, you can also chat with your AI companion in a standalone compact window or expanded dual-column workbench view (automatically syncing project summaries and shelf file metadata without uploading file contents).</p></details>
+<details class="faq"><summary>What does AI need?</summary><p>Your own DeepSeek API key. Without a key, or offline, a local hand-off summary is still produced and analysis continues once you are online. With a key configured, you can also use the multi-session AI companion Agent in a standalone compact window or expanded dual-column workbench view (automatically syncing project summaries and shelf file metadata, with built-in <code>read</code> / <code>grep</code> / <code>search</code> / <code>web_search</code> / <code>edit</code> / <code>write</code> / <code>shell</code> tools).</p></details>
 <details class="faq"><summary>How do I uninstall?</summary><p>macOS: drag the app to the Trash. Windows: remove it in Settings &gt; Apps. Linux: run the uninstall command under Advanced. Your data folder is kept.</p></details>
 <details class="faq"><summary>How do I stop recording?</summary><p>Press Mark checkpoint; hiding the entry point or quitting the app also stops recording.</p></details>
 
